@@ -37,15 +37,40 @@ Confirmed decisions, with the reason for each and the alternatives rejected. Evi
 
 ## Amendments from the Stage A review (applied to the research at Yash's request, 2026-10-22)
 
-Source: [research/STAGE_A_REVIEW.md](research/STAGE_A_REVIEW.md). Yash asked for the review's fixes to be made to the research. These amend D1, D3 and D5 above. Two items stay open for Yash.
+Source: [research/STAGE_A_REVIEW.md](research/STAGE_A_REVIEW.md). Yash asked for the review's fixes to be made to the research. These amend D1, D3 and D5 above. The two items left open here were settled in D6 and D7.
 
 - **D1:** test the camera with a 15–25 h combat toy (one floor plus stairs, the chamber, one weapon, two enemies) before the full loop prototype. Plan for about 30–60 enemies on screen in the side-on view, not survivors-like crowds.
 - **D2:** no infection clock in the prototype. Story is budgeted like a system and capped at about 20 fragments and one ending for game one.
 - **D3:** the prototype uses a fixed five nights (3–7 at release). Unlocked components count as power progression and are balanced as such.
 - **D5:** game one targets shipping, recouping costs and 2,000–5,000 units at $9.99–12.99, with a 15k-wishlist gate before release. Mobile goes to Android first, and iOS only if Android sales justify it. Google Play takes 20–25% on paid games in the US, UK and EEA.
-- **Scope (open, confirm at Stage B):** cut game one to about 600–900 hours (12–20 months).
-- **"$1M" definition (open):** headline gross, Steam gross, net or take-home. At $14.99 that's about 67k, 120k, 190k or 240k+ units.
+- **Scope (settled in D6):** cut game one to about 600–900 hours (12–20 months).
+- **"$1M" definition (settled in D7):** headline gross, Steam gross, net or take-home. At $14.99 that's about 67k, 120k, 190k or 240k+ units.
 - **Rejected alternative:** keeping the original 1,200–2,000 h scope and the 5,000-unit target with a 7k-wishlist gate (internally inconsistent; see the review, section 2).
+
+## D6. Game one scope: about 600–900 hours
+- **Date:** 2026-10-22 · **Approved by:** Yash ("let's go ahead" in the review thread, read as confirming the cut; say so if that reading is wrong)
+- **Decision:** game one is cut to about 600–900 h (12–20 months at 10–12 h a week): 3–4 enemies plus one boss night, about 10–12 components, 4–5 traps, 6–8 experiments, about 20 story fragments and one ending, one arena with state changes, priced $9.99–12.99. The content list is fixed in GAME_DESIGN_DOCUMENT.md section 12.
+- **Why:** the original list estimates at 1,200–2,000 h (2–4 years part-time). A finished small game gives the data and following game one is for.
+- **Rejected:** the original 1,200–2,000 h scope; a middle 1,000–1,200 h scope.
+
+## D7. What "US$1M" means
+- **Date:** 2026-10-22 · **Approved by:** Yash (decision card)
+- **Decision:** the long-term US$1M goal is **net revenue as the store dashboards report it** (Steamworks and Play Console: after the store's cut, refunds, chargebacks and VAT/sales tax, before income tax and withholding), summed across all games. At $14.99 that is about 190,000 units.
+- **Why:** it can be read directly from the dashboards, so progress is measured, not estimated.
+- **Rejected:** headline gross (overstates earnings 3–5×); take-home after tax (truest, but hardest to track).
+
+## D8. Platforms: Windows, Android and iOS are all committed (amends D5)
+- **Date:** 2026-10-22 · **Approved by:** Yash ("It needs to support windows android and IOS, all! Since godot already supports IOS", then "I have a mac but we will keep it parked for now, we will develop keeping in mind that it will be released for IOS as well.")
+- **Decision:** the game ships on **Windows (Steam), Android and iOS**. iOS is no longer conditional on Android sales. Launch order stays as D5: Steam first, then the mobile port, with **Android and iOS released together** as a premium port ($3.99–6.99). **iOS build work is parked** until the port; until then every system is designed so it will run on iOS.
+- **What Godot covers (fact):** Godot exports to iOS, but the export must run on **macOS with Xcode installed**, and needs an App Store Team ID [S56]. Yash has a Mac, so no hardware cost.
+- **Costs (fact plus estimate):**
+  - Apple Developer Program: **$99 a year, every year** [S36]; about **₹8,700 a year** in India by one developer's report [S54], or about ₹9,500 at ₹95.5/$. Only needed when iOS builds start.
+  - An iPhone to test on: not budgeted (a borrowed one is fine).
+  - Port work: **about 200–350 h for Android and iOS together**, against 150–300 h for Android alone (estimate; the extra is signing, App Store review, safe areas and a second device range).
+  - Apple's fee: 15% under the Small Business Program [S38].
+- **Budget impact:** the ₹10,000 budget is already used by the Steam fee (D5). iOS adds about ₹8,700–9,500 a year from the port onward. **Recommendation:** pay nothing to Apple until the port starts after the Steam launch, and fund it from Steam revenue or a budget increase decided then.
+- **Design impact (from now):** the D5 mobile-ready rules (input actions only, scalable UI, touch targets, no hover-only information, quality presets), plus: safe-area layout for notches and the Dynamic Island, mid-run saves because iOS suspends apps without warning, and an iPhone added to the mobile performance targets before the port.
+- **Rejected:** a same-day launch on all three platforms (puts the 200–350 h port on the critical path and moves the Steam launch back by roughly 4–8 months at 10–12 h a week; estimate); iOS only if Android justifies it (the earlier D5 amendment, overruled by Yash).
 
 ## Also confirmed with the report
 - **Engine:** Godot 4.7.x with statically typed GDScript. The exact patch version is pinned at prototype start.
