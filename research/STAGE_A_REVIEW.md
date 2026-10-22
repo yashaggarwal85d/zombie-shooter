@@ -152,3 +152,7 @@ All sources in RESEARCH_LOG.md marked Verified above, plus:
 - [GameDiscoverCo: State of Steam wishlist conversions](https://newsletter.gamediscover.co/p/the-state-of-steam-wishlist-conversions) (17 Oct 2025; 25k+ wishlist sample).
 - [Game World Observer: median indie earnings](https://gameworldobserver.com/2022/11/29/median-indie-game-earnings-steam-barely-over-1000) (29 Nov 2022) and [first half of 2024 genres](https://gameworldobserver.com/2024/07/18/top-game-genres-on-steam-first-half-2024-key-trends) (18 Jul 2024).
 - Secondary, not relied on: [game-developers.org 2025 revenue distribution](https://game-developers.org/2025-steam-game-revenue-distribution) (Gamalytic-derived, sample unclear).
+
+## Decision recorded after this review
+
+- **22 Oct 2026, Yash: art path = option A (light-led silhouette style) with an artist if needed.** Yash builds the look himself for ₹0. A 10–15 h look test (the chamber, one silhouette enemy, fog and light on one screen) runs in Stage C before the prototype. If the look test falls short of the bar, raising the budget for a freelance artist (capsule, background, character parts) becomes a precondition for the vertical slice.
