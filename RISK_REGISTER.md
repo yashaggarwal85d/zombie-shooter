@@ -9,7 +9,11 @@ Risks to shipping game one, with owner checks. Design risks are seeded from rese
 | Risk | Likelihood | Impact | Mitigation | Checked by |
 |---|---|---|---|---|
 | The noise rule creates no real choice | Medium | Critical | Debug overlay; log loud vs quiet use; tune pulse size and radius | Combat toy gate |
-| Side-on fights feel cramped or one-dimensional | Medium | High | Two stairwells, 3–4 open entries a night, dodge; top-down fallback (D1) | Combat toy gate |
+| Side-view fights feel one-dimensional | Medium | High | Two attack sides, height from walls and the roof, structures that break (D11) | Combat toy gate |
+| Standing on a wall or the roof is always safe | Medium | High | The infected break what they reach; shooting from the roof draws them to the shelter; gate checks time off the ground | Combat toy gate |
+| Reads as "Kingdom with guns" (side view, two sides, walls, moving on) | Medium | High | Lead with the noise rule, the spouse and the loop in the hook; redo the hook test outdoors | New hook test |
+| Per-location art grows past the budget | Medium | High | 3 reusable backdrop kits and one shelter rig with dressings (GDD 12) | Loop prototype |
+| Touch controls for move, jump, aim and fire at once | Medium | Medium | Test on a phone during the loop prototype; aim assist | Loop prototype |
 | One build dominates | Medium | High | Tags tied to world states that change per night; no strictly better components | Slice playtests |
 | Darkness hides danger | Medium | High | Readability rules; greyscale test | Look test |
 | The spouse reads as a prop | Medium | High | Her own notes and choice; outside readers check fragments | Slice |

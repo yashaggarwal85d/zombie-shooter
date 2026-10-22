@@ -2,7 +2,7 @@
 
 Confirmed decisions, with the reason for each and the alternatives rejected. Evidence for each is in [research/CONCEPT_VALIDATION_REPORT.md](research/CONCEPT_VALIDATION_REPORT.md).
 
-## D1. Camera: side-on cross-section first, top-down as fallback
+## D1. Camera: side-on cross-section first, top-down as fallback (replaced by D11)
 - **Date:** 2026-10-22 · **Approved by:** Yash
 - **Decision:** Greybox a side-on cross-section of one building, with the chamber at its centre. If the combat fails the prototype criteria after about 15 hours of greybox work, switch to a top-down or 3/4 arena.
 - **Why:** This view supports layered depth, silhouettes and fog, keeps the chamber at the visual centre, and stands out from top-down survivors-likes on a capsule.
@@ -88,3 +88,12 @@ Source: [research/STAGE_A_REVIEW.md](research/STAGE_A_REVIEW.md). Yash asked for
 - **Not verified, carried into Stage D as early checks:** C1 builds launching and input working on real hardware; C3 frame rates on Yash's PC and phone (so the Mobile vs Compatibility renderer choice stays provisional on Mobile); C5 Steam achievement and cloud save; C2 look-test judgement (the D4 art gate is still open); C6 hook test with strangers.
 - **Noise rule:** the 3 s sound memory and 1.25× hysteresis found in C4 go into the combat toy as tunable values. Whether they join the rule in the GDD is decided at the combat toy gate.
 - **Rejected alternative:** holding Stage D until every hardware and people test is done. That is safer but would stall the build while the runs wait on Yash's time.
+
+## D11. Outside the shelter, on the road (replaces D1)
+- **Date:** 2026-10-22 · **Decided by:** Yash, in the project chat: "I don't want to be the scene in the house… it would certainly not be inside. So yeah, zombie will come from two directions."
+- **Decision:** the camera is outside only: a side view of a small shelter (a cabin in the woods, sometimes a building in town) with the spouse inside and never shown. The infected come from the left and the right. The backdrop changes by location, and there is day and night. The two of you travel: at each stop you research, fight, gather, then move on. The player can jump onto the shelter and onto structures they build (fences, walls, high walls with ladders), and lay traps.
+- **Kept from earlier decisions:** the noise rule and the hum, runners that ignore noise, the loud/quiet weapon choice, D2 (self-experimentation), D3 (loop rules, with "arena state" now meaning the structures at a stop), D4 (art approach), D6 scope budget, D9 P1/P2.
+- **Proposals that fill the gaps (GDD v0.2, items marked ⚑; waiting for Yash):** one stop per day and night, 5 stops on a fixed route ending at her lab; scavenging is a day action, not a separate phase; the infected never jump or climb, they break structures; runners vault low fences; no dodge (jump replaces it); 3 backdrop kits; her presence shown as the pod's light through the shelter.
+- **Why (Yash):** he wants an outdoor scene with a story of moving, not a static house interior.
+- **Consequences:** the waypoint graph, stairs and floors from Stage C (C4) are no longer needed; the noise and horde logic carry over. The C2 look test and the C6 hook clip show the old interior, so both need redoing outdoors before they count. Jumping, climbing and building are new work.
+- **Rejected:** the side-on interior cross-section (D1), and its top-down fallback. The interior combat toy spec (v0.1) was withdrawn before any code was written.
