@@ -1,6 +1,6 @@
 # Stage D, step 1: combat toy spec
 
-Version 0.2 · 22 October 2026 · Status: **draft, waiting for Yash's approval.** No gameplay code is written until it's approved (project rule). v0.1 (inside a two-floor house) was withdrawn after Yash's direction change (D11).
+Version 0.3 · 22 October 2026 · Status: **approved by Yash, 22 October 2026** (D12), with his changes folded in: a build step with limited scrap, and the infected piling up to climb structures. v0.1 (inside a two-floor house) was withdrawn after Yash's direction change (D11).
 
 Source of truth: GAME_DESIGN_DOCUMENT.md v0.2, sections 5–8 and 13. Items marked ⚑ are my proposals from the GDD. Numbers marked *(tune)* are starting values the toy exists to tune.
 
@@ -12,7 +12,7 @@ Source of truth: GAME_DESIGN_DOCUMENT.md v0.2, sections 5–8 and 13. Items mark
 
 1. **It's close to Kingdom Two Crowns.** Side view, a base in the middle, attacks from both sides, walls built by day, and moving on to the next place. Players and press will make the comparison. What sets us apart has to be the noise rule, the spouse and the loop, and the hook test (C6) has to be redone outdoors to check that people see the difference. This is the biggest new risk.
 2. **The hook loses its image if she's never seen.** The Stage C look test and the hook clip were built around the glowing chamber as the brightest thing on screen. With her hidden, the screen shows a cabin, and a cabin alone isn't a hook. ⚑ My fix: you never see her, but the pod's light glows through the cabin's window and cracks. It's the brightest thing on screen, and it dims as the cabin takes damage. Without something like that, the emotional premise lives only in text.
-3. **Height can become a safe spot.** If the player can stand on a wall or the roof and nothing can reach them, the night is solved. ⚑ The fix is that the infected never climb, but they break whatever they reach, and loud shots from the roof call them straight to her. The gate checks for this ("height is a choice, not a safe spot").
+3. **Height can become a safe spot.** If the player can stand on a wall or the roof and nothing can reach them, the night is solved. Yash's rule (D12) closes this: the infected pile up and climb, and the shelter is on their path, so hiding up high loses her. The gate checks for this ("height is a choice, not a safe spot").
 4. **Art for each location.** Every stop needs a backdrop and a shelter. Open-ended, that blows the art budget. ⚑ The cap is 3 reusable backdrop kits (woods, farmland, town edge) and one shelter rig with 3–5 dressings. Silhouette woods are among the cheapest backdrops to make in our style; town buildings cost more. Estimate: about +40–80 h of art over v0.1's one building, partly offset by dropping the interior.
 5. **Travel and the loop.** ⚑ Each stop is one day and one night, five stops make a run, and the route is fixed and ends at her lab, so the loop resets you to stop 1. That fits D3 (3–7 nights) and P2 (win by findings) unchanged. One real loss: structures don't carry from night to night, so "which barricade do I repair" is gone. In its place, you plan a fresh field at every stop.
 6. **New verbs.** Jumping, ladders and building are new work (estimate +15–25 h over v0.1). Touch controls must fit move, jump, aim and fire at once, which is harder than v0.1's no-jump design. I cut dodge to make room ⚑.
@@ -24,13 +24,13 @@ Source of truth: GAME_DESIGN_DOCUMENT.md v0.2, sections 5–8 and 13. Items mark
 
 Answer before anything else is built: **is holding a shelter from both sides fun for five minutes, with loud vs quiet and ground vs height as the main choices?** It also settles the noise rule's 3 s memory and 1.25× hysteresis (D10).
 
-**Not in the toy:** day phase, building, scrap, travel, backdrops beyond one, brute, traps, experiments, saves, story, Steam, touch controls, final art.
+**Not in the toy:** the day action budget, scrap from kills, travel, backdrops beyond one, brute, traps, experiments, saves, story, Steam, touch controls, final art.
 
 ## 3. Behaviour
 
 ### The field (one stop: woods at night)
 - One fixed screen. The cabin is in the centre, with flat ground on both sides. The infected enter at the left and right edges.
-- **Fixed layout:** on the left, a fence near the edge and a wall nearer the cabin. On the right, a high wall with a ladder. A ladder also reaches the cabin roof. *(The toy has no building; a layout cycle key, `debug_layout`, swaps between 2–3 authored layouts so we can compare.)*
+- **Build step (D12):** before each night, in daylight, you have **8 scrap** *(tune)* and **3 build spots on each side**. Walk to a spot and press `interact` to cycle it: empty → fence (1) → wall (2) → high wall (3) → high wall with ladder (4) → empty, with refunds. Press `start_night` (Enter, or Start on a gamepad) when ready. A free ladder always reaches the cabin roof. After a loss, the build step starts again with your last layout already placed.
 - The world is about 15% wider than 16:9, so 20:9 phones see more woods, not empty space.
 - The cabin glows from inside ⚑ (section 1, point 2): the brightest thing on screen, dimming with integrity.
 
@@ -58,12 +58,15 @@ Answer before anything else is built: **is holding a shelter from both sides fun
 | Speed *(tune)* | 60 px/s | 200 px/s |
 | Health *(tune)* | 3 | 2 |
 | Goes to | The sound it hears (for shots, the player's position) | Always the cabin |
-| Blocked by | Fence, wall, high wall: stops and hits it | Wall and high wall; **vaults the fence** ⚑ |
+| Blocked by | Fence, wall, high wall: hits it and piles up | Wall and high wall (piles up too); **vaults the fence** |
 | Attacks | Player 10 (when in reach at ground level), structure 5, cabin 6, every 1.5 s | Structure 5, cabin 8, every 1.2 s; never the player |
 | Tell | 0.5 s pose and sound before each hit on the cabin | same |
 
-- If the target sound is behind a structure, the shambler walks to the structure and breaks it.
-- A player standing on a structure is out of reach. A player on the ground can be hit.
+- If the target is beyond a structure, an enemy walks to it, hits it and **joins a pile** against it. Each enemy in the pile stands on the ones below (28 px a body *(tune)*). The bottom two keep hitting the structure.
+- **Climbing (D12):** once the pile is as tall as the structure, the next arrivals climb onto its top, walk across and drop down the far side. A player standing on top can be hit by the top of the pile or by climbers.
+- Killing an enemy in a pile drops the ones above it. A structure that falls scatters its pile.
+- At the cabin, enemies after the hum hit it and pile against it. If the player is on the roof and making noise, the pile climbs onto the roof.
+- The infected never jump and never use ladders.
 - **Crowd spacing** (from C4): staggered stop distances and a soft push between neighbours, so crowds bunch up at a wall instead of stacking into one sprite.
 - On-screen cap 40 *(tune)*; extra spawns wait off-screen. Edge markers show where the next group enters.
 
@@ -95,6 +98,10 @@ Greybox shapes plus the Stage C silhouettes (project-owned) and rim-light shader
 4. A pulse ends while a shambler walks to it → it carries on for 3 s, then re-picks.
 5. A quiet shot next to a shambler heading for the hum → doesn't steal it.
 6. A structure falls while the player stands on it → the player drops; if shamblers are below, they can hit next frame.
+6a. Player on a high wall, pile reaches the top → the top of the pile can hit them; climbers walk over and drop behind the wall.
+6b. The bottom of a pile is shot → everyone above drops one body height; nobody is left floating.
+6c. A piled enemy's target moves to its own side → it leaves; the ones above drop.
+6d. Player hides on the roof without making noise → the hum keeps the horde on the cabin, and the cabin falls (Yash: that's the loss).
 7. The ladder's wall falls → the ladder falls with it; a player on it drops.
 8. A runner meets the fence → it vaults it without slowing much; it stops at a wall.
 9. Death and dawn in the same frame → the loss counts. Death and shelter fall together → reported as the shelter falling.
@@ -109,7 +116,9 @@ Greybox shapes plus the Stage C silhouettes (project-owned) and rim-light shader
 
 **Automated (GUT, in CI on every push):**
 - Noise: formula, radius cut-off, tie-break, threshold, memory decay, hysteresis, runners ignore noise (cases 1–5).
-- Movement rules: a shambler stops at the first blocking structure toward its target; a runner vaults fences and stops at walls; nobody passes a standing wall.
+- Movement rules: a shambler stops at the first blocking structure toward its target; a runner vaults fences and stops at walls; nobody passes a standing structure until the pile is tall enough to climb.
+- Piles: heights stack, the pile climbs once tall enough, killing a lower member drops the rest, a falling structure scatters the pile, a pile reaches a player on top (6a–6d).
+- Build step: costs, refunds, the scrap limit, and the layout carried into the next attempt.
 - Structures: health, damage, falling, and a ladder falling with its wall; the player drops when the structure under them goes (6, 7).
 - Weapon: stats from `.tres`, damage, magazine, reload, swap timing and cancel (12), loudness values.
 - Combat: damage to player, structures and cabin; the 0.5 s tell before any cabin hit; win/loss and their precedence (9).
@@ -117,7 +126,7 @@ Greybox shapes plus the Stage C silhouettes (project-owned) and rim-light shader
 - Crowd spacing: 20 shamblers at a wall settle with a minimum gap.
 - Resources aren't mutated at runtime.
 - Telemetry: a scripted night writes the right loud/quiet split and off-ground time.
-- **Headless soak:** a scripted player plays 10 simulated nights on each layout: no errors, nobody passes a standing wall, sim time p99 under 2 ms.
+- **Headless soak:** a scripted player plays 10 simulated nights on 3 layouts: no errors, nobody passes a standing structure without climbing a pile, nobody floats, sim time p99 under 2 ms.
 - The toy scene loads with its required nodes.
 
 **Manual (Yash):** jump and climb feel, readability, whether crowd turns read as "I pulled them", and the gate below.
@@ -145,7 +154,7 @@ Plus a decision on the noise memory and hysteresis, recorded in the GDD.
 
 ## 7. Plan
 
-One PR, built in this order and tested at each step: noise port → player movement, jump and ladders → structures → weapon → enemies and the cabin → night and HUD → overlay and telemetry → builds. Estimate 15–25 h.
+One PR, built in this order and tested at each step: noise port → player movement, jump and ladders → structures and the build step → weapon → enemies, piles and the cabin → night and HUD → overlay and telemetry → builds. Estimate 15–25 h.
 
 ## 8. Carried checks (D10, updated for D11)
 

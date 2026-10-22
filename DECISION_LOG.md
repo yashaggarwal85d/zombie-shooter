@@ -97,3 +97,9 @@ Source: [research/STAGE_A_REVIEW.md](research/STAGE_A_REVIEW.md). Yash asked for
 - **Why (Yash):** he wants an outdoor scene with a story of moving, not a static house interior.
 - **Consequences:** the waypoint graph, stairs and floors from Stage C (C4) are no longer needed; the noise and horde logic carry over. The C2 look test and the C6 hook clip show the old interior, so both need redoing outdoors before they count. Jumping, climbing and building are new work.
 - **Rejected:** the side-on interior cross-section (D1), and its top-down fallback. The interior combat toy spec (v0.1) was withdrawn before any code was written.
+
+## D12. Combat toy approved, with climbing piles and building (amends D11)
+- **Date:** 2026-10-22 · **Approved by:** Yash (combat toy thread: "…let's implement this")
+- **Decision:** the combat toy spec v0.2 and the GDD v0.2 proposals are approved, with Yash's changes: (1) the player builds by day with limited resources, so the toy gets a short build step before the night; (2) the infected break structures **or pile on top of each other and climb over them**, so height never protects the player for long; (3) the shelter is on their straight path, so a player who hides up high loses her, and the loop resets.
+- **Replaces:** my proposal that the infected never climb.
+- **Rejected:** a fixed, pre-built toy layout (Yash wants building in from the start).

@@ -1,6 +1,6 @@
 # Game Design Document
 
-Version 0.2 · 22 October 2026 · Status: **v0.2 draft.** The outdoor, on-the-road direction is Yash's decision (D11). Items marked ⚑ are my proposals that fill gaps in that direction, and they wait for Yash's approval. Everything is a hypothesis until the prototype tests it. Numbers marked *(tune)* are starting values, not balance.
+Version 0.2 · 22 October 2026 · Status: **approved by Yash, 22 October 2026** (D11, D12). Items marked ⚑ were proposals; Yash approved them, with the climbing rule in section 6 changed by him (D12). Everything is a hypothesis until the prototype tests it. Numbers marked *(tune)* are starting values, not balance.
 
 v0.1 (approved D9) described the inside of one building in cross-section. D11 replaces that. Sections 3, 9, 11 and 15 carry over almost unchanged. Why each original choice was made: [research/STAGE_B_DESIGN_RESEARCH.md](research/STAGE_B_DESIGN_RESEARCH.md). Approved decisions: [DECISION_LOG.md](DECISION_LOG.md).
 
@@ -79,13 +79,14 @@ Scrap (the one resource) pays for structures and traps. You earn it from kills a
 
 | Structure | Height | Player | Shamblers | Runners | Cost *(tune)* |
 |---|---|---|---|---|---|
-| Fence | Low | Jumps over or stands on it | Stop and break it | Vault over it ⚑ | 1 scrap |
-| Wall | Medium | Jumps up onto it | Stop and break it | Stop and break it | 2 scrap |
-| High wall | Tall | Needs a ladder | Stop and break it (more health) | Stop and break it | 3 scrap |
-| Ladder | — | Climbs to a high wall or the shelter roof | Can't climb ⚑ | Can't climb ⚑ | 1 scrap |
+| Fence | Low | Jumps over or stands on it | Break it, or pile up and climb it | Vault over it ⚑ | 1 scrap |
+| Wall | Medium | Jumps up onto it | Break it, or pile up and climb it | Break it, or pile up and climb it | 2 scrap |
+| High wall | Tall | Needs a ladder | Break it (more health), or pile up and climb it | same | 3 scrap |
+| Ladder | — | Climbs to a high wall or the shelter roof | Don't use ladders | Don't use ladders | 1 scrap |
 
 - The **shelter roof** is reachable by a ladder or a jump from a wall next to it.
-- ⚑ **The infected never jump or climb.** They walk, break what blocks them, and attack what they reach. Height belongs to the player. That keeps their pathing simple, and every structure is something they have to break through.
+- **Height is never safe for long (Yash, D12).** The infected don't jump or use ladders. When a structure blocks them, they hit it and pile up against it, climbing on each other. Once the pile is as tall as the structure, they climb over it, or reach a player standing on top. Killing the bottom of a pile brings the ones above it down.
+- **The shelter is on their path (Yash, D12).** A player who climbs high and waits loses anyway: the horde reaches the shelter, she dies, and the loop resets.
 - ⚑ **A structure falls when its health hits 0.** If you're on it, you drop to the ground.
 - Structures are left behind at dawn. Every stop starts from an empty field (this replaces "which barricade do I repair").
 
@@ -156,7 +157,7 @@ Placed by day on build spots. They share the tag system.
 
 ## 13. Prototype scope and acceptance criteria
 
-**Combat toy (Stage D step 1):** one stop (woods, at night), the shelter with the hum, flat ground on both sides, a fixed layout of structures (a fence and a wall on one side, a high wall with a ladder on the other), the shelter roof, one firearm with the loud/quiet choice, melee, jump and climb, shambler and runner, the noise rule and its debug overlay, one night on repeat. No day phase, no building. Full spec: [research/STAGE_D_COMBAT_TOY_SPEC.md](research/STAGE_D_COMBAT_TOY_SPEC.md).
+**Combat toy (Stage D step 1):** one stop (woods), a short build step before the night with limited scrap and 3 build spots a side (D12), the shelter with the hum and its roof, one firearm with the loud/quiet choice, melee, jump and ladders, shambler and runner (breaking, piling and climbing), the noise rule and its debug overlay, one night on repeat. No day action budget, travel, traps or experiments. Full spec: [research/STAGE_D_COMBAT_TOY_SPEC.md](research/STAGE_D_COMBAT_TOY_SPEC.md).
 
 | Pass if | Measured by |
 |---|---|
