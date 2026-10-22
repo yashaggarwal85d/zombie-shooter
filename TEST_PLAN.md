@@ -26,6 +26,15 @@ godot --headless --path . -s res://addons/gut/gut_cmdln.gd
 
 **What not to unit test:** animation, shaders, layout, feel. Those are checked by hand (section 2).
 
+### Combat toy (Stage D)
+
+| Check | Where | What it covers |
+|---|---|---|
+| `tests/unit/toy/` (GUT) | CI | Noise rule, movement and ladders, weapon, build plan, piles and climbing, win/loss order, spawns and cap, telemetry, scene wiring; one test per spec edge case |
+| `tests/unit/toy/test_toy_soak.gd` | CI | Two short scripted nights: no rule violations; hiding on the roof loses the shelter |
+| `tools/toy/soak.gd -- N` | Local | N full scripted nights on three layouts, with logic timing |
+| `tools/toy/capture.gd` | Local, xvfb | Software-rendered screenshots for reviewing the look; not a performance measure |
+
 ## 2. Manual
 
 | Check | When | How |

@@ -105,6 +105,20 @@ func _init(p_night: NightDefinition, shelter_definition: StructureDefinition, ba
 	_pending.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return (a["time"] as float) < (b["time"] as float))
 
 
+## Breaks the reference cycles between enemies and the piles they stand in,
+## so a finished night is freed. Call before dropping a FieldSim.
+func dispose() -> void:
+	for st: ToyStructure in structures:
+		for side: int in [-1, 1]:
+			(st.piles[side] as Array).clear()
+	for e: ToyEnemy in enemies:
+		e.structure = null
+		e.wind_up_target = null
+		e.target = null
+	enemies.clear()
+	structures.clear()
+
+
 static func build_spot_xs() -> Array[float]:
 	var xs: Array[float] = []
 	for i: int in range(BUILD_SPOT_OFFSETS.size() - 1, -1, -1):

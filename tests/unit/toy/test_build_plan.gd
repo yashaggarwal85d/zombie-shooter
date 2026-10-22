@@ -62,3 +62,12 @@ func test_plan_builds_the_field() -> void:
 func test_nearest_spot() -> void:
 	assert_eq(plan.nearest_spot(plan.spot_xs[2] + 20.0, 60.0), 2)
 	assert_eq(plan.nearest_spot(FieldSim.SHELTER_X, 60.0), -1)
+
+
+func test_peek_matches_cycle_and_changes_nothing() -> void:
+	plan = ToyContent.new_plan(1)
+	plan.cycle(1)
+	var peeked: int = plan.peek_cycle(0)
+	assert_eq(plan.choices[0], 0, "peeking doesn't build")
+	assert_eq(peeked, 0, "out of scrap: the next option for an empty spot is empty")
+	assert_eq(plan.cycle(0), peeked)

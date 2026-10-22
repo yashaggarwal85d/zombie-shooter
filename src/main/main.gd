@@ -1,6 +1,6 @@
-extends Control
-## Entry scene for the pre-prototype skeleton. Shows the build label only.
-## Gameplay scenes replace this once the Stage C prototype is approved.
+extends Node
+## Entry scene. Runs the Stage D combat toy, with the build label in a corner
+## so every screenshot and bug report says which build it came from.
 
 @onready var _build_label: Label = %BuildLabel
 

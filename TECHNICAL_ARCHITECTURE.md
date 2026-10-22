@@ -58,7 +58,8 @@ project.godot, export_presets.cfg, icon.svg
 addons/gut/          vendored test framework (excluded from exports)
 src/                 game code and scenes, grouped by feature
   core/              small shared helpers (BuildInfo)
-  main/              entry scene
+  main/              entry scene (runs the combat toy)
+  toy/               Stage D combat toy: data/ (Resource classes), noise/, sim/ (rules, no nodes), view/ (drawing, HUD, audio)
 data/                .tres content instances, one folder per kind
 assets/              art/, audio/, fonts/ (each file logged in ASSET_REGISTER.md)
 tests/unit/          GUT tests, test_*.gd

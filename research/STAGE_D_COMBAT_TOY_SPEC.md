@@ -156,7 +156,16 @@ Plus a decision on the noise memory and hysteresis, recorded in the GDD.
 
 One PR, built in this order and tested at each step: noise port → player movement, jump and ladders → structures and the build step → weapon → enemies, piles and the cabin → night and HUD → overlay and telemetry → builds. Estimate 15–25 h.
 
-## 8. Carried checks (D10, updated for D11)
+## 8. Built values that differ from this spec (22 October 2026)
+
+First-pass tuning while building, all in `data/` and easy to change:
+- Structure health: fence 20, wall 45, high wall 80 (spec: 15, 30, 50). Damage to structures 4 per hit (spec: 5). In the soak, a pile broke a wall in about 6 s, which made building feel pointless.
+- Shelter integrity 150 (spec: 100). At 100, an undefended cabin fell in about 8 s to the first two groups.
+- Hits on structures don't commit an enemy to its target, only hits on the player do; otherwise a pile could never be pulled away by noise.
+- The free cabin ladder works from both sides, as do built ladders (they're A-frames).
+- Placeholder sounds are generated in code (`tools/art_src/make_toy_sounds.py`), not downloaded.
+
+## 9. Carried checks (D10, updated for D11)
 
 - C1/C3 hardware runs: still need **your PC's CPU, GPU and RAM, and your Android phone model.** The toy builds can stand in for the Stage C builds.
 - Mobile vs Compatibility renderer: still provisional on Mobile.

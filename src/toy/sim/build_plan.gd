@@ -61,17 +61,22 @@ func option_at(spot: int) -> Option:
 	return options[choices[spot]]
 
 
-## Moves a spot to its next option that fits the budget, wrapping to empty.
-## Returns the new option index.
-func cycle(spot: int) -> int:
+## The option a spot would move to next: the next one that fits the budget,
+## wrapping round to empty (which always fits).
+func peek_cycle(spot: int) -> int:
 	var held: int = options[choices[spot]].cost()
 	var next: int = choices[spot]
 	for i: int in options.size():
 		next = (next + 1) % options.size()
 		if options[next].cost() - held <= remaining():
 			break
-	choices[spot] = next
 	return next
+
+
+## Moves a spot to its next affordable option. Returns the new option index.
+func cycle(spot: int) -> int:
+	choices[spot] = peek_cycle(spot)
+	return choices[spot]
 
 
 func nearest_spot(px: float, max_distance: float) -> int:
