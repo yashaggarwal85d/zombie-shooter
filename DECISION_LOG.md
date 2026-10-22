@@ -24,7 +24,10 @@ Confirmed decisions, with the reason for each and the alternatives rejected. Evi
 - **Date:** 2026-10-22 · **Approved by:** Yash
 - **Decision:** Silhouette-led cutout or skeletal characters (Godot Skeleton2D), one painted multi-layer building, and fog and light done in shaders. No AI-generated art or music ships. An art test comes before the vertical slice.
 - **Known constraint:** Yash can't draw, and wants the art to be artistic and impeccable, with the *feel* (not the style or assets) of Hollow Knight: Silksong.
-- **Open:** where the art comes from (commissioned artist, partner or other). Pending Yash's choice.
+- **Sourcing (Yash, 2026-10-22):** use free online assets as **placeholders** for the prototype while Yash learns and starts contributing art. Placeholders don't need to match the final style. Licences allowed: CC0 preferred, CC-BY with attribution. Nothing non-commercial, personal-use only, or unclear. Every asset is logged in ASSET_REGISTER.md with its source, author and licence.
+- **Learning order (recommendation):** Skeleton2D rigging and cutout animation, then 2D lighting, fog and shaders, then shape-based silhouette drawing in Krita.
+- **Gate:** at the vertical slice, an art test compares Yash's work against the target quality. If it falls short, reconsider commissioning an artist for the key assets (estimated ₹3–10 lakh in stages).
+- **Rejected for now:** commissioning an artist before the slice (no budget); a revenue-share art partner; shipping mixed free packs as final art.
 
 ## D5. Commercial target, budget and platform order
 - **Date:** 2026-10-22 · **Approved by:** Yash
