@@ -4,8 +4,8 @@ extends GutTest
 
 const PINNED_ENGINE := "4.7.2"
 const INPUT_ACTIONS: Array[StringName] = [
-	&"move_left", &"move_right", &"stairs_up", &"stairs_down", &"aim", &"fire",
-	&"melee", &"dodge", &"reload", &"interact", &"pause",
+	&"move_left", &"move_right", &"jump", &"climb_up", &"climb_down", &"aim", &"fire",
+	&"melee", &"reload", &"interact", &"pause", &"start_night", &"debug_overlay",
 ]
 const WARNING_LEVEL_ERROR := 2
 

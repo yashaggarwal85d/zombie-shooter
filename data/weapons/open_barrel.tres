@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponComponent" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/toy/data/weapon_component.gd" id="1_s"]
+
+[resource]
+script = ExtResource("1_s")
+id = &"open_barrel"
+display_name = "Open barrel"
+tag = &"loud"
+damage = 2.0
+fire_interval = 0.28
+magazine = 8
+reload_time = 1.2
+noise_loudness = 80.0
+noise_radius = 1200.0

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StructureDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/toy/data/structure_definition.gd" id="1_s"]
+
+[resource]
+script = ExtResource("1_s")
+id = &"shelter"
+display_name = "Cabin"
+height = 170.0
+width = 240.0
+health = 150.0
+cost = 0
