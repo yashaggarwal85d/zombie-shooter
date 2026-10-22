@@ -50,3 +50,10 @@ Source: [research/STAGE_A_REVIEW.md](research/STAGE_A_REVIEW.md). Yash asked for
 ## Also confirmed with the report
 - **Engine:** Godot 4.7.x with statically typed GDScript. The exact patch version is pinned at prototype start.
 - **Stage A verdict:** conditional go for Stage B (design research) and a greybox prototype.
+
+## D10. Stage C passed; go to Stage D (prototype)
+- **Date:** 2026-10-22 · **Approved by:** Yash (Stage C thread: "lets give this a pass and move on to the next stage")
+- **Decision:** Stage C (tech and pipeline validation) is passed on what was verified in the cloud: C4 pathing and noise rule passed headless, the Windows and Android builds export, and GodotSteam 4.23.2 loads in Godot 4.7.2. See [research/STAGE_C_TECH_VALIDATION.md](research/STAGE_C_TECH_VALIDATION.md). Stage D starts with the combat toy.
+- **Not verified, carried into Stage D as early checks:** C1 builds launching and input working on real hardware; C3 frame rates on Yash's PC and phone (so the Mobile vs Compatibility renderer choice stays provisional on Mobile); C5 Steam achievement and cloud save; C2 look-test judgement (the D4 art gate is still open); C6 hook test with strangers.
+- **Noise rule:** the 3 s sound memory and 1.25× hysteresis found in C4 go into the combat toy as tunable values. Whether they join the rule in the GDD is decided at the combat toy gate.
+- **Rejected alternative:** holding Stage D until every hardware and people test is done. That is safer but would stall the build while the runs wait on Yash's time.
