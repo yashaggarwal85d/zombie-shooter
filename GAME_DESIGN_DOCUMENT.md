@@ -1,8 +1,8 @@
 # Game Design Document
 
-Version 0.1 · 22 October 2026 · Status: **draft for Yash's approval** (Stage B). Everything here is a hypothesis until the prototype tests it. Numbers marked *(tune)* are starting values, not balance.
+Version 0.1 · 22 October 2026 · Status: **approved by Yash, 22 October 2026** (Stage B; P1 and P2 approved, D9). Everything here is a hypothesis until the prototype tests it. Numbers marked *(tune)* are starting values, not balance.
 
-Why each choice was made: [research/STAGE_B_DESIGN_RESEARCH.md](research/STAGE_B_DESIGN_RESEARCH.md). Approved decisions: [DECISION_LOG.md](DECISION_LOG.md). The one-page vision: [GAME_VISION.md](GAME_VISION.md). Items marked ⚑ are proposals that need Yash's approval.
+Why each choice was made: [research/STAGE_B_DESIGN_RESEARCH.md](research/STAGE_B_DESIGN_RESEARCH.md). Approved decisions: [DECISION_LOG.md](DECISION_LOG.md). The one-page vision: [GAME_VISION.md](GAME_VISION.md). Items marked ⚑ were proposals; Yash approved them (D9).
 
 ---
 
@@ -29,9 +29,9 @@ Fail (you die or the chamber falls) → loop resets to night 1, knowledge kept
 - **Run (20–35 min):** spend scarce day hours; survive escalating nights; choose experiments.
 - **Across loops (3–5 h to the ending):** fill the lab wall; unlock components and traps; learn her story; collect the key findings that make the cure attempt possible.
 
-## 3. Day phase ⚑ P1
+## 3. Day phase ⚑ P1 (approved, D9)
 
-**Proposal:** the day is a budget of **4 action hours** *(tune)*, not a real-time timer. Time doesn't pass while the player thinks. Each action costs hours:
+The day is a budget of **4 action hours** *(tune)*, not a real-time timer. Time doesn't pass while the player thinks. Each action costs hours:
 
 | Action | Cost | Effect |
 |---|---|---|
@@ -160,7 +160,7 @@ Anything beyond this list is post-launch or a later game.
 - **Reset when:** the player dies or the chamber falls. Back to day 1 of night 1.
 - **Persists (the lab wall):** findings, unlocked components and traps, story fragments read, how many loops (shown subtly, never as a score).
 - **Resets:** scrap, samples, health, mutations, barricades, traps placed, arena damage.
-- **Win (⚑ P2):** survive night 5 holding all key findings → cure attempt → the ending. Survive night 5 without them → a failed attempt (one fragment) → reset.
+- **Win (⚑ P2, approved, D9):** survive night 5 holding all key findings → cure attempt → the ending. Survive night 5 without them → a failed attempt (one fragment) → reset.
 - **Save:** one profile file with the lab-wall state, written at each dawn and on quit; a mid-run save at each day so quitting doesn't lose a run (Android and iOS can suspend or kill the app at any time). Steam Cloud if C5 passes.
 
 ## 15. Narrative frame
@@ -189,7 +189,7 @@ Custom Godot Resources, typed GDScript, one `.tres` per item. Systems communicat
 
 ## 17. Open questions
 
-1. ⚑ P1 (day action budget) and ⚑ P2 (win by key findings): approve or reject.
+1. ~~P1 and P2~~: approved (D9).
 2. Wailer as the 4th enemy, or none: decide in the vertical slice from playtests.
 3. Exact entry count and floor count for game one: decide after the combat toy.
 4. Working title: after the hook test (Stage C, C6).

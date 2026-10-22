@@ -72,6 +72,12 @@ Source: [research/STAGE_A_REVIEW.md](research/STAGE_A_REVIEW.md). Yash asked for
 - **Design impact (from now):** the D5 mobile-ready rules (input actions only, scalable UI, touch targets, no hover-only information, quality presets), plus: safe-area layout for notches and the Dynamic Island, mid-run saves because iOS suspends apps without warning, and an iPhone added to the mobile performance targets before the port.
 - **Rejected:** a same-day launch on all three platforms (puts the 200–350 h port on the critical path and moves the Steam launch back by roughly 4–8 months at 10–12 h a week; estimate); iOS only if Android justifies it (the earlier D5 amendment, overruled by Yash).
 
+## D9. Day action budget, win by findings, and Stage C go
+- **Date:** 2026-10-22 · **Approved by:** Yash (decision card)
+- **Decision:** **P1:** the day is a budget of 4 action hours, not a real-time timer (GDD section 3). **P2:** a run is won by surviving night 5 while holding the key findings (about five), which allows the cure attempt and the ending (GDD section 14). **Stage B is closed with a GO for Stage C** (tech and pipeline validation, experiments C1–C6 in research/STAGE_B_DESIGN_RESEARCH.md section 11).
+- **Why:** both make every choice visible and are cheaper to build and test; P2 makes knowledge the win condition, as D3 intends.
+- **Rejected:** a timed day phase (Stage A section 13); surviving five nights as the win on its own.
+
 ## Also confirmed with the report
 - **Engine:** Godot 4.7.x with statically typed GDScript. The exact patch version is pinned at prototype start.
 - **Stage A verdict:** conditional go for Stage B (design research) and a greybox prototype.

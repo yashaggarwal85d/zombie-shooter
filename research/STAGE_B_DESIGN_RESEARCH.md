@@ -1,6 +1,6 @@
 # Stage B: Design Research
 
-Stage B (design research) · Prepared 22 October 2026 · Status: **draft for Yash's approval; Stage C does not start until Yash approves**
+Stage B (design research) · Prepared 22 October 2026 · Status: **approved by Yash, 22 October 2026: GO for Stage C (D9)**
 
 Inputs: [CONCEPT_VALIDATION_REPORT.md](CONCEPT_VALIDATION_REPORT.md), [STAGE_A_REVIEW.md](STAGE_A_REVIEW.md), [../DECISION_LOG.md](../DECISION_LOG.md) (D1–D7). Outputs: this report, [../GAME_VISION.md](../GAME_VISION.md) and [../GAME_DESIGN_DOCUMENT.md](../GAME_DESIGN_DOCUMENT.md) v0. New sources are S43–S53 in [RESEARCH_LOG.md](RESEARCH_LOG.md).
 
@@ -219,6 +219,6 @@ Stage C answers technical questions with small, labelled experiments. No content
 | Game-one content list fits 600–900 h | **Met as an estimate** (section 9; tight on art) |
 | Prototype features have acceptance criteria | **Met** (GDD section 13; Stage A section 13) |
 | Stage C experiments have pass/fail criteria | **Met** (section 11) |
-| Yash approves the GDD v0 core loop, P1 and P2 | **Waiting for Yash** |
+| Yash approves the GDD v0 core loop, P1 and P2 | **Met** (D9, 22 Oct 2026) |
 
 **Recommendation: GO for Stage C** once you approve. If you reject P1 or P2, I'll revise the GDD and keep Stage C unchanged, since none of its experiments depend on them.

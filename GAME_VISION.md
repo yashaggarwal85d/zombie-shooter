@@ -1,6 +1,6 @@
 # Game Vision
 
-Version 0.1 · 22 October 2026 · Status: **draft for Yash's approval** (Stage B). Working title: none yet.
+Version 0.1 · 22 October 2026 · Status: **approved by Yash, 22 October 2026** (Stage B, D9). Working title: none yet.
 
 This is the one-page "why" for the game. When a feature, asset or idea is in doubt, check it against the pillars below. Details are in [GAME_DESIGN_DOCUMENT.md](GAME_DESIGN_DOCUMENT.md); decisions and their reasons are in [DECISION_LOG.md](DECISION_LOG.md).
 
