@@ -1,6 +1,6 @@
 # Concept Validation and Feasibility Report
 
-Stage A (concept validation) · Prepared 22 October 2026 · Status: **awaiting Yash's decisions**
+Stage A (concept validation) · Prepared 22 October 2026 · **Revised 22 October 2026** after the adversarial review in [STAGE_A_REVIEW.md](STAGE_A_REVIEW.md) · Status: **five decisions approved by Yash; art path decided; ready for Stage B on Yash's go-ahead**
 
 Sources are numbered `[S1]` and listed with access dates in [RESEARCH_LOG.md](RESEARCH_LOG.md). Every figure in this report is labelled as one of:
 
@@ -8,7 +8,9 @@ Sources are numbered `[S1]` and listed with access dates in [RESEARCH_LOG.md](RE
 - **Estimate**: my own number, with the reasoning shown. Treat it as a planning input, not a prediction.
 - **Recommendation**: my judgement. You can overrule it.
 
-Nothing here is a confirmed decision until you approve it.
+Approved decisions are listed at the end. Everything else is a recommendation until you approve it.
+
+**What changed in this revision:** corrected the Google Play fee, the Steam launch-discount rule and the review-count labels; added Steam base rates and a typical-outcome revenue row; defined "$1M"; raised the wishlist gate; fixed the production-time contradiction; set enemy counts for the side-on camera; split the prototype; cut the minimum release; and rewrote the art plan now that Yash has said he can't draw.
 
 ---
 
@@ -20,9 +22,10 @@ The emotional frame is strong and can do mechanical work: you defend the one roo
 
 1. **Cut the system count.** Merge infection powers into the research system ("self-experimentation"), keep modular weapons small and tag-based, and make the time loop mostly a framing and persistence layer.
 2. **Pick a camera that sells the identity.** My lead recommendation is a side-on cross-section of a single building, which no top-down survivors-like can copy at a glance. A top-down view is the fallback.
-3. **Prove the core loop in greybox before any art.** The kill criteria are in section 13.
-4. **Reset the money expectations.** US$1M from a first game is a top-few-percent outcome. The ₹10,000 budget is almost exactly the Steam Direct fee.
-5. **Mobile as a port, not a launch platform.** Build every system so it can run on phones (input abstraction, scalable UI, a mobile performance budget), but ship on Windows and Steam first and port to Android and iOS after launch. Section 16A has the evidence.
+3. **Prove it in small steps.** A look test (10–15 h), then a combat toy (15–25 h), then a loop prototype, each with its own gate (section 13).
+4. **Reset the money expectations.** The median Steam game earns about $1,100 over its lifetime [S41]. US$1M from a first game is a top-1–3% outcome. The ₹10,000 budget is almost exactly the Steam Direct fee.
+5. **Make game one smaller.** Cut the minimum release to about 600–900 hours (12–20 months at your pace) instead of 1,200–2,000 (section 15).
+6. **Mobile as a port, not a launch platform.** Build every system so it can run on phones (input abstraction, scalable UI, a mobile performance budget), but ship on Windows and Steam first and port to Android and iOS after launch. Section 16A has the evidence.
 
 ---
 
@@ -39,7 +42,7 @@ The intended emotional core is devotion under hopeless odds, and the cost of try
 - **Fiction and structure.** One place, defended repeatedly, is exactly what a time loop and a fixed screen both need.
 - **Stakes and the lose condition.** If the chamber falls, the night is lost. That gives the player a second health bar that is a person.
 - **A possible core tension (suggestion).** If the chamber's generator noise or heat is what draws the dead, the thing keeping her alive also endangers her. That links noise, traps and lures to the story without extra systems.
-- **Infection as both clock and power.** The protagonist's own infection mirrors the spouse's. It can serve as the run timer and the source of abilities.
+- **Infection as power.** The protagonist's own infection mirrors the spouse's and is the source of abilities through self-experimentation (section 10). Using it as a run timer is **not** part of the prototype; revisit only if runs lack pressure.
 
 This is the hook to test first. Everything else should serve it.
 
@@ -48,11 +51,11 @@ This is the hook to test first. Everything else should serve it.
 | Element | Why it's weak | Recommendation |
 |---|---|---|
 | **Zombies** | Among the most crowded themes on Steam. Players see "zombie wave shooter" on the capsule and stop reading. | Keep the infected, but make their look and behaviour specific to the cure fiction (for example, they're drawn by sound and cold). Never lead marketing with "zombies". |
-| **Horde survival, fixed arena** | Brotato and other survivors-likes have set a US$4.99 price anchor [S3]. Low-effort entries get mixed reviews: The Horde Wants You Dead had 63% positive of 258 reviews at $9.99 [S10]. | Differentiate on the camera, the preparation and the chamber. Don't look like a survivors-like. |
+| **Horde survival, fixed arena** | Brotato and other survivors-likes have set a US$4.99 price anchor [S3]. Low-effort entries get mixed reviews: The Horde Wants You Dead sits at Mixed (61% of 215 English reviews) at $9.99 [S10]. | Differentiate on the camera, the preparation and the chamber. Don't look like a survivors-like. |
 | **Infection powers as a separate system** | A fourth progression track competing with weapons, traps and research. The brief itself asks whether it's essential. | **Merge it into research** as self-experimentation (section 10). |
 | **Time-loop roguelite** | Standard since Hades, Returnal and Deathloop. A loop explains resets but doesn't sell anything on its own. | Use it for story and persistence. Each loop must change knowledge or story, not just stats. |
 | **Saving an infected loved one** | Familiar from The Last of Us and many others. Twelve Minutes, a loop game about a husband and wife, was criticised for using the wife as a puzzle object and for its ending [S6]. | Write the spouse as a person with agency (logs, recordings, choices she made before the chamber). Never make harming her a mechanic. |
-| **"Research toward a cure" premise** | Zombie Cure Lab, a game built entirely on curing zombies, sits at Mixed (65% of 393 reviews) at $24.99 [S8]. The premise doesn't sell itself. | Research must change what you do on the next night, or it's a menu. |
+| **"Research toward a cure" premise** | Zombie Cure Lab, a game built entirely on curing zombies, sits at Mixed (65% of 219 English reviews) at $24.99 [S8]. The premise doesn't sell itself. | Research must change what you do on the next night, or it's a menu. |
 | **Seven signature systems** | Each one needs content, balancing and testing. Solo, part-time, that guarantees shallow systems. | Cut to four: combat, preparation (weapons plus traps), self-experimentation, and the loop. |
 
 ## 4. Is it differentiated enough?
@@ -61,7 +64,7 @@ This is the hook to test first. Everything else should serve it.
 
 Differentiation can come from three places, in order of strength:
 
-1. **The image.** A lit chamber in the middle of a dark, layered, hand-painted building, with silhouettes coming through the walls. This needs the camera decision (section 8).
+1. **The image.** A lit chamber in the middle of a dark, layered building lit by fog and light, with silhouettes coming through the walls. This needs the camera decision (section 8).
 2. **The verb.** "Defend her" is different from "survive". The chamber should be the centre of every decision.
 3. **The research twist.** You test cures on yourself, and the side effects become your powers.
 
@@ -69,23 +72,23 @@ Differentiation can come from three places, in order of strength:
 
 ## 5. Comparable games and lessons
 
-All review counts and prices were taken from Steam store pages on 22 October 2026 (facts). Sales figures come from the cited reports.
+All review counts and prices were taken from Steam on 22 October 2026 (facts). Review counts are **English-language, Steam-purchase** reviews, with all-language totals in brackets where they differ a lot. Sales figures come from the cited reports. **Caution:** almost every row is a hit, so these show what's possible, not what's likely. Section 16 uses base rates for that.
 
 | Game | What it is | Signals | Lesson for us |
 |---|---|---|---|
-| **Dome Keeper** (Bippinbits, 2022, Godot) | Mine in the day, defend the dome against waves | $17.99; 93% of 11,837 reviews [S11]; 1M *players* by Sept 2024 (players, not sales) [S5] | **Closest structural comparable.** A two-phase loop around one defended object, with a distinctive premise, from a tiny team, holds up near $18. |
+| **Dome Keeper** (Bippinbits, 2022, Godot) | Mine in the day, defend the dome against waves | $17.99; 93% of 11,830 reviews (22,721 all languages) [S11]; 1M *players* by Sept 2024 (players, not sales) [S5] | **Closest structural comparable.** A two-phase loop around one defended object, with a distinctive premise, from a tiny team, holds up near $18. |
 | **Thronefall** (Grizzly Games, 2023, 2 people) | Build by day, defend by night | €12.99; 1M+ copies by Feb 2025 [S13] | Ruthless minimalism wins. Very few systems, all of them sharp. |
-| **The Last Spell** (Ishtar Games) | Prepare by day, horde defence at night, roguelite meta | $24.99; 92% of 6,752 reviews [S14]; 400k+ units per publisher [S4] | Players want prep-then-horde, but this one was built by a studio. |
-| **Brotato** (Blobfish, solo, Godot) | Fixed-arena survivors-like with a shop between waves | $4.99; 96% of 32,638 reviews [S3]; over 1M copies (reported) [S2] | A solo developer can ship a fixed-arena wave game in Godot. Its replay value comes from **hundreds of items**, which we can't match. The genre is also priced low. |
-| **Halls of Torment** (Godot) | Survivors-like | 1M sales by Oct 2024 [S15] | Godot handles commercial horde games with large enemy counts. |
-| **Into the Dead: Our Darkest Days** (PikPok, Early Access April 2025) | 2D side-view zombie shelter survival | $24.99; 93% of 3,236 reviews [S16] | There's an audience for **atmospheric, grounded, side-view** zombie survival. |
-| **Endoparasitic** (solo, Godot) | Infected protagonist, one strange core mechanic | $9.99; 93% of 1,800 reviews [S17] | One distinctive mechanic plus infection fiction works at $9.99 with a small scope. |
-| **Zombie Cure Lab** (Thera Bytes) | Lab management to cure zombies | $24.99; 65% of 393 reviews (Mixed) [S8] | A cure premise isn't a hook by itself. Execution and depth decide reviews. |
+| **The Last Spell** (Ishtar Games) | Prepare by day, horde defence at night, roguelite meta | $24.99; 93% of 6,768 reviews (13,819 all languages) [S14]; 400k+ units across PC and consoles per publisher [S4] | Players want prep-then-horde, but this one was built by a studio. |
+| **Brotato** (Blobfish, solo during development, Godot) | Fixed-arena survivors-like with a shop between waves | $4.99; 96% of 32,605 reviews (120,038 all languages) [S3]; over 1M copies (reported) [S2] | A solo developer can ship a fixed-arena wave game in Godot. Its replay value comes from **hundreds of items**, which we can't match. The genre is also priced low. |
+| **Halls of Torment** (Godot) | Survivors-like | Under $5; 1M sales by Oct 2024 [S15] | Godot handles commercial horde games with large enemy counts. Like Brotato, it's priced in the $5 band we want to avoid. |
+| **Into the Dead: Our Darkest Days** (PikPok, Early Access April 2025) | 2D side-view zombie shelter survival | $24.99; 93% of 3,230 reviews (10,078 all languages) [S16] | There's an audience for **atmospheric, grounded, side-view** zombie survival. |
+| **Endoparasitic** (solo, Godot) | Infected protagonist, one strange core mechanic | $9.99; 93% of 1,802 reviews [S17] | One distinctive mechanic plus infection fiction works at $9.99 with a small scope. |
+| **Zombie Cure Lab** (Thera Bytes) | Lab management to cure zombies | $24.99; 65% of 219 reviews (Mixed) [S8] | A cure premise isn't a hook by itself. Execution and depth decide reviews. |
 | **Twelve Minutes** (Luís António, then a team of 5, ~9 years) | Time loop, husband and wife, one apartment | Metacritic 76 on PC; 53% of critics recommend on OpenCritic [S6] | One location plus a loop plus a spouse is a risky narrative. The ending and how the spouse is treated make or break it. |
 | **Hades** (Supergiant) | Narrative delivered across deaths | 1M copies by Sept 2020 [S7] | Story that advances on death works, but its writing and voice budget is far out of reach. Copy the principle, not the scale. |
-| **Yet Another Zombie Survivors** | Zombie horde with meta-progression | $14.99; 94% of 5,665 reviews [S9] | Zombie horde games can hold $14.99 with enough content and polish. |
+| **Yet Another Zombie Survivors** | Zombie horde with meta-progression | $14.99; 94% of 5,762 reviews (15,927 all languages) [S9] | Zombie horde games can hold $14.99 with enough content and polish. |
 
-**Market context (facts):** About 19,000–20,500 games were released on Steam in 2025, depending on the tracker [S18][S19]. About 48.8% of them had 10 or fewer reviews [S19]. Shipping is not the hard part; being noticed is.
+**Market context (facts):** About 19,000–20,500 games were released on Steam in 2025, depending on the tracker [S18][S19]. About 48.8% of them had 10 or fewer reviews when counted in mid-December 2025, which overstates the share because late releases had little time [S19]. The best-measured base rate is older: the median 2019 release earned about **$1,136 lifetime gross**, and 68% earned under $10,000 [S41]. Only 232 of 8,000+ games from the first half of 2024 reached 1,000 reviews, roughly $300k gross [S42]. Shipping is not the hard part; being noticed is.
 
 ## 6. Most promising target audience (hypothesis)
 
@@ -120,7 +123,7 @@ In shorter form: a horde-defence shooter where you protect the chamber keeping y
 | **A. Side-on cross-section of one building** (two or three floors, stairs, windows, roof; the chamber in the centre) | Delivers the layered depth, silhouettes and fog of the Hollow Knight reference; puts the chamber at the visual centre; natural chokepoints for traps; stands out on a capsule against thousands of top-down survivors-likes | Less proven for horde shooting; aiming and movement across floors need tuning; enemy pathing across floors is more complex |
 | **B. Top-down or 3/4 single arena** | Proven to be fun for horde combat; easy 360° positioning and trap placement | Loses most of the layered-depth art identity; looks like the survivors-likes it competes with, and inherits their price anchor |
 
-**Recommendation:** treat A as the lead hypothesis and greybox it first, with an explicit fallback. If combat in A doesn't meet the prototype criteria within about 15 hours of greybox work, switch to B. **Estimate:** about 10–15 hours to test.
+**Approved:** A is the lead hypothesis, tested first through the combat toy (section 13), with B as the fallback if A fails its gate after about 15–25 hours. Dome Keeper's side-on defence is supporting evidence that this view can carry a defend-the-object loop. A side view can't show a survivors-like crowd and stay readable, so **plan for about 30–60 enemies on screen (estimate)**, with heavier, more distinct enemies rather than swarms. Side-on aiming is mostly one-axis, which also makes touch controls far easier (section 16A).
 
 ## 9. Modular weapon engineering: solo feasibility
 
@@ -139,18 +142,18 @@ In shorter form: a horde-defence shooter where you protect the chamber keeping y
 | Scope | Implementation | Testing | Content | Impact |
 |---|---|---|---|---|
 | Prototype: 1 frame, 1 slot, 2 options | ~8–12 h | Low | 2 components | Proves whether a trade-off is felt |
-| Release: 2 frames × 3 slots, ~16–20 components, 5–6 tags | ~60–100 h (system plus content) | Medium (tag matrix plus per-component tests) | 16–20 components, each with art, audio and a short description | High, if each component changes behaviour |
+| Release (reduced game one): 2 frames × 3 slots, ~10–12 components, 5–6 tags | ~40–70 h (system plus content) | Medium (tag matrix plus per-component tests) | 10–12 components, each with art, audio and a short description | High, if each component changes behaviour |
 
 ## 10. Traps, experimentation, infection powers and the time loop
 
 | System | Value | Complexity | Recommendation |
 |---|---|---|---|
-| **Traps** | **High.** They are the "prepare" half of the loop and the main source of spatial decisions. | Medium. Placement rules, triggers and AI interaction. | **Keep.** Placed during the day only, at authored sockets (doorways, stairs, windows) rather than free placement, which cuts edge cases. 1 trap in the prototype, 3 in the slice, 6–8 at release. Traps share the tag system with weapons. |
+| **Traps** | **High.** They are the "prepare" half of the loop and the main source of spatial decisions. | Medium. Placement rules, triggers and AI interaction. | **Keep.** Placed during the day only, at authored sockets (doorways, stairs, windows) rather than free placement, which cuts edge cases. 1 trap in the prototype, 3 in the slice, 4–5 at release. Traps share the tag system with weapons. |
 | **Experimentation (science)** | **High** for narrative, **medium** for gameplay unless it changes play. | High risk of menu sprawl. | **Keep, but small.** Samples from specific enemies feed one choice per day: two or three experiments, each with a known effect and one uncertain side effect. Failed experiments give a story fragment or a hint. No lab simulation. |
 | **Infection powers (standalone)** | Medium | Medium-high: a fourth progression track | **Cut as a separate system. Merge into experimentation.** Self-tests grant mutations (for example, seeing infected through walls, or fewer attacks on you but more on the chamber) with a clear cost. The cause and effect are clear because the player chose the experiment. No corruption meter. |
-| **Time loop and persistence** | **High** as framing and motivation | Medium. Save and reset logic, and it multiplies writing. | **Keep, with strict persistence.** Persists: recipes and components, research findings, story revelations, some changes in the spouse's condition. Resets: resources, the arena state, mutations. Trigger: death or loss of the chamber. Reason for another run: something new is learned each loop, and the story advances only through discoveries. |
+| **Time loop and persistence** | **High** as framing and motivation | Medium. Save and reset logic, and it multiplies writing. | **Keep, with strict persistence.** Persists: recipes and components, research findings, story revelations, some changes in the spouse's condition. Resets: resources, the arena state, mutations. Trigger: death or loss of the chamber. Unlocked components **are** a form of power progression; balance for it openly. Story advances through discoveries, capped at **about 20 story fragments and one ending** for game one, because loop-reactive writing is the hidden fifth system. |
 
-**Roguelite structure:** a light version is justified. Runs of three to seven nights, with a reset and knowledge-based meta-progression. A heavy upgrade tree that grinds stats would contradict the brief's rule that each loop must change knowledge or understanding.
+**Roguelite structure:** a light version is justified. The prototype uses a fixed **five nights**; release runs may range from three to seven, with a reset and knowledge-based meta-progression. A heavy upgrade tree that grinds stats would contradict the brief's rule that each loop must change knowledge or understanding.
 
 **Narrative contradictions to settle in Stage B:**
 
@@ -169,16 +172,16 @@ In shorter form: a horde-defence shooter where you protect the chamber keeping y
 | Shipped proof in our genre | Brotato, Dome Keeper, Halls of Torment, Endoparasitic [S2][S5][S15][S17] | Many | Many 2D hits |
 | Solo iteration speed | Fast editor, small project | Slower editor and compile loop | Fast |
 | AI-assisted workflow | **Known risk.** AI tools often produce Godot 3 syntax. Mitigate by pinning the version, insisting on typed Godot 4 code, and checking against the docs. | Most training data | Less training data |
-| Steam integration | **Plugin risk.** It depends on the community GodotSteam project, whose GitHub repo was archived on 20 Oct 2026 and moved to Codeberg [S24]. | Mature options | Built-in |
+| Steam integration | **Moderate plugin risk.** It depends on the community GodotSteam project. Its GitHub repo was archived on 20 Oct 2026 because it moved to Codeberg, where it's active, but it notes a Godot 4.7 breaking change [S24]. | Mature options | Built-in |
 
-**Mobile export (fact):** Godot exports to Android and iOS. The Mobile renderer is the default on phones, and the Compatibility (OpenGL) renderer targets low-end devices; Forward+ is desktop-only. C# on Android and iOS is still experimental [S33]. That's another reason to stay with GDScript. iOS builds need a Mac with Xcode, per Godot's iOS export docs (not re-checked today).
+**Mobile export (fact):** Godot exports to Android and iOS. The Mobile renderer is the default on phones, and the Compatibility (OpenGL) renderer targets low-end devices; Forward+ is desktop-only. C# on Android and iOS is still experimental [S33; cited from the 4.5 docs, to re-check against 4.7]. That's another reason to stay with GDScript. iOS builds need a Mac with Xcode, per Godot's iOS export docs (not re-checked today).
 
 **Things to answer with small Godot experiments in Stage C, not by debate:**
 
-1. 150–250 enemies plus 2D lights and fog at 60 fps on a mid-range PC. Use simple movement, avoid one physics body per enemy, and fall back to batching if needed.
+1. 60 enemies (with headroom to 100) plus 2D lights and fog at 60 fps on a mid-range PC, for camera A. Use simple movement, avoid one physics body per enemy, and fall back to batching if needed. Raise the target to 150–250 only if the camera falls back to B.
 2. A side-on cross-section with stairs: is enemy pathing manageable?
 3. Is the GodotSteam build for 4.7 healthy (achievements and cloud saves only)?
-4. The same crowded scene on a mid-range Android phone with the Mobile renderer: frame rate, and heat after 20 minutes.
+4. The same crowded scene on a mid-range Android phone with the Mobile renderer: frame rate, and heat after 20 minutes. Because the art style depends on light and fog (section 12), build quality presets into the look test from the start.
 
 ## 12. Production cost of hand-crafted atmospheric 2D art
 
@@ -186,21 +189,26 @@ In shorter form: a horde-defence shooter where you protect the chamber keeping y
 
 **Estimate of frame-by-frame animation load for a minimal release:** player with about 8 animations × about 8 frames = 64; five enemy types × five animations × about 8 frames = 200; weapons, traps and effects = 80–120. That's about 350–400 cleaned frames. At 20–45 minutes per frame for a competent artist, that's **about 120–300 hours for character animation alone**, before backgrounds. At 1–2 hours a day, that's 3–9 months of art time.
 
+**Yash can't draw (22 Oct 2026), and wants art that feels as artistic as Silksong.** That bar comes from specialist hand-drawn and painted work, so it can't be met directly on ₹10,000 without an artist or AI art. **Approved path:** a light-led silhouette style that Yash builds himself, with an artist brought in if the look test falls short (below). Free public assets are used only as placeholders, and Yash will practise drawing alongside.
+
 **Recommendation:**
 
 - **Characters:** silhouette-led **cutout or skeletal animation** with Godot's Skeleton2D (free). Dark shapes with rim light and a few accent colours. Draw parts once and animate many times. Use frame-by-frame only for a few signature moments.
-- **Backgrounds:** **one** painted building in three or four layers, plus fog and light done in shaders. A fixed screen is a large art-cost *advantage*: one excellent scene instead of a world.
+- **Backgrounds:** **one** building in three or four layers, built from shapes, gradients, fog, particles and light shaders rather than detailed painting. A fixed screen is a large art-cost *advantage*: one excellent scene instead of a world.
+- **Look test (Stage C, before the prototype, ~10–15 h):** the chamber, one silhouette enemy, fog and light on one screen, with a mobile quality preset. **If it falls short of the bar, a freelance artist for the capsule, background and character parts becomes a precondition for the vertical slice**, and the budget has to rise. Get three quotes in Stage B so the cost is known.
+- **Free assets:** only for greybox, UI and placeholder sound. Prefer CC0, never non-commercial licences, credit CC-BY, and log every file in ASSET_REGISTER. Replace them before anything public (capsule, trailer, slice), because packs are recognisable and their styles clash.
 - **Tools:** Krita (free) for painting. Aseprite is optional (about $19.99 on Steam, or free if you compile it from source) and only needed if you go pixel art.
-- **Must answer:** can you draw at the target quality? If not, this needs either a style you can execute (stark silhouettes, limited palette) or a budget for an artist. The current budget can't pay for one.
-- **AI-generated art:** Steam requires disclosure of AI-generated content in the game and on the store page; coding assistants are exempt [S26]. Players also respond badly to visible AI art. **Recommendation:** use AI for code and documentation, and don't ship AI-generated art or music.
+- **AI-generated art:** Steam requires disclosure of AI-generated content in the game and in marketing and store-page assets; coding assistants are exempt [S26]. Players also respond badly to visible AI art. **Recommendation:** use AI for code and documentation, and don't ship AI-generated art or music.
 
 ## 13. The smallest prototype that validates the core experience
 
-Greybox only. No final art and no story beyond placeholder text.
+Greybox only, with free placeholder assets. No final art and no story beyond placeholder text. It runs in two steps with a gate between them, after the look test in section 12.
 
-**Contents:** one arena (cross-section A), the chamber with health, movement and aim and dodge, one melee and one ranged weapon, three enemies (shambler crowd; runner that targets the chamber; brute that breaks barricades), a run of three nights with a timed day phase, one trap (a noise lure), one weapon slot with two options (loud/strong vs. quiet/weak), one research choice (a runner sample leads to one of two self-tests), a reset on death that keeps one unlocked component, placeholder sound effects, and one lit fog layer for the performance test.
+**Step 1, combat toy (~15–25 h):** camera A, one floor plus stairs, the chamber, one weapon, two enemies. **Gate:** is holding the chamber fun for five minutes, and is it readable? If not, try camera B before going on.
 
-**Estimate:** 60–100 hours, or about 6–12 weeks at 10 hours a week.
+**Step 2, loop prototype (only if step 1 passes). Contents:** one arena (cross-section A), the chamber with health, movement and aim and dodge, one melee and one ranged weapon, three enemies (shambler crowd; runner that targets the chamber; brute that breaks barricades), a run of five nights with a timed day phase, one trap (a noise lure), one weapon slot with two options (loud/strong vs. quiet/weak), one research choice (a runner sample leads to one of two self-tests), a reset on death that keeps one unlocked component, placeholder sound effects, and one lit fog layer for the performance test.
+
+**Estimate:** 100–150 hours across both steps for a first-time game developer (the earlier 60–100 h was optimistic), or about 10–15 weeks at 10 hours a week.
 
 **Acceptance criteria (proposed; to be fixed before testing):**
 
@@ -212,7 +220,7 @@ Greybox only. No final art and no story beyond placeholder text.
 | Does the weapon slot create a trade-off? | Testers can explain why they chose loud or quiet, and choices are split, not 90/10 |
 | Do testers understand the loop uncoached? | At least 4 of 5 can explain day → night → reset after one run |
 | Do they want another run? | At least 3 of 5 start another run without being asked |
-| Performance | 60 fps with 150 enemies, lights and fog on a mid-range PC (the reference machine is to be named in Stage C) |
+| Performance | 60 fps with 60 enemies, lights and fog on a mid-range PC (the reference machine is to be named in Stage C); 30 fps on a mid-range Android phone at the low preset |
 
 **If it fails:** diagnose the cause, change the design (camera first), and retest. Do not add content.
 
@@ -240,7 +248,9 @@ Greybox only. No final art and no story beyond placeholder text.
 
 **Recommendation:** keep the ₹10,000 for the Steam fee and spend nothing else until the vertical slice passes. Decide then whether to raise the budget for music and capsule art, which most affect a store page's conversion.
 
-**Time and scope (estimate):** a minimum commercial release of this scope (one arena with state changes, 5–6 enemies, 2 weapon frames with about 16–20 components, 6–8 traps, about 12 experiments, a 3–5 hour story arc across loops, 6–12 hours of replay) is about **1,200–2,000 hours for a solo developer shipping a first game**, art included. At 10–12 hours a week, that's **2–4 years**. This is my estimate, not sourced. It's the main reason to cut systems now.
+**Time and scope (estimate):** the original minimum commercial release (one arena with state changes, 5–6 enemies, 2 weapon frames with about 16–20 components, 6–8 traps, about 12 experiments, a 3–5 hour story arc across loops, 6–12 hours of replay) is about **1,200–2,000 hours for a solo developer shipping a first game**, art included. At 10–12 hours a week, that's **2–4 years**. This is my estimate, not sourced. It's the main reason to cut systems now.
+
+**Recommended cut for game one (from the review):** about **600–900 hours, or 12–20 months** at your pace. Contents: 3–4 enemies plus one boss night, about 10–12 components, 4–5 traps, 6–8 experiments, about 20 story fragments and one ending, one arena with state changes. Price at $9.99–12.99. A finished small game gives the data and the following that game one is for. A 2,000-hour game risks giving neither. Stage B confirms the exact content list.
 
 **Proposed exclusions** (in addition to the brief's defaults): free-to-play or ad-based mobile monetisation, a simultaneous PC and mobile launch, standalone infection powers, free-form trap placement, free-form crafting recipes, voiced dialogue, multiple arenas before release, base building beyond barricades and traps, and resource persistence across loops.
 
@@ -252,14 +262,16 @@ Greybox only. No final art and no story beyond placeholder text.
 - Refunds are possible within **14 days and under 2 hours** played [S30]. Short games are exposed to this.
 - Regional pricing is set in 37 currencies. Discounts can't run within 30 days of release, or within 30 days after a launch discount [S31].
 - US withholding tax under the India–US treaty is listed at **10% or 15%** depending on the royalty type [S32]. File a W-8BEN, and confirm with an Indian chartered accountant whether a foreign tax credit is available. Indian income tax then applies.
-- **Assumptions (estimates):** lifetime realised price after discounts and regional pricing is about 60% of the base price; sales tax and VAT about 10%; refunds about 7%; Valve 30%. Net to you before income tax and withholding is about **35% of base price × units**.
+- **Assumptions (estimates):** lifetime realised price after discounts and regional pricing is about 60% of the base price; sales tax and VAT about 10%; refunds about 7%; Valve 30%. Net to you before income tax and withholding is about **35% of base price × units**. After 15% US withholding (if that rate applies; a CA must confirm), about **30%** reaches the bank, and Indian income tax comes out of that, so **take-home is about 20–25%** of headline gross.
+- **Two kinds of "gross":** the table's headline gross is base price × units. Valve's "adjusted gross" and the base rates in [S41] are realised revenue, about 55–60% of headline. Compare like with like.
 
 ### Pricing scenarios (estimates, not forecasts)
 
-Unit counts are hypothetical inputs to show the trade-off. **Reality could be far lower:** about half of 2025's releases had 10 or fewer reviews [S19].
+Unit counts are hypothetical inputs to show the trade-off. The **typical** row reflects base rates [S41]: most games land there, and the "conservative" row is already above the median.
 
 | Price | Outcome | Lifetime units | Headline gross (price × units) | Net to developer (~35%) |
 |---|---|---|---|---|
+| Any price in the band | **Typical (median-like)** | 150–400 | $1.5k–8k | **$0.5k–2.8k** |
 | $9.99–12.99 (modelled at $9.99) | Conservative | 1,500 | $15k | **$5.2k** (~₹5 lakh) |
 | | Moderate | 12,000 | $120k | **$42k** |
 | | Optimistic | 60,000 | $599k | **$210k** |
@@ -270,9 +282,11 @@ Unit counts are hypothetical inputs to show the trade-off. **Reality could be fa
 | | Moderate | 5,000 | $100k | **$35k** |
 | | Optimistic | 25,000 | $500k | **$175k** |
 
-**What US$1M net would take:** about 190,000 units at $14.99. That's the scale of Dome Keeper or Thronefall [S5][S13]. **Recommendation:** treat $1M as a portfolio goal across several games, and set the first game's target as recouping costs, building a following, and selling 5,000+ units.
+**What US$1M takes depends on which $1M (at $14.99):** about **67,000 units** as headline gross, about **120,000** as Steam gross, about **190,000** as pre-tax net, and about **240,000+** as take-home. Even the smallest is a top-few-percent outcome [S42]. **Yash should pick which definition the goal uses.** **Recommendation:** treat $1M as a long-shot portfolio goal, not a plan. Set game one's target as shipping, recouping costs, building a following, and selling **2,000–5,000 units**.
 
-**Pricing recommendation:** plan for **$12.99–14.99**. Move to $9.99 if the slice shows a short game or the art falls short. **$19.99** is only justified with Dome Keeper-level polish and content; Dome Keeper itself is $17.99 [S11]. GameDiscoverCo's 2025 data shows games above $10 had a median first-week conversion of **0.10× wishlists**, against 0.15× overall [S12]. Higher prices convert worse.
+**Pricing recommendation:** with the smaller game-one scope, plan for **$9.99–12.99**. Move to $14.99 only if the slice shows more content and polish than planned. **$19.99** is only justified with Dome Keeper-level polish and content; Dome Keeper itself is $17.99 [S11]. GameDiscoverCo's 2025 data shows games above $10 had a median first-week conversion of **0.10× wishlists**, against 0.15× overall [S12]. Higher prices convert worse. That sample is games with 25k+ launch wishlists; smaller launches are likely to do worse.
+
+**Discounts:** Steam allows a launch discount at release. Other discounts can't run within 30 days of release or of the launch discount ending, and a price increase blocks discounts for 30 days [S31].
 
 ### Release risks
 
@@ -286,8 +300,8 @@ Theme saturation; being mistaken for a survivors-like; years-long part-time deve
 | 2 | Prototype | Section 13 criteria pass | Change design; don't add content |
 | 3 | External playtest | 8–10 uncoached players: 60%+ start a second run; average 4/5 or higher on "want to play more" | Fix the loop or cut systems |
 | 4 | Vertical slice | Release-quality art and audio in one arena; feasible production pace (measured hours per enemy and component) | Simplify the art style or scope |
-| 5 | Store page and demo | **Estimate:** 7,000+ wishlists before release, after Next Fest, at a pace that justifies the remaining production | Re-scope, re-price or ship small |
-| 6 | Full production | Content plan fits the measured pace within ~12–18 months | Cut content |
+| 5 | Store page and demo | **Estimate:** 15,000+ wishlists before release, after Next Fest. (7,000 × 0.10 ≈ 700 first-week sales, or about 2,000–3,500 lifetime, which doesn't reach 5,000 units.) | Re-scope, re-price or ship small; at 7,000–15,000, lower the unit target to 2,000–3,500 |
+| 6 | Full production | The reduced content plan fits the measured pace within ~9–14 months after the slice (about 600–900 h in total) | Cut content |
 | 7 | Release | 80%+ positive in the first week; under 10% refunds | Patch quickly; adjust price later |
 | 8 | Post-launch | Support costs under 25% of dev time | Decide on a sequel or new game based on data |
 
@@ -299,9 +313,9 @@ You asked for mobile support as well as Windows and Steam. **Recommendation: des
 
 | | Google Play | Apple App Store |
 |---|---|---|
-| Account | **$25 one-time** [S35] | **$99 a year** [S36] |
-| Store fee | 15% on the first $1M a year [S37]. In the US, UK and EEA, that's now a 10% rate plus a 5% billing fee [S37] | 15% under the Small Business Program (under $1M proceeds a year) [S38] |
-| Hurdle | New personal accounts must run a closed test with **12 testers for 14 consecutive days** before production [S39] | A Mac with Xcode is needed to build for iOS |
+| Account | **$25 one-time** [S35] | **$99 a year, every year**, or the app is removed [S36] |
+| Store fee | 15% on the first $1M a year in most markets. **In the US, UK and EEA from 30 June 2026, a paid game pays 20% + 5% billing fee (25%) for new installs**, or 20% in the Play Games Level Up programme [S37] | 15% under the Small Business Program (under $1M proceeds a year) [S38] |
+| Hurdle | New personal accounts must run a closed test with **12 testers for 14 consecutive days** before production [S39]. Recruit them from the Stage D playtester list | A Mac with Xcode is needed to build for iOS |
 
 **Monetisation:**
 
@@ -317,7 +331,7 @@ You asked for mobile support as well as Windows and Steam. **Recommendation: des
 
 **Performance:**
 
-- Phones throttle under sustained load, and 2D lights, fog and 150+ enemies are exactly what stresses them.
+- Phones throttle under sustained load, and 2D lights and fog are exactly what stresses them. The art style relies on them, so quality presets are part of the look test, not a later add-on.
 - **Recommendation:** set a mobile budget at the prototype stage (for example, 30 fps locked on a mid-range Android phone from about 2022), keep fog and light effects scalable with quality presets, and test thermal throttling over a 20-minute run.
 
 **Estimates:**
@@ -325,7 +339,9 @@ You asked for mobile support as well as Windows and Steam. **Recommendation: des
 | Item | Implementation | Testing | Content | Impact |
 |---|---|---|---|---|
 | Design-for-mobile rules during development | ~5% overhead on UI and input work | Low | None | Avoids a rewrite later |
-| Full mobile port after Steam launch | ~150–300 h (touch controls, UI layouts, performance, store setup) | **High** (device range, aspect ratios, heat, two store reviews) | Touch UI art, store assets | Second revenue channel; mostly small |
+| Full mobile port after Steam launch | ~150–300 h (touch controls, UI layouts, performance, store setup) | **High** (device range, aspect ratios, heat, store review) | Touch UI art, store assets | Second revenue channel; **estimate 10–30% of Steam revenue**. A $4.99 US sale nets about $2.50–3.00 before tax |
+
+**Order:** Android first. Port to iOS only if Android sales justify a Mac and the yearly fee.
 
 **Budget impact:** the Apple fee (about ₹9,500 a year) plus a Mac if you don't have one doesn't fit the current ₹10,000, which the Steam fee already uses. Android alone adds ₹2,400.
 
@@ -338,15 +354,15 @@ You asked for mobile support as well as Windows and Steam. **Recommendation: des
 - The chamber premise gives the fixed screen and the time loop a real reason to exist, and it can carry real mechanics (noise, chamber health, self-experimentation).
 - The closest comparables (Dome Keeper, Thronefall, The Last Spell) show demand for prep-then-defend games from tiny teams at $13–25.
 - Godot is proven in this exact space.
-- The prototype is cheap: about 60–100 hours and no money.
+- The first gates are cheap: a 10–15 h look test and a 15–25 h combat toy, with no money spent.
 
 **Conditions (otherwise no-go):**
 
 1. Reduce to four systems (merge infection into experimentation).
 2. Fix the camera by greybox test.
-3. Spend no money and make no Steam page until the vertical slice passes.
-4. Settle art feasibility (who draws, which style) before the vertical slice.
-5. Accept that the commercial target for game one is far below $1M.
+3. Spend no money and make no Steam page until the vertical slice passes, except an artist if the look test fails (that becomes a slice precondition).
+4. Art path: light-led silhouette style built by Yash, judged by the look test before the prototype.
+5. Accept that the commercial target for game one is far below $1M, and that game one is cut to about 600–900 hours.
 6. Mobile is a post-launch port. Systems are built mobile-ready, but the mobile release isn't on the critical path.
 
 **No-go for now:** production, asset purchases, a soundtrack, narrative scripting, or a store page.
@@ -371,14 +387,18 @@ You asked for mobile support as well as Windows and Steam. **Recommendation: des
 
 ---
 
-## The five decisions I need from you next
+## Decisions approved by Yash (22 October 2026)
 
-| # | Decision | My recommendation |
+Yash approved all five recommendations. The amendments from the review are folded in.
+
+| # | Decision | Approved, with review amendments |
 |---|---|---|
-| 1 | **Camera and perspective** | Greybox a **side-on cross-section** of one building first. Fall back to top-down if it fails the prototype combat criteria after about 15 hours. |
-| 2 | **Cut infection powers as a separate system** | **Yes.** Merge it into self-experimentation, so research results become mutations with clear costs. Four core systems in total. |
-| 3 | **Loop rules** | Runs of three to seven nights; reset when you die or the chamber falls. Persist recipes, research findings and story only, never resources or stats. |
-| 4 | **Art feasibility** | Tell me whether you can draw, and roughly how well. I recommend cutout silhouettes, one painted building and shader fog, with no AI-generated art shipped. An art test (one character, one enemy, the background) happens before the vertical slice. |
-| 5 | **Commercial target, budget and platform order** | Set game one's target to recouping costs and selling 5,000+ units at $12.99–14.99 on Steam. Keep ₹10,000 for the Steam fee and spend nothing else until the slice passes. Build mobile-ready, then port to Android (and iOS if a Mac is available) at $3.99–6.99 premium after the Steam launch. |
+| 1 | **Camera and perspective** | **Side-on cross-section** of one building, tested by the 15–25 h combat toy. Fall back to top-down if it fails. Plan for about 30–60 enemies on screen. |
+| 2 | **Cut infection powers as a separate system** | **Yes.** Merged into self-experimentation; research results become mutations with clear costs. No infection clock in the prototype. Four core systems, plus story capped at about 20 fragments. |
+| 3 | **Loop rules** | Five nights in the prototype (3–7 at release); reset when you die or the chamber falls. Persist recipes, components, research findings and story; never resources or stats. Unlocks count as power and are balanced as such. |
+| 4 | **Art feasibility** | Yash can't draw. **Light-led silhouette style** built by Yash, free assets only as placeholders, no shipped AI art. A 10–15 h look test comes before the prototype. If it falls short, a freelance artist becomes a precondition for the slice. |
+| 5 | **Commercial target, budget and platform order** | Game one: ship, recoup costs and sell 2,000–5,000 units at $9.99–12.99 on Steam, with a 15k-wishlist gate. Keep ₹10,000 for the Steam fee (artist budget only if the look test fails). Build mobile-ready, then port to Android first at $3.99–6.99 premium after the Steam launch, and iOS only if Android justifies it. |
 
-**Waiting for your approval before starting Stage B (design research).**
+**Still open for Yash:** which definition of "$1M" the goal uses, and confirming the cut to a 600–900-hour game one. Both can be settled at the start of Stage B.
+
+**Final outcome: conditional GO for Stage B (design research).** Stage B starts on Yash's go-ahead.
