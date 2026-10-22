@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Script check and GUT tests (headless)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Godot
+        uses: actions/cache@v4
+        with:
+          path: ~/godot
+          key: godot-4.7.2-stable-${{ hashFiles('tools/ci/install_godot.sh') }}
+
+      - name: Install Godot 4.7.2
+        run: tools/ci/install_godot.sh ~/godot
+
+      - name: Import project
+        run: timeout 300 ~/godot/godot --headless --path . --import < /dev/null
+
+      - name: Check every script compiles (untyped code is an error)
+        run: timeout 120 ~/godot/godot --headless --path . --script res://tools/check_scripts.gd < /dev/null
+
+      - name: Run GUT tests
+        run: timeout 300 ~/godot/godot --headless --path . -s res://addons/gut/gut_cmdln.gd < /dev/null
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: .godot/test_results.xml
+          if-no-files-found: ignore
+
+  export:
+    name: Export Windows and Android builds
+    # Exports download 1.3 GB of templates, so they run only on main and on demand.
+    if: github.event_name != 'pull_request'
+    needs: test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Godot and export templates
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot
+            ~/.local/share/godot/export_templates
+          key: godot-templates-4.7.2-stable-${{ hashFiles('tools/ci/install_godot.sh') }}
+
+      - name: Install Godot 4.7.2 and templates
+        run: tools/ci/install_godot.sh ~/godot --templates
+
+      - name: Import project
+        run: timeout 300 ~/godot/godot --headless --path . --import < /dev/null
+
+      - name: Configure Android SDK, JDK and debug keystore
+        run: tools/ci/configure_android.sh "$ANDROID_HOME" "$JAVA_HOME_17_X64"
+
+      - name: Export Windows (release)
+        run: |
+          mkdir -p build/windows
+          timeout 600 ~/godot/godot --headless --path . --export-release "Windows Desktop" build/windows/ZombieShooter.exe < /dev/null
+          test -s build/windows/ZombieShooter.exe
+
+      - name: Export Android (debug APK)
+        run: |
+          mkdir -p build/android
+          timeout 600 ~/godot/godot --headless --path . --export-debug "Android" build/android/ZombieShooter.apk < /dev/null
+          test -s build/android/ZombieShooter.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: build/windows/
+          retention-days: 14
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-debug-apk
+          path: build/android/*.apk
+          retention-days: 14
