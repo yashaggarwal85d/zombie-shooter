@@ -1,6 +1,6 @@
 # Stage C: Tech and Pipeline Validation
 
-Stage C (tech and pipeline validation) · 22 October 2026 · Status: **in progress. Experiments are built; the hardware runs and the human tests are Yash's to do.**
+Stage C (tech and pipeline validation) · 22 October 2026 · Status: **passed by Yash on 22 October 2026 (D10), with the hardware and people tests carried into Stage D as early checks.**
 
 Input: [STAGE_B_DESIGN_RESEARCH.md](STAGE_B_DESIGN_RESEARCH.md) section 11 (C1–C6), approved as D9. Code: [`experiments/stage_c/`](../experiments/stage_c/README.md), a throwaway Godot 4.7.2 project nested in the repo. It is built on the tooling skeleton (PR #3) and copies that skeleton's export presets and InputMap. Builds and media are in the project files under `stage_c/`.
 
