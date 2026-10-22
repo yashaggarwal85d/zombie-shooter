@@ -1,0 +1,35 @@
+; Stage C experiments (throwaway). Standalone nested project: the main game
+; project skips this folder because it contains its own project.godot.
+config_version=5
+
+[application]
+
+config/name="Stage C experiments"
+run/main_scene="res://menu.tscn"
+config/features=PackedStringArray("4.7", "Mobile")
+
+[debug]
+
+gdscript/warnings/untyped_declaration=2
+gdscript/warnings/inferred_declaration=0
+gdscript/warnings/unsafe_property_access=1
+gdscript/warnings/unsafe_method_access=1
+gdscript/warnings/unsafe_cast=1
+gdscript/warnings/unsafe_call_argument=1
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
+
+[rendering]
+
+renderer/rendering_method="mobile"
+renderer/rendering_method.mobile="mobile"
+textures/canvas_textures/default_texture_filter=1
+
