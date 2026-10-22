@@ -93,7 +93,7 @@ func _init(agent_count: int, seed_value: int = 1) -> void:
 	for i: int in agent_count:
 		var a: Agent = Agent.new()
 		a.kind = AgentKind.RUNNER if rng.randf() < RUNNER_SHARE else AgentKind.SHAMBLER
-		a.spread = rng.randf_range(-10.0, 10.0)
+		a.spread = rng.randf_range(-28.0, 28.0)
 		_spawn(a)
 		a.replan_in = rng.randf() * REPLAN_INTERVAL
 		agents.append(a)
