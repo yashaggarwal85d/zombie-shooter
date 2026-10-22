@@ -1,2 +1,4 @@
 .godot/
 build/
+addons/godotsteam/
+steam_appid.txt

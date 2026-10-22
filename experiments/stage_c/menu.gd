@@ -8,6 +8,7 @@ const SCENES: Dictionary = {
 	"c3": "res://c3_perf/perf_test.tscn",
 	"c4": "res://c4_pathing/pathing_view.tscn",
 	"c5": "res://c5_steam/steam_test.tscn",
+	"c6": "res://c6_hook/hook_clip.tscn",
 }
 
 
@@ -42,6 +43,7 @@ func _ready() -> void:
 	box.add_child(StageCLaunch.button("C3  20-minute soak, 60 enemies, LOW (phone test)", _go.bind("c3", {"agents": "60", "preset": "low", "minutes": "20"})))
 	box.add_child(StageCLaunch.button("C4  Pathing and noise debug view", _go.bind("c4", {})))
 	box.add_child(StageCLaunch.button("C5  Steam achievement and cloud save", _go.bind("c5", {})))
+	box.add_child(StageCLaunch.button("C6  Hook clip (8 s, for the GIF)", _go.bind("c6", {})))
 	box.add_child(StageCLaunch.button("Quit", get_tree().quit))
 
 
