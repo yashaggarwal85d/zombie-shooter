@@ -103,3 +103,10 @@ Source: [research/STAGE_A_REVIEW.md](research/STAGE_A_REVIEW.md). Yash asked for
 - **Decision:** the combat toy spec v0.2 and the GDD v0.2 proposals are approved, with Yash's changes: (1) the player builds by day with limited resources, so the toy gets a short build step before the night; (2) the infected break structures **or pile on top of each other and climb over them**, so height never protects the player for long; (3) the shelter is on their straight path, so a player who hides up high loses her, and the loop resets.
 - **Replaces:** my proposal that the infected never climb.
 - **Rejected:** a fixed, pre-built toy layout (Yash wants building in from the start).
+
+## D13. Setting: a Himalayan hill road; art direction v1 and the outdoor look test
+- **Date:** 2026-10-23 · **Approved by:** Yash (setting only, decision card in the art direction thread: "Himalayan hill road")
+- **Decision:** the journey runs up a Himalayan hill road at the end of the monsoon: deodar woods with a kath-kuni hut, terraced fields with a stone farmhouse, and the edge of a hill-station town. Three backdrop kits, no more. The setting is a place, not a culture: no religious symbols, real town names, costume or dialect work, and the story is unchanged.
+- **Proposed with it, waiting for the look-test verdict:** art direction v1 in ART_AND_AUDIO_GUIDE.md (readability and light rules, layer stack, four time-of-day palettes, shape rules) and a playable look test: the combat toy dressed in the woods kit, built from procedural shapes and shaders, with F5/F6/F7 toggles. This is the outdoor redo of the C2 look test that D11 required, and it is the D4 art gate.
+- **Not decided:** final assets. They stay a vertical-slice job; characters remain the Stage C placeholder silhouettes until Yash's rigging practice.
+- **Rejected:** a generic northern pine forest (familiar but indistinct); an unnamed dreamlike setting (hardest to make feel real without an artist); producing final art before the look test and the slice.

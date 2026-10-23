@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LookPalette" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/look/look_palette.gd" id="1_p"]
+
+[resource]
+script = ExtResource("1_p")
+sky_top = Color(0.027, 0.039, 0.071, 1.00)
+sky_horizon = Color(0.114, 0.149, 0.220, 1.00)
+orb = Color(0.788, 0.827, 0.878, 1.00)
+orb_height = 0.78
+snow = Color(0.282, 0.325, 0.416, 0.80)
+ridges = Array[Color]([Color(0.165, 0.204, 0.263, 1.00), Color(0.125, 0.157, 0.212, 1.00), Color(0.090, 0.118, 0.161, 1.00), Color(0.071, 0.094, 0.133, 1.00)])
+trees = Array[Color]([Color(0.067, 0.094, 0.129, 1.00), Color(0.082, 0.114, 0.157, 1.00)])
+fog = Color(0.353, 0.420, 0.522, 0.50)
+ground = Color(0.016, 0.020, 0.031, 1.00)
+plane = Color(0.012, 0.016, 0.024, 1.00)
+key_rim = Color(0.490, 0.549, 0.651, 1.00)
+pod_strength = 1.0
+rain = 0.7
+grade_shadow = Color(0.024, 0.035, 0.078, 1.00)
+vignette = 0.5
