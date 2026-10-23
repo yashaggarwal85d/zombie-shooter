@@ -1,16 +1,23 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://src/toy/toy.gd" id="1_toy"]
-[ext_resource type="Script" path="res://src/toy/view/field_view.gd" id="2_field"]
 [ext_resource type="Script" path="res://src/toy/view/actor_layer.gd" id="3_actors"]
 [ext_resource type="Shader" path="res://src/toy/view/rim.gdshader" id="4_rim"]
 [ext_resource type="Script" path="res://src/toy/view/fx_layer.gd" id="5_fx"]
 [ext_resource type="Script" path="res://src/toy/view/toy_audio.gd" id="6_audio"]
 [ext_resource type="Script" path="res://src/toy/view/toy_hud.gd" id="7_hud"]
 [ext_resource type="Resource" path="res://data/nights/toy_night.tres" id="8_night"]
+[ext_resource type="Script" path="res://src/look/look_backdrop.gd" id="9_backdrop"]
+[ext_resource type="Script" path="res://src/look/look_field_view.gd" id="10_lfield"]
+[ext_resource type="Script" path="res://src/look/look_foreground.gd" id="11_fore"]
+[ext_resource type="Script" path="res://src/look/look_director.gd" id="12_look"]
+[ext_resource type="Shader" path="res://src/look/look_post.gdshader" id="13_post"]
 
 [sub_resource type="ShaderMaterial" id="rim_mat"]
 shader = ExtResource("4_rim")
+
+[sub_resource type="ShaderMaterial" id="post_mat"]
+shader = ExtResource("13_post")
 
 [node name="Toy" type="Node2D"]
 script = ExtResource("1_toy")
@@ -18,8 +25,11 @@ night = ExtResource("8_night")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="Backdrop" type="Node2D" parent="."]
+script = ExtResource("9_backdrop")
+
 [node name="FieldView" type="Node2D" parent="."]
-script = ExtResource("2_field")
+script = ExtResource("10_lfield")
 
 [node name="Actors" type="Node2D" parent="."]
 material = SubResource("rim_mat")
@@ -28,10 +38,25 @@ script = ExtResource("3_actors")
 [node name="Fx" type="Node2D" parent="."]
 script = ExtResource("5_fx")
 
+[node name="Foreground" type="Node2D" parent="."]
+script = ExtResource("11_fore")
+
 [node name="Audio" type="Node2D" parent="."]
 script = ExtResource("6_audio")
 
+[node name="PostLayer" type="CanvasLayer" parent="."]
+
+[node name="Post" type="ColorRect" parent="PostLayer"]
+material = SubResource("post_mat")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="HudLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Hud" type="Control" parent="HudLayer"]
 layout_mode = 3
@@ -42,3 +67,23 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("7_hud")
+
+[node name="LookHintLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="Hint" type="Label" parent="LookHintLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -720.0
+offset_top = 110.0
+offset_right = -32.0
+offset_bottom = 140.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.9, 0.93, 0.96, 0.7)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
+
+[node name="Look" type="Node" parent="."]
+script = ExtResource("12_look")
