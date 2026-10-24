@@ -54,7 +54,9 @@ Thronefall and They Are Billions are outliers, not targets. Third-party Steam es
 
 **Working premise.** You and your wife are the last people in your home. She is infected and lies in a cold chamber in the middle of the base. She built the two machines you have: a **transmutation device** that changes one element into another, and a **3D printer** that turns materials into parts. Every night the dead come. Every corpse you leave behind is fuel. Everyone, including her, believes there is no cure. There is one, hidden in plain sight.
 
-**Camera.** True top-down, fixed screen: the whole base fits on one screen at 16:9, with a slight follow-pan at most. This keeps the horde readable, suits phones later, and avoids the art cost of isometric. (Project Tomorrow uses isometric; we deliberately do not.)
+**Camera.** True top-down, fixed screen: the whole base fits on one screen at 16:9, with a slight follow-pan at most. This keeps the horde readable and avoids the art cost of isometric. (Project Tomorrow uses isometric; we deliberately do not.)
+
+**Platform.** Windows only, on Steam (Yash, 2026-10-24). No mobile or console versions are planned.
 
 **Pillars** (each feature must serve at least one):
 1. **Invent, don't unlock.** Your defences are things you designed, not things you bought.
@@ -218,18 +220,18 @@ New devices are recorded in a **journal** automatically the first time they kill
 
 | Option | What it is | Pros | Cons |
 |---|---|---|---|
-| A. Scripted advisor | A structured "Ask her" panel: pick a topic (an element, a component, a zombie, last night) or type a question that is matched to a topic. Answers are generated from the game's own data plus hand-written lines in her voice. | Always correct, works on every platform and on iOS, no AI disclosure, cheap to test, her emotional lines are written by you | Less magical; free typing is limited |
-| B. Small local LLM, grounded | Qwen3-0.6B or 1.7B (Apache-2.0) through NobodyWho in Godot. The model never answers from memory: it calls game functions ("look up element", "evaluate this device", "suggest a counter to zombie X") and only phrases the result in her voice. | Feels alive, answers odd questions, real differentiator | ~0.5–1.5 GB extra download (my estimate for 4-bit models), slow on mid-range phones, no Godot iOS support in NobodyWho, Steam live-AI disclosure and reporting duties, some players dislike AI in games (opinion), 40–80 h to build and test |
+| A. Scripted advisor | A structured "Ask her" panel: pick a topic (an element, a component, a zombie, last night) or type a question that is matched to a topic. Answers are generated from the game's own data plus hand-written lines in her voice. | Always correct, runs on any PC, no AI disclosure, cheap to test, her emotional lines are written by you | Less magical; free typing is limited |
+| B. Small local LLM, grounded | Qwen3-0.6B or 1.7B (Apache-2.0) through NobodyWho in Godot. The model never answers from memory: it calls game functions ("look up element", "evaluate this device", "suggest a counter to zombie X") and only phrases the result in her voice. | Feels alive, answers odd questions, real differentiator | ~0.5–1.5 GB extra download (my estimate for 4-bit models), needs a decent CPU or GPU, Steam live-AI disclosure and reporting duties, some players dislike AI in games (opinion), 40–80 h to build and test |
 | C. Cloud LLM | An API call | Best quality | Rejected: costs money per player forever, needs internet, breaks "offline single-player" |
 
 ### 8.3 Recommendation
 
-Build **A first, designed so B can sit on top of it**. The question-to-answer engine in A becomes the tool set that B calls, so no work is wasted. Ship B only on Windows, as an optional "Talk freely" mode, and only if it passes this test on the reference PC:
+Build **A first, designed so B can sit on top of it**. The question-to-answer engine in A becomes the tool set that B calls, so no work is wasted. Ship B as an optional "Talk freely" mode, and only if it passes this test on the reference PC:
 - 50 scripted questions: at least 95% of answers factually match the game data (no invented recipes).
 - First words in under 1.5 s, full answer under 4 s.
 - A list of 100 abusive or off-topic prompts produces zero unsafe outputs and stays in character.
 
-If it fails, A ships alone and B becomes a post-launch experiment. On Android and iOS, A ships regardless. Her story beats and emotional lines are always hand-written by you, never generated, because the tone matters too much to leave to a 1 B model.
+If it fails, A ships alone and B becomes a post-launch experiment. With Windows as the only platform, B is more viable than before: every player can run it. Her story beats and emotional lines are always hand-written by you, never generated, because the tone matters too much to leave to a 1 B model.
 
 ---
 
@@ -243,7 +245,7 @@ Most players will never find the cure, so the game must be great for them too. A
 4. **Invention moments.** The best moment in the game is "I wonder if this works" and it does. Dusk scouting plus the learning horde produce those deliberately.
 5. **A story with an end for everyone.** Two endings: most players reach the acceptance ending (after enough failed treatments she asks you to stop), then endless mode; the few who solve the case get the cure ending. **I recommend this strongly.** Without it, the large majority who never find the cure get no closure, which is likely to read as "pointless" in reviews.
 6. **Daily seed** (release): the same night sequence for everyone that day, with its own leaderboard. Cheap and repeatable.
-7. **Short sessions.** A day plus night is about 8 minutes. That suits "one more night" on PC and later on phones.
+7. **Short sessions.** A day plus night is about 8 minutes. That suits "one more night".
 
 What I would not do: punishing meta-currency grind, or making early nights impossible to "force" difficulty. Difficulty should come from the horde, not from stingy numbers.
 
@@ -264,14 +266,14 @@ Exactly one combination makes the cure, and finding it should feel like solving 
 
 | Layer | Choice | Why |
 |---|---|---|
-| Engine | **Godot 4.7.2, statically typed GDScript** (unchanged) | Free, exports to Windows, Android, iOS; the earlier setup work (PR #3: project skeleton, GUT tests, CI, export presets) is design-independent and can be reused |
+| Engine | **Godot 4.7.2, statically typed GDScript** (unchanged) | Free, exports to Windows; the earlier setup work (PR #3: project skeleton, GUT tests, CI, export presets) is design-independent and can be reused |
 | Simulation | Plain GDScript classes with no nodes (sim) and a separate view layer, ticked at a fixed rate | Testable with GUT, snapshot-friendly for loops. Only if profiling shows the field grid or horde too slow, move that one hot path to a GDExtension (needs a demonstrated need, per project rules) |
 | Data | Godot Resources: `ElementDef`, `AlloyDef`, `ComponentDef`, `DeviceBlueprint`, `EnemyDef`, `WaveDef`, `NightEventDef` | Data-driven tuning without code changes |
 | Horde movement | Flow field from the base outward, recomputed when walls change | Cheap for 300+ zombies; one field for the whole horde |
 | Horde drawing | `MultiMeshInstance2D` or batched custom drawing | Hundreds of zombies on screen |
 | Field effects | One shader reading a small texture built from the grid | Cheap tints, keeps zombies readable |
 | Save and loops | Snapshot Resource per dawn, saved to `user://` | Section 7 |
-| Wife | Scripted advisor in GDScript; optional NobodyWho + Qwen3 on Windows | Section 8 |
+| Wife | Scripted advisor in GDScript; optional NobodyWho + Qwen3 | Section 8 |
 | Steam | GodotSteam (achievements, leaderboards, cloud saves) | Standard Godot route; verify licence and version at setup |
 | Tests | GUT for sim rules (transmutation cost, damage channels, power networks, snapshot round-trip) | Rules are the game; they must be tested |
 
@@ -335,13 +337,13 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Steam: page, achievements, leaderboards, cloud, demo | Minimum release | 40 | mid | |
 | Daily seed | Minimum release | 15 | low | |
 | Local LLM wife (Windows, grounded) | Experiment → post-launch unless gate passes | 50–80 | **high** | Section 8 |
-| Android + iOS port, touch controls | Post-launch | 100–150 | high | iOS needs a Mac and Apple account |
+| Android + iOS port | Rejected | — | — | Windows only (Yash, 2026-10-24) |
 | Blueprint share codes | Post-launch | 15 | low | |
 | Full reality simulation, per-pixel physics, free-form CAD printer, multiplayer, open map | **Rejected** | — | — | Not solo-buildable |
 
-**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~490 h (including compounds, gases and weather) of code and writing, plus your art at roughly 250–450 h. That is about 1,200–1,400 h before mobile, or roughly 2–2.5 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, 14 components) until release.
+**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~490 h (including compounds, gases and weather) of code and writing, plus your art at roughly 250–450 h. That is about 1,200–1,400 h in total, or roughly 2–2.5 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, 14 components) until release.
 
-**Money (approximate, check current prices):** Steam Direct fee US$100 per game (about INR 8,500–9,000), Google Play US$25 one-time, Apple Developer US$99 per year. **Steam alone uses almost all of the INR 10,000 budget; Apple's yearly fee does not fit at all.** Either the budget grows when mobile starts, or iOS waits until the game earns. Everything else in this plan is free (Godot, GUT, GodotSteam, NobodyWho, Qwen3 weights).
+**Money (approximate, check current prices):** Steam Direct fee US$100 per game (about INR 8,500–9,000). **That uses almost all of the INR 10,000 budget, leaving about INR 1,000–1,500.** Everything else in this plan is free (Godot, GUT, GodotSteam, NobodyWho, Qwen3 weights).
 
 ---
 
@@ -352,14 +354,14 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Scope creep from "create anything" | high | fatal | Hard caps (20 elements, ~35 compounds, 14 components) until release; every addition must create a new decision |
 | Cure too obscure, unfair, or spoiled online | high | high | Seeded cure, fairness test, acceptance ending, score and persistence (section 9) |
 | Sandbox has a dominant build | high | high | Learning horde, zombie resistances, nuclear fallout cost |
-| LLM hallucinates or says something harmful | high (if used) | high | Scripted first, grounded tools, strict test gate, Windows-only opt-in |
+| LLM hallucinates or says something harmful | high (if used) | high | Scripted first, grounded tools, strict test gate, opt-in mode |
 | AI backlash in reviews | medium | medium | Scripted default; LLM optional and disclosed clearly |
 | Saturated genre; Project Tomorrow and Thronefall-likes | medium | high | Lead marketing with inventions and her, not "base defence" |
-| Performance (horde + field grid), worse on phones | medium | medium | Prototype gate at 300 zombies; GDExtension only if profiling demands |
+| Performance (horde + field grid) on low-end PCs | medium | medium | Prototype gate at 300 zombies; GDExtension only if profiling demands |
 | Effects hide danger | medium | high | Readability rule; greyscale test of screenshots |
 | Solo art time (you draw everything) | high | high | Composed devices, palette swaps, rotation; art budget per slice |
 | Dark premise (wife dies, "made to fail") feels bleak | medium | medium | Tone guide; warmth in her lines; acceptance ending |
-| Budget does not cover Apple | certain | medium | iOS after revenue or a budget increase |
+| Steam fee uses nearly all the budget | certain | medium | No paid tools; anything paid waits for revenue |
 
 ---
 
@@ -384,7 +386,7 @@ No-go means rework the system or stop, not more content.
 
 **Stage 4. Production → Early Access or 1.0.** Go: 15,000 wishlists, Stage 2 metrics hold with 20+ strangers, no crash in a 3-hour soak.
 
-**Stage 5. Mobile.** Only after Steam revenue covers the Apple fee and the touch-control prototype passes its own test.
+**Other platforms:** none planned; the game is Windows only (Yash, 2026-10-24).
 
 ---
 
@@ -404,7 +406,7 @@ Real deletion only happens if you confirm a list like this one.
 
 ## 16. Open questions for Yash (the plan assumes the defaults)
 
-1. Wife LLM on Windows only at first, scripted elsewhere? *Default: yes.*
+1. Scripted advisor as default, grounded LLM as an optional mode only if it passes its test? *Default: yes.*
 2. Accept the bounded sandbox (20 elements, ~35 compounds, 14 components, rules) instead of "anything"? *Default: yes.*
 3. Big weapons can hurt your own base and her? *Default: yes, through fallout and fire.*
 4. Replaying a loop starts from any dawn in it, with limited echoes? *Default: yes.*
