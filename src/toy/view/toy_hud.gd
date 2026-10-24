@@ -129,8 +129,8 @@ func _card(font: Font, r: Rect2, title: String, sub: String) -> void:
 
 func _controls_help(font: Font, r: Rect2, c: Color) -> void:
 	var lines: PackedStringArray = [
-		"A/D move · Space jump · W/S ladders (S drops off a top) · mouse aim · click fire",
-		"F melee · R reload · E swap barrel (loud/quiet, 1.5 s) · F3 debug · Esc pause",
+		"A/D move · Space jump (hold for higher) · W/S ladders (S drops off a top) · mouse aim · click fire",
+		"F hatchet (hold W: up, S in the air: down) · R reload · E swap barrel (1.5 s) · F3 debug · Esc pause",
 		"Build: stand at a marker and press E to cycle it · Enter to start the night",
 	]
 	for i: int in lines.size():
