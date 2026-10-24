@@ -8,7 +8,7 @@ Everything below is a hypothesis until a gate in section 14 passes. Facts carry 
 
 ## 1. The verdict in one paragraph
 
-The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 20 real elements that react into about 35 real compounds, about 14 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife is a fine-tuned small local LLM in her voice (Yash's decision), grounded in game data through tool calls; her mistakes are part of her illness, but the cure clues and safety stay controlled. The cure exists but is almost impossible to find: exactly one combination works, and its hints need real detective work. That works only if every run shows measurable progress for the many who never find it, and the answer cannot simply be looked up online (section 9). Realistic scope for a minimum Steam release is about 1,250–1,450 hours including art, roughly 2–2.5 years at 1.5 h/day.
+The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 20 real elements that react into about 35 real compounds, about 14 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife is a fine-tuned small local LLM in her voice (Yash's decision), grounded in game data through tool calls; her mistakes are part of her illness, but the cure clues and safety stay controlled. The cure exists but is almost impossible to find: exactly one combination works, and its hints need real detective work. That works only if every run shows measurable progress for the many who never find it, and the answer cannot simply be looked up online (section 9). Realistic scope for a minimum Steam release is about 1,300–1,500 hours including art, roughly 2–2.5 years at 1.5 h/day.
 
 ---
 
@@ -102,6 +102,40 @@ That one rule set ("mass from scrap, energy from corpses, transmuting costs ener
 **The horde learns** (strong hook, proposal). The night director looks at what killed most zombies last night and adds a counter-type: if fire killed most, tomorrow brings wet "drowned" zombies that resist it. This forces new inventions instead of one solved build, and it is cheap to build because it only changes the wave mix.
 
 ---
+
+### 4.1 The horde: 10 zombie types (Yash, 2026-10-24)
+
+Each type exists because it forces a different answer from the chemistry and building systems. Five ship in the vertical slice; all ten ship at release.
+
+| Type | Nature | What it forces you to do | When |
+|---|---|---|---|
+| Walker | Slow, heavy, piles up against walls | Baseline: walls plus steady damage | Slice |
+| Runner | Fast and fragile, sprints through gaps | Fast sensors, area damage, no open gaps | Slice |
+| Bloater | Bursts into a toxic gas cloud when killed | Kill it at range and downwind, away from walls and her | Slice |
+| Drowned | Soaked: resists fire, conducts electricity strongly | Switch from fire to electric, or dry the ground | Slice |
+| Armoured | Wears fused scrap; shrugs off kinetic hits | Thermite, acid, or a penetrating railgun | Slice |
+| Burrower | Tunnels under walls and surfaces inside | Floor traps and ground sensors near her chamber | Release |
+| Sapper | Ignores walls and goes for power lines and machines | Protect and spread your power network | Release |
+| Screamer | Speeds up and calls in nearby zombies | Find it and kill it first; long-range tools | Release |
+| Climber | Climbs walls and the pile of bodies | Overhangs, height, clearing piles | Release |
+| Irradiated | Heals from radiation, immune to toxic gas | Punishes leaning on nuclear and chlorine | Release |
+
+### 4.2 An adaptive director, not machine learning
+
+The "smart" part is a director that reads how you played and changes the next night within fair, visible rules. It is a data-driven scoring system in GDScript, not a neural network, so it is testable and tunable.
+
+**What it reads each night:** kills by damage channel and by device, which sides held and where walls broke, what hurt her, where the player stood, and which power lines carried the most load.
+
+**How it responds** (at most one major change per night):
+
+1. **Counter-mix:** if one channel did most of the killing, more of the types that resist it come, capped at 40% of the night.
+2. **Pressure the weak point:** spawns shift toward the least-defended side; sappers target the most relied-on network; burrowers aim for the side nearest her.
+3. **Mutation:** one trait spreads through the horde (for example "fire-scarred" walkers gain fire resistance) and fades over a few nights if the player changes tactics.
+4. **Tactics:** split waves, a feint on one side before the main push, burrowers timed with the assault, screamers held back until walls are busy.
+
+**Fairness:** every change is shown at dusk scouting in the fiction (tracks, scorched bodies, her notes). Two nights in a row never counter the same invention. Individual zombies stay simple: flow fields toward the base, the power network and her, plus a small set of states (walk, attack, climb, burrow, flee from fire).
+
+**Cost:** about 80 h of code for 10 types plus about 45 h for the director, and 10 models with about 3 animations each for the art budget.
 
 ## 5. The transmutation and printing system
 
@@ -324,7 +358,7 @@ You draw all art and supply sounds. The design keeps the art list small on purpo
 |---|---|---|
 | Player | 1 body, walk (6–8 frames), shoot, hit, death | Angled view |
 | Wife in chamber | chamber, 4 health states, 3 "need" overlays | The emotional centre; worth extra care |
-| Zombies | 4 types (walker, runner, bloater, drowned) × walk, attack, death | More types later; each must create a new decision |
+| Zombies | 5 for the slice (walker, runner, bloater, drowned, armoured), 10 at release, × walk, attack, death | More types later; each must create a new decision |
 | Components | 14 icons that also work as device parts | Neutral grey, tinted by material |
 | Machines | transmuter, printer, bio-reactor, scrap furnace | Big, readable, animated with simple loops |
 | Terrain | ground tileset (dirt, concrete, water), 2–3 decoration sets | One biome for the slice |
@@ -355,11 +389,11 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Snapshot save system | Prototype | 25 | mid | Must exist from the start |
 | Loops UI (5 loops, pick a dawn, echoes) | Vertical slice | 25 | mid | |
 | Journal, blueprints | Vertical slice | 30 | mid | |
-| Learning horde (counter-types) | Vertical slice | 20 | mid | |
+| Adaptive horde director (section 4.2) | Vertical slice | 45 | mid | |
 | Scripted "Ask her" advisor | Vertical slice | 40 | mid | Plus your writing time |
 | Cure research, clue chain, seeded cure, two endings | Minimum release | 70 + writing 60 | high | Section 9.1 |
 | Nuclear tier (U, RTG, launcher, fallout) | Minimum release | 30 | high | |
-| 8 zombie types, 6 night events | Minimum release | 60 | high | |
+| 10 zombie types, 6 night events | Minimum release | 80 | high | |
 | Menus, settings, accessibility, controller | Minimum release | 50 | mid | |
 | Steam: page, achievements, leaderboards, cloud, demo | Minimum release | 40 | mid | |
 | Daily seed | Minimum release | 15 | low | |
@@ -368,7 +402,7 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Blueprint share codes | Post-launch | 15 | low | |
 | Full reality simulation, per-pixel physics, free-form CAD printer, multiplayer, open map | **Rejected** | — | — | Not solo-buildable |
 
-**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~550 h (including compounds, gases and weather) of code and writing, plus your art at roughly 250–450 h. That is about 1,250–1,450 h in total, or roughly 2–2.5 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, 14 components) until release.
+**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~595 h (including compounds, gases and weather) of code and writing, plus your art at roughly 250–450 h. That is about 1,300–1,500 h in total, or roughly 2–2.5 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, 14 components) until release.
 
 **Money (approximate, check current prices):** Steam Direct fee US$100 per game (about INR 8,500–9,000). **That uses almost all of the INR 10,000 budget, leaving about INR 1,000–1,500.** Everything else in this plan is free (Godot, GUT, GodotSteam, NobodyWho, Qwen3 weights).
 
