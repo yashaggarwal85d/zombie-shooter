@@ -1,6 +1,6 @@
 # The plan: transmutation base-defence (pivot v1)
 
-Status: draft for Yash's approval · 2026-10-24 · supersedes every earlier design decision (D1–D14). Earlier work is archived, not deleted (section 15).
+Status: FROZEN as v1 on 2026-10-24 at Yash's request (further changes go into a new version) · supersedes every earlier design decision (D1–D14). Earlier work is archived, not deleted (section 15).
 
 Everything below is a hypothesis until a gate in section 14 passes. Facts carry a source and date. Estimates and opinions are labelled.
 
