@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://src/toy/toy.gd" id="1_toy"]
+[ext_resource type="Script" path="res://src/toy/view/field_view.gd" id="2_field"]
+[ext_resource type="Script" path="res://src/toy/view/actor_layer.gd" id="3_actors"]
+[ext_resource type="Shader" path="res://src/toy/view/rim.gdshader" id="4_rim"]
+[ext_resource type="Script" path="res://src/toy/view/fx_layer.gd" id="5_fx"]
+[ext_resource type="Script" path="res://src/toy/view/toy_audio.gd" id="6_audio"]
+[ext_resource type="Script" path="res://src/toy/view/toy_hud.gd" id="7_hud"]
+[ext_resource type="Resource" path="res://data/nights/toy_night.tres" id="8_night"]
+
+[sub_resource type="ShaderMaterial" id="rim_mat"]
+shader = ExtResource("4_rim")
+
+[node name="Toy" type="Node2D"]
+script = ExtResource("1_toy")
+night = ExtResource("8_night")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="FieldView" type="Node2D" parent="."]
+script = ExtResource("2_field")
+
+[node name="Actors" type="Node2D" parent="."]
+material = SubResource("rim_mat")
+script = ExtResource("3_actors")
+
+[node name="Fx" type="Node2D" parent="."]
+script = ExtResource("5_fx")
+
+[node name="Audio" type="Node2D" parent="."]
+script = ExtResource("6_audio")
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" type="Control" parent="HudLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_hud")

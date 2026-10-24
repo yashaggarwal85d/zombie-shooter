@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponComponent" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/toy/data/weapon_component.gd" id="1_s"]
+
+[resource]
+script = ExtResource("1_s")
+id = &"suppressor"
+display_name = "Suppressor"
+tag = &"quiet"
+damage = 1.4
+fire_interval = 0.28
+magazine = 8
+reload_time = 1.2
+noise_loudness = 30.0
+noise_radius = 600.0

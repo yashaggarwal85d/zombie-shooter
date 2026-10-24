@@ -4,8 +4,8 @@ extends GutTest
 
 const PINNED_ENGINE := "4.7.2"
 const INPUT_ACTIONS: Array[StringName] = [
-	&"move_left", &"move_right", &"stairs_up", &"stairs_down", &"aim", &"fire",
-	&"melee", &"dodge", &"reload", &"interact", &"pause",
+	&"move_left", &"move_right", &"jump", &"climb_up", &"climb_down", &"aim", &"fire",
+	&"melee", &"reload", &"interact", &"pause", &"start_night", &"debug_overlay",
 ]
 const WARNING_LEVEL_ERROR := 2
 
@@ -46,3 +46,4 @@ func test_main_scene_instantiates() -> void:
 	var main: Node = packed.instantiate()
 	add_child_autofree(main)
 	assert_not_null(main.get_node_or_null("%BuildLabel"))
+	assert_not_null(main.get_node_or_null("Toy"), "the entry scene runs the combat toy")

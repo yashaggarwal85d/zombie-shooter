@@ -1,0 +1,244 @@
+[gd_resource type="Resource" script_class="NightDefinition" load_steps=34 format=3]
+
+[ext_resource type="Script" path="res://src/toy/data/night_definition.gd" id="1_n"]
+[ext_resource type="Script" path="res://src/toy/data/spawn_event.gd" id="2_e"]
+[ext_resource type="Resource" path="res://data/enemies/shambler.tres" id="3_s"]
+[ext_resource type="Resource" path="res://data/enemies/runner.tres" id="4_r"]
+
+[sub_resource type="Resource" id="ev_0"]
+script = ExtResource("2_e")
+time = 3.0
+side = -1
+enemy = ExtResource("3_s")
+count = 4
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_1"]
+script = ExtResource("2_e")
+time = 12.0
+side = 1
+enemy = ExtResource("3_s")
+count = 4
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_2"]
+script = ExtResource("2_e")
+time = 25.0
+side = -1
+enemy = ExtResource("3_s")
+count = 5
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_3"]
+script = ExtResource("2_e")
+time = 38.0
+side = 1
+enemy = ExtResource("3_s")
+count = 5
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_4"]
+script = ExtResource("2_e")
+time = 45.0
+side = 1
+enemy = ExtResource("4_r")
+count = 1
+interval = 1.5
+
+[sub_resource type="Resource" id="ev_5"]
+script = ExtResource("2_e")
+time = 55.0
+side = -1
+enemy = ExtResource("3_s")
+count = 6
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_6"]
+script = ExtResource("2_e")
+time = 65.0
+side = -1
+enemy = ExtResource("4_r")
+count = 1
+interval = 1.5
+
+[sub_resource type="Resource" id="ev_7"]
+script = ExtResource("2_e")
+time = 75.0
+side = 1
+enemy = ExtResource("3_s")
+count = 6
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_8"]
+script = ExtResource("2_e")
+time = 90.0
+side = -1
+enemy = ExtResource("3_s")
+count = 4
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_9"]
+script = ExtResource("2_e")
+time = 90.0
+side = 1
+enemy = ExtResource("3_s")
+count = 4
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_10"]
+script = ExtResource("2_e")
+time = 100.0
+side = 1
+enemy = ExtResource("4_r")
+count = 2
+interval = 1.5
+
+[sub_resource type="Resource" id="ev_11"]
+script = ExtResource("2_e")
+time = 110.0
+side = -1
+enemy = ExtResource("3_s")
+count = 6
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_12"]
+script = ExtResource("2_e")
+time = 120.0
+side = -1
+enemy = ExtResource("4_r")
+count = 1
+interval = 1.5
+
+[sub_resource type="Resource" id="ev_13"]
+script = ExtResource("2_e")
+time = 120.0
+side = 1
+enemy = ExtResource("3_s")
+count = 6
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_14"]
+script = ExtResource("2_e")
+time = 135.0
+side = -1
+enemy = ExtResource("3_s")
+count = 5
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_15"]
+script = ExtResource("2_e")
+time = 135.0
+side = 1
+enemy = ExtResource("3_s")
+count = 5
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_16"]
+script = ExtResource("2_e")
+time = 138.0
+side = -1
+enemy = ExtResource("4_r")
+count = 1
+interval = 1.5
+
+[sub_resource type="Resource" id="ev_17"]
+script = ExtResource("2_e")
+time = 150.0
+side = 1
+enemy = ExtResource("3_s")
+count = 8
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_18"]
+script = ExtResource("2_e")
+time = 152.0
+side = -1
+enemy = ExtResource("4_r")
+count = 2
+interval = 1.5
+
+[sub_resource type="Resource" id="ev_19"]
+script = ExtResource("2_e")
+time = 165.0
+side = -1
+enemy = ExtResource("3_s")
+count = 8
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_20"]
+script = ExtResource("2_e")
+time = 175.0
+side = 1
+enemy = ExtResource("4_r")
+count = 2
+interval = 1.5
+
+[sub_resource type="Resource" id="ev_21"]
+script = ExtResource("2_e")
+time = 185.0
+side = -1
+enemy = ExtResource("3_s")
+count = 6
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_22"]
+script = ExtResource("2_e")
+time = 185.0
+side = 1
+enemy = ExtResource("3_s")
+count = 6
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_23"]
+script = ExtResource("2_e")
+time = 200.0
+side = -1
+enemy = ExtResource("4_r")
+count = 2
+interval = 1.5
+
+[sub_resource type="Resource" id="ev_24"]
+script = ExtResource("2_e")
+time = 202.0
+side = 1
+enemy = ExtResource("4_r")
+count = 1
+interval = 1.5
+
+[sub_resource type="Resource" id="ev_25"]
+script = ExtResource("2_e")
+time = 210.0
+side = -1
+enemy = ExtResource("3_s")
+count = 8
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_26"]
+script = ExtResource("2_e")
+time = 210.0
+side = 1
+enemy = ExtResource("3_s")
+count = 8
+interval = 0.9
+
+[sub_resource type="Resource" id="ev_27"]
+script = ExtResource("2_e")
+time = 225.0
+side = -1
+enemy = ExtResource("4_r")
+count = 1
+interval = 1.5
+
+[sub_resource type="Resource" id="ev_28"]
+script = ExtResource("2_e")
+time = 225.0
+side = 1
+enemy = ExtResource("4_r")
+count = 1
+interval = 1.5
+
+[resource]
+script = ExtResource("1_n")
+duration = 240.0
+start_scrap = 8
+spawns = Array[ExtResource("2_e")]([SubResource("ev_0"), SubResource("ev_1"), SubResource("ev_2"), SubResource("ev_3"), SubResource("ev_4"), SubResource("ev_5"), SubResource("ev_6"), SubResource("ev_7"), SubResource("ev_8"), SubResource("ev_9"), SubResource("ev_10"), SubResource("ev_11"), SubResource("ev_12"), SubResource("ev_13"), SubResource("ev_14"), SubResource("ev_15"), SubResource("ev_16"), SubResource("ev_17"), SubResource("ev_18"), SubResource("ev_19"), SubResource("ev_20"), SubResource("ev_21"), SubResource("ev_22"), SubResource("ev_23"), SubResource("ev_24"), SubResource("ev_25"), SubResource("ev_26"), SubResource("ev_27"), SubResource("ev_28")])

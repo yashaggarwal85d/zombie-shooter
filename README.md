@@ -1,17 +1,18 @@
 # Zombie Shooter (working title)
 
-An atmospheric 2D side-on horde-survival shooter in Godot 4.7.2, for Windows (Steam), then Android and iOS. Pre-prototype: there is no gameplay yet.
+An atmospheric 2D side-view horde-defence shooter in Godot 4.7.2, for Windows (Steam), then Android and iOS. Stage D: the combat toy is playable (research/STAGE_D_COMBAT_TOY_SPEC.md).
 
 ## Run it
 
 1. Install [Godot 4.7.2-stable](https://godotengine.org/download/archive/4.7.2-stable/) (standard build, not .NET).
 2. Open `project.godot`. GUT is already in `addons/gut/`.
-3. Press F5. You'll see the skeleton screen with the build label.
+3. Press F5. The combat toy starts with the build step. Controls are on screen; F3 shows the debug overlay. Each finished night adds a row to `user://toy_log.csv` (on Windows, `%APPDATA%\Godot\app_userdata\Zombie Shooter (working title)\toy_log.csv`).
 
 Tests: the GUT panel in the editor, or
 
 ```
 godot --headless --path . -s res://addons/gut/gut_cmdln.gd
+godot --headless --path . --script res://tools/toy/soak.gd -- 6   # scripted nights with rule checks
 ```
 
 ## Documents

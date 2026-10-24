@@ -19,21 +19,26 @@ Every feature with its cost and class. Seeded from the cost cards in research/ST
 | Feature | Impl. | Testing | Content | Impact |
 |---|---|---|---|---|
 | Noise targeting rule | 6–10 h | Low–medium | None | Central |
-| Waypoint-graph pathing (floors + stairs) | 4–6 h | Medium | 1 graph per arena | Required |
-| Player move, aim, dodge, 2 weapons | 15–25 h | Medium (feel) | 2 weapons | Required |
-| Chamber with health and hum | 3–5 h | Low | 1 object | Central |
+| 1D walking toward a target, stopping at structures (D11) | 2–4 h | Low | — | Required |
+| Jump, ladders, standing on structures and the roof (D11) | 8–14 h | Medium (feel) | — | Required |
+| Structures with health (fence, wall, high wall, ladder), pre-placed | 5–8 h | Medium | 4 structures | High |
+| Player move, aim, melee, 1 firearm with 2 barrels | 12–20 h | Medium (feel) | 1 weapon, 2 components | Required |
+| Shelter with integrity and the pod's hum | 3–5 h | Low | 1 object | Central |
 | Shambler, runner | 8–12 h | Medium | 2 enemies | High |
 
 ## Loop prototype
 
 | Feature | Impl. | Testing | Content | Impact |
 |---|---|---|---|---|
-| Brute + barricades | 8–12 h | Medium | 1 enemy, barricades | High |
+| Brute | 6–10 h | Medium | 1 enemy | High |
+| Building at build spots by day | 6–10 h | Medium | 3 spots a side | High |
+| Travel between stops; 2 backdrop kits (D11) | 8–14 h + art | Medium | 2 kits, 1 shelter rig | High |
+| Scavenge action | 2–3 h | Low | Yield per stop | Medium |
 | Day action budget (D9 P1) | 6–10 h | Low | Action list | High |
-| 1 trap (lure) at sockets | 5–8 h | Medium | 1 trap | High |
+| 1 trap (lure) at build spots | 5–8 h | Medium | 1 trap | High |
 | 1 weapon slot, 2 options (loud/quiet) | 8–12 h | Medium | 2 components | High |
 | 1 experiment with finding | 6–10 h | Low | 1 experiment | Medium–high |
-| Reset keeping one unlock; lab wall (basic) | 8–12 h | Medium (save/reset) | — | High |
+| Reset keeping one unlock; her notebook (basic) | 8–12 h | Medium (save/reset) | — | High |
 
 ## Vertical slice → release
 
@@ -42,11 +47,11 @@ Every feature with its cost and class. Seeded from the cost cards in research/ST
 | Full tag system, 10–12 components | 40–70 h | Medium–high | 10–12 components | Slice → release |
 | 4–5 traps | 15–25 h | Medium | 4–5 traps | Slice (3) → release |
 | 6–8 experiments | 20–30 h | Medium | 6–8 experiments | Slice (3) → release |
-| Arena state changes (burst pipe, power failure, broken stairs) | 15–25 h | Medium–high | 3 states | Slice |
+| Third backdrop kit, shelter dressings, night pressures (fog, rain) | 30–60 h (mostly art) | Medium | 1 kit, 3–5 dressings | Slice |
 | Win by findings (D9 P2) + one ending | 10–15 h + writing | Medium | ~5 key findings | Slice |
 | ~20 story fragments | 30–50 h writing | Low | ~2,500 words | Slice (5) → release |
 | Wailer (4th enemy) | 6–10 h | Medium | 1 enemy | Slice decides |
-| Boss night (power failure) | 10–15 h | Medium | 1 set piece | Release |
+| Last stop at her lab (authored night) | 10–15 h | Medium | 1 set piece | Release |
 | Gamepad + Steam Deck | 6–10 h | Medium | Prompts | Slice |
 | Settings, quality presets, save system | in "UI, save and settings" 40–60 h | Medium | — | Slice |
 

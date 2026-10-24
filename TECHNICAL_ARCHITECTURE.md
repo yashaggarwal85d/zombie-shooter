@@ -47,7 +47,7 @@ Every system is built so it runs on phones (D8): actions-only input, scalable UI
 - **Signals over singletons.** Children signal up, parents call down. No autoloads yet. Add one only for something that is truly global and outlives scenes (likely candidates: settings and save), and record it here when you do.
 - **Data-driven content.** Weapons, components, enemies, traps, experiments and nights are custom `Resource` classes (GDD). The class scripts live in `src/<feature>/`; the `.tres` instances live in `data/<kind>/`. Treat loaded Resources as read-only templates. Anything that changes during a run is copied first (`resource.duplicate()`) or kept in a separate runtime object, because Godot shares one loaded Resource between everyone who loads it.
 - **Input.** Gameplay reads InputMap actions only, never raw keys or buttons. `aim` is the right stick; mouse aim reads the pointer position. Touch controls will press the same actions. The action list comes from GDD section 5; bindings are provisional.
-- **Movement and pathing.** Enemies move only along floors and stairs on a small authored waypoint graph, not `NavigationRegion2D` (GDD; tested in Stage C, C4).
+- **Movement and pathing.** The field is one line (D11). The infected walk left or right toward their target and stop at whatever structure blocks them; they never jump or climb. No navigation mesh or waypoint graph. The player uses `CharacterBody2D` with jump and ladders.
 - **Saving.** Files go under `user://` with a version number in each file. A mid-run save is written at each day, plus on `NOTIFICATION_APPLICATION_PAUSED` and `NOTIFICATION_WM_CLOSE_REQUEST`, because phones suspend and kill apps without warning (GDD, D8).
 - **Naming.** Godot style guide: `snake_case` files, functions and variables; `PascalCase` classes and nodes; `_leading_underscore` for private members.
 
@@ -58,7 +58,8 @@ project.godot, export_presets.cfg, icon.svg
 addons/gut/          vendored test framework (excluded from exports)
 src/                 game code and scenes, grouped by feature
   core/              small shared helpers (BuildInfo)
-  main/              entry scene
+  main/              entry scene (runs the combat toy)
+  toy/               Stage D combat toy: data/ (Resource classes), noise/, sim/ (rules, no nodes), view/ (drawing, HUD, audio)
 data/                .tres content instances, one folder per kind
 assets/              art/, audio/, fonts/ (each file logged in ASSET_REGISTER.md)
 tests/unit/          GUT tests, test_*.gd
