@@ -8,7 +8,7 @@ Everything below is a hypothesis until a gate in section 14 passes. Facts carry 
 
 ## 1. The verdict in one paragraph
 
-The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 20 real elements that react into about 35 real compounds, about 14 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife is a fine-tuned small local LLM in her voice (Yash's decision), grounded in game data through tool calls; her mistakes are part of her illness, but the cure clues and safety stay controlled. The cure exists but is almost impossible to find: exactly one combination works, and its hints need real detective work. That works only if every run shows measurable progress for the many who never find it, and the answer cannot simply be looked up online (section 9). Realistic scope for a minimum Steam release is about 1,400–1,600 hours including art, roughly 2.5–3 years at 1.5 h/day.
+The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 20 real elements that react into about 35 real compounds, about 25 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife is a fine-tuned small local LLM in her voice (Yash's decision), grounded in game data through tool calls; her mistakes are part of her illness, but the cure clues and safety stay controlled. The cure exists but is almost impossible to find: exactly one combination works, and its hints need real detective work. That works only if every run shows measurable progress for the many who never find it, and the answer cannot simply be looked up online (section 9). Realistic scope for a minimum Steam release is about 1,550–1,800 hours including art, roughly 3 years at 1.5 h/day.
 
 ---
 
@@ -202,7 +202,7 @@ Players combine real elements into real compounds, and those compounds fight zom
 
 **Scope:** prototype 6 elements, 8 compounds and temperature; vertical slice 12 elements and 20 compounds; release 20 and about 35. Compounds need almost no new art: three container sprites (canister, flask, ingot) tinted per compound, plus gas tints on the grid. About 100 h more than the 10-element plan.
 
-### 5.2 Printable components (v1: about 14)
+### 5.2 Printable components (prototype set; release grows to about 25)
 
 | Group | Components | What material changes |
 |---|---|---|
@@ -223,13 +223,54 @@ Examples that come out of the rules, none of them hand-coded:
 - **Railgun:** tungsten slug + copper coil + big battery. Pierces a whole line, uses a lot of energy.
 - **Nuclear launcher:** uranium charge + spring launcher. Huge damage, and it leaves radiation in the ground for several nights. Radiation that reaches her chamber hurts her unless you lined it with lead. That is the tradeoff that makes it a real choice and not just the best gun.
 
+The five above are only a sample, not a list to choose from: any valid combination of shape, material, compound and components works (Yash, 2026-10-24: "needs to be way more"). More examples the same rules produce:
+
+| Device | Built from | Its job |
+|---|---|---|
+| Flame wall | methane line + nozzles + spark igniter + heat sensor | Burns walkers and runners at a choke point; useless on drowned |
+| Chlorine fogger | chlorine canister + fan + timer | Area denial; drifts with wind and can reach her |
+| Thermite plate | aluminium and iron oxide + pressure plate | Melts armoured zombies that step on it |
+| Acid sprinkler | sulfuric acid tank + nozzle + proximity sensor | Corrodes armour and scrap plating |
+| Shrapnel mine | gunpowder charge + iron pellets + tripwire | One big burst for a packed wave |
+| Electrified pool | salt water + copper grid + battery | Wrecks drowned, which conduct strongly |
+| Freeze spray | ammonia coolant + pump + proximity sensor | Slows runners; also protects her chamber |
+| Blade spinner | motor + tungsten blade + battery | Constant melee damage at a gate |
+| Mortar | spring launcher at high arc + gunpowder shells + timer | Hits screamers held at the back |
+| Sonic lure | speaker + battery + timer | Pulls the horde into a kill zone |
+| Burrower spikes | seismic sensor + tungsten spikes | Stops tunnellers near her chamber |
+| Hydrogen drifter | hydrogen balloon + gunpowder payload + timer | Floats over the horde and drops a bomb |
+| Rail turret | motorised mount + railgun + proximity sensor | Automatic line-piercing defence; drinks power |
+| Flamethrower | methane tank + nozzle + igniter (hand-held, manual) | Close defence when walls break |
+| Tesla glove | battery + coil (hand-held, manual) | Chains through a crowd |
+| Grenade | gunpowder + iron casing + timer fuse | Thrown by hand |
+| Methane heater | methane burner + thermostat | Keeps you warm on cold nights |
+| Biogas digester | corpses + sealed tank | Turns corpses slowly into methane |
+| Water still | hydrogen burner + condenser | Drinking water when supply runs out |
+| Hydroponic box | ammonia + water + solar light | Food for both of you |
+| Solar array | silicon sheets + copper wiring | Power without fuel, but only by day |
+| Chamber chiller | ammonia coolant loop + pump + temperature sensor | Keeps her cold automatically |
+| Lead lining | lead plates around her chamber | Shields her from your own fallout |
+| Treatment drip | ethanol + test compound + timer | How each cure attempt is given |
+
+These need more than 14 components, so the release set grows to about 25 (adding motor, pump, fan, speaker, pressure plate, thermostat, condenser and more). Each new one is a single behaviour, about 4–6 h of code, roughly 55 h in all.
+
+### 5.3b Design your own parts (Yash, 2026-10-24)
+
+Players can build a gun or a trap from scratch, start from a preset template, or fully modify any item. Preset devices are just saved designs made with the same tools.
+
+- **How you draw in 3D:** a block-based shape editor, as in Stormworks, Trailmakers or Space Engineers (design references). You place small cubes, wedges and cylinders on a grid inside the printer's build volume (for example 16×16×16 cells per part). That is the practical way to let players "draw" in 3D; free-form mesh sculpting is too hard to make usable and to simulate.
+- **What the shape does:** mass, size, hit points and cost come from its volume and material. Function comes from the components you attach: a barrel, a spring, a coil, a sensor. Each snaps onto your shape at attachment points, and wires join them into circuits. No real aerodynamics or stress physics; a heavier, bigger part is simply sturdier and slower to move.
+- **Templates and modification:** every preset opens in the same editor. Reshape it, swap materials, add components or strip it down, and save it as a new blueprint in the journal.
+- **Readability and performance:** custom shapes are merged into one mesh per part with the material's shader, so they need no hand-drawn art. Zombies stay the highest-contrast thing on screen.
+- **Cost:** about 100–130 h (editor and UI, snapping and wiring, mesh merging, blueprint saving). This works naturally only in 3D, one more reason for 3D models over 2D isometric art.
+
 ### 5.4 The simulation, honestly scoped
 
 - **World:** a coarse grid of 32 px cells (about 40×22 on screen). Each cell holds temperature, wetness, radiation and "burning". Fire spreads to burnable neighbours, water conducts electricity and reacts with sodium, heat melts low-melting parts, radiation decays slowly. Simple cellular-automaton rules updated a few times a second, not per pixel.
 - **Power:** devices connected by conductive structure share a power network (a simple graph).
 - **Projectiles:** simple kinematic motion with mass and speed; damage = channel strength × target weakness. No rigid-body physics engine.
 - **Zombies:** each type has resistances per channel plus mass, wetness, flammability and conductivity, so they take part in the same rules (a burning zombie spreads fire to your wooden wall).
-- **Rejected:** per-pixel falling sand, rigid-body construction, real nuclear or chemical equations, free-form 3D modelling in the printer. Each is a team-scale engine project and breaks readability.
+- **Rejected:** per-pixel falling sand, rigid-body construction, real nuclear or chemical equations, free-form mesh sculpting (the block-based shape editor in 5.3b covers drawing your own parts). Each is a team-scale engine project and breaks readability.
 
 Readability rule (from the project instructions): effects never hide danger. Fields are drawn as soft tints under the zombies, zombies are always the highest-contrast thing on screen, and the wife's chamber has a clear health ring.
 
@@ -360,7 +401,7 @@ No servers, no database, no accounts.
 You draw all art and supply sounds. The design keeps the art list small on purpose.
 
 **Art-saving rules**
-- **Devices are composed from component sprites**, not drawn one by one. You draw about 14 components once; every device the player invents is assembled from them automatically.
+- **Devices are composed from component sprites**, not drawn one by one. You draw about 25 components once; every device the player invents is assembled from them automatically.
 - **Materials are a palette swap** (a shader tint plus a small texture overlay), not separate art. Ten elements times fourteen components would otherwise be 140 drawings.
 - **With 3D models, characters turn freely,** so one walk cycle covers every direction. With 2D isometric sprites each animation needs 4–8 drawn directions.
 - **Effects are particles and shaders**, not hand-drawn frame animations.
@@ -413,9 +454,9 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Fine-tuned local LLM wife (core feature) | Vertical slice, then release | 100–140 | **high** | Section 8.4 |
 | Android + iOS port | Rejected | — | — | Windows only (Yash, 2026-10-24) |
 | Blueprint share codes | Post-launch | 15 | low | |
-| Full reality simulation, per-pixel physics, free-form CAD printer, multiplayer, open map | **Rejected** | — | — | Not solo-buildable |
+| Full reality simulation, per-pixel physics, free-form mesh sculpting, multiplayer, open map | **Rejected** | — | — | Not solo-buildable |
 
-**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~595 h, data-driven horde ~110 h (demo or Early Access) (including compounds, gases and weather) of code and writing, plus your art at roughly 250–450 h. That is about 1,400–1,600 h in total, or roughly 2.5–3 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, 14 components) until release.
+**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~765 h (including compounds, gases, weather, the shape editor and 25 components), data-driven horde ~110 h (demo or Early Access) of code and writing, plus your art at roughly 250–450 h. That is about 1,550–1,800 h in total, or roughly 3 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, about 25 components) until release.
 
 **Money (approximate, check current prices):** Steam Direct fee US$100 per game (about INR 8,500–9,000). **That uses almost all of the INR 10,000 budget, leaving about INR 1,000–1,500.** Everything else in this plan is free (Godot, GUT, GodotSteam, NobodyWho, Qwen3 weights).
 
@@ -425,7 +466,7 @@ Hours are my estimates for you at your pace, including testing, not counting art
 
 | Risk | Likelihood | Impact | Mitigation |
 |---|---|---|---|
-| Scope creep from "create anything" | high | fatal | Hard caps (20 elements, ~35 compounds, 14 components) until release; every addition must create a new decision |
+| Scope creep from "create anything" | high | fatal | Hard caps (20 elements, ~35 compounds, ~25 components) until release; every addition must create a new decision |
 | Cure too obscure, unfair, or spoiled online | high | high | Seeded cure, fairness test, acceptance ending, score and persistence (section 9) |
 | Sandbox has a dominant build | high | high | Learning horde, zombie resistances, nuclear fallout cost |
 | LLM hallucinates or says something harmful | high (if used) | high | Recipe checks by tool call, lucidity tied to her health, scripted clue lines, output filter, test gate |
@@ -481,7 +522,7 @@ Real deletion only happens if you confirm a list like this one.
 ## 16. Open questions for Yash (the plan assumes the defaults)
 
 1. Decided: the fine-tuned LLM is the wife. Base model Qwen3 1.7B or 4B? *Default: choose by the wife test.*
-2. Accept the bounded sandbox (20 elements, ~35 compounds, 14 components, rules) instead of "anything"? *Default: yes.*
+2. Accept the bounded sandbox (20 elements, ~35 compounds, ~25 components, block-built shapes, rules) instead of "anything"? *Default: yes.*
 3. Big weapons can hurt your own base and her? *Default: yes, through fallout and fire.*
 4. Replaying a loop starts from any dawn in it, with limited echoes? *Default: yes.*
 5. Cure values seeded per save so wikis can't spoil it, or one fixed answer for everyone? *Default: seeded.*
