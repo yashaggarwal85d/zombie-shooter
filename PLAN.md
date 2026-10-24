@@ -8,7 +8,7 @@ Everything below is a hypothesis until a gate in section 14 passes. Facts carry 
 
 ## 1. The verdict in one paragraph
 
-The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 10 elements, about 14 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife should be a scripted, database-grounded advisor first, with a small local LLM as an optional PC-only experiment that must pass a test before it ships. The unwinnable premise is the riskiest idea commercially. It works only if every run has measurable progress and the story itself has a closing beat. Realistic scope for a minimum Steam release is about 900–1,300 hours including art, which is 18–30 months at 1.5 h/day.
+The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 10 elements, about 14 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife should be a scripted, database-grounded advisor first, with a small local LLM as an optional PC-only experiment that must pass a test before it ships. The cure exists but is almost impossible to find: exactly one combination works, and its hints need real detective work. That works only if every run shows measurable progress for the many who never find it, and the answer cannot simply be looked up online (section 9). Realistic scope for a minimum Steam release is about 1,100–1,300 hours including art, roughly 2 years at 1.5 h/day.
 
 ---
 
@@ -52,7 +52,7 @@ Thronefall and They Are Billions are outliers, not targets. Third-party Steam es
 
 ## 3. The game in one screen
 
-**Working premise.** You and your wife are the last people in your home. She is infected and lies in a cold chamber in the middle of the base. She built the two machines you have: a **transmutation device** that changes one element into another, and a **3D printer** that turns materials into parts. Every night the dead come. Every corpse you leave behind is fuel. There is no cure. You will find that out slowly.
+**Working premise.** You and your wife are the last people in your home. She is infected and lies in a cold chamber in the middle of the base. She built the two machines you have: a **transmutation device** that changes one element into another, and a **3D printer** that turns materials into parts. Every night the dead come. Every corpse you leave behind is fuel. Everyone, including her, believes there is no cure. There is one, hidden in plain sight.
 
 **Camera.** True top-down, fixed screen: the whole base fits on one screen at 16:9, with a slight follow-pan at most. This keeps the horde readable, suits phones later, and avoids the art cost of isometric. (Project Tomorrow uses isometric; we deliberately do not.)
 
@@ -80,7 +80,7 @@ DAY (about 4 min, pausable)            NIGHT (about 3–5 min, real time)       
 - **Mass (kg)** comes from scrap: wrecked devices, debris, salvage piles on the map edges, and zombie remains. Transmutation does not create mass; it changes which element the mass is. Printing spends mass.
 - **Energy (J)** comes from burning corpses in the bio-reactor. Transmutation and powered devices spend energy.
 
-That one rule set ("mass from scrap, energy from corpses, transmuting costs energy, printing costs mass") is the whole economy, and it ties success at night to options in the day. It also self-balances: a strong night gives a rich day, and a bad night starts a spiral, which is what an unwinnable game needs.
+That one rule set ("mass from scrap, energy from corpses, transmuting costs energy, printing costs mass") is the whole economy, and it ties success at night to options in the day. It also self-balances: a strong night gives a rich day, and a bad night starts a spiral, which is what a near-impossible game needs.
 
 **Why day is not idle time** (Project Tomorrow lesson): the day clock only moves while you act, and the corpse pile rots. Corpses lose energy value each in-game hour, so delaying costs you.
 
@@ -159,7 +159,7 @@ New devices are recorded in a **journal** automatically the first time they kill
 - **Calm:** sedation printed from materials. Neglected, she may wake and wander (later loops).
 - **Company:** talking to her slows decline slightly and is where she gives knowledge. Time with her is time not building.
 
-**The arc:** her health falls a little every dawn regardless of what you do. You can slow it but never reverse it. The "cure research" is a real mechanic: you print experimental treatments from rare materials; each one fails but reveals a story fragment and a new piece of her knowledge. That turns "there is no cure" into the slow discovery that drives the story.
+**The arc:** her health falls a little every dawn regardless of what you do. You can slow it; only the real cure reverses it. The "cure research" is a real mechanic: you print experimental treatments from rare materials; almost every one fails, and each failure reveals a story fragment and a clue. Exactly one treatment works (section 9).
 
 **Loss conditions:** you die, or her health reaches zero, or a zombie reaches her chamber.
 
@@ -204,19 +204,30 @@ If it fails, A ships alone and B becomes a post-launch experiment. On Android an
 
 ---
 
-## 9. Making an unwinnable game fun and hooking
+## 9. The hidden cure, and keeping a near-impossible game fun
 
-The risk: players and reviewers punish games that feel unfair or pointless. An unwinnable design survives when losing is the expected ending of a good story and each run leaves the player better off. Concretely:
+Most players will never find the cure, so the game must be great for them too. A near-impossible game survives when losing is the expected ending of a good story and each run leaves the player better off. Concretely:
 
 1. **A score that means something.** Nights survived is the headline number, shown everywhere, with personal bests per loop and a Steam leaderboard (free through Steamworks).
 2. **Permanent knowledge.** The journal, blueprints and her knowledge carry over. Night 1 of loop 10 feels very different from loop 1.
 3. **New threats every few nights.** A new zombie type, an adaptation, or a night event (fog, rain that makes water everywhere, a blood moon). Players stay for "what comes next".
 4. **Invention moments.** The best moment in the game is "I wonder if this works" and it does. Dusk scouting plus the learning horde produce those deliberately.
-5. **A story with an end, not a win.** The cure research reveals fragments. After enough fragments, she asks you to stop: a written, emotional acceptance ending that closes the story. The sandbox keeps going afterwards as endless mode. **I recommend this strongly.** Without any closure, "the game is made to make you fail" is likely to read as "pointless" in reviews.
+5. **A story with an end for everyone.** Two endings: most players reach the acceptance ending (after enough failed treatments she asks you to stop), then endless mode; the few who solve the case get the cure ending. **I recommend this strongly.** Without it, the large majority who never find the cure get no closure, which is likely to read as "pointless" in reviews.
 6. **Daily seed** (release): the same night sequence for everyone that day, with its own leaderboard. Cheap and repeatable.
 7. **Short sessions.** A day plus night is about 8 minutes. That suits "one more night" on PC and later on phones.
 
 What I would not do: punishing meta-currency grind, or making early nights impossible to "force" difficulty. Difficulty should come from the horde, not from stingy numbers.
+
+### 9.1 The hidden cure (Yash, 2026-10-24: winnable, but very, very hard)
+
+Exactly one combination makes the cure, and finding it should feel like solving a case.
+
+- **What the combination is:** one printed treatment, for example two elements alloyed in an exact ratio, made through a specific transmutation route, delivered by a specific device, while her chamber is in a specific condition. Every part uses mechanics players already know, so the answer feels fair once seen. Cure attempts cost rare materials, so there are only a few tries per loop and brute force across 5 loops cannot find it.
+- **Where the clues live:** in things players already see, never a separate puzzle mode: her scripted lines (never the LLM, which could garble or leak a clue), journal notes, story fragments from failed treatments, details on the map, the behaviour of one rare zombie type, machine readouts. Each clue alone is ambiguous; three or four together point to one answer. Clues persist in the journal, so the detective work spans many loops. Design references, no figures used: Return of the Obra Dinn, Outer Wilds, Tunic, Fez.
+- **Near-miss feedback:** a failed treatment tells you, in character and vaguely, how close you were, so a near miss feels like progress rather than noise.
+- **Fairness test:** a puzzle-minded stranger with every clue but not the answer must be able to deduce it; one who has seen only two clues must not. Test with 3 such people before release.
+- **Spoiler risk:** a single fixed answer will likely be datamined or posted on a wiki soon after launch (opinion), and then the mystery is gone for everyone. **Recommendation:** fix the cure's structure but generate its values (which elements, the ratio, the condition) from each save's seed, and generate the clues from the same values. Every player solves their own case; a wiki can teach how to read clues but cannot hand over the answer. About 30–40 h more than a fixed answer, mostly clue templates. Alternative: one fixed answer, accept the leak, and use "first to cure her" as marketing.
+- **Scope:** about 70 h of code plus 60 h of writing, minimum release. The prototype gets one stub clue chain to test fairness early.
 
 ---
 
@@ -288,7 +299,7 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Journal, blueprints | Vertical slice | 30 | mid | |
 | Learning horde (counter-types) | Vertical slice | 20 | mid | |
 | Scripted "Ask her" advisor | Vertical slice | 40 | mid | Plus your writing time |
-| Cure research + story fragments + acceptance ending | Minimum release | 30 + writing 40 | low | |
+| Cure research, clue chain, seeded cure, two endings | Minimum release | 70 + writing 60 | high | Section 9.1 |
 | Nuclear tier (U, RTG, launcher, fallout) | Minimum release | 30 | high | |
 | 8 zombie types, 6 night events | Minimum release | 60 | high | |
 | Menus, settings, accessibility, controller | Minimum release | 50 | mid | |
@@ -299,7 +310,7 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Blueprint share codes | Post-launch | 15 | low | |
 | Full reality simulation, per-pixel physics, free-form CAD printer, multiplayer, open map | **Rejected** | — | — | Not solo-buildable |
 
-**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~350 h of code and writing, plus your art at roughly 250–450 h. That is about 1,050–1,250 h before mobile, or roughly 2 years at 1.5 h/day. The single biggest lever is keeping the component count at 14 and the element count at 10 for release.
+**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~390 h of code and writing, plus your art at roughly 250–450 h. That is about 1,100–1,300 h before mobile, or roughly 2 years at 1.5 h/day. The single biggest lever is keeping the component count at 14 and the element count at 10 for release.
 
 **Money (approximate, check current prices):** Steam Direct fee US$100 per game (about INR 8,500–9,000), Google Play US$25 one-time, Apple Developer US$99 per year. **Steam alone uses almost all of the INR 10,000 budget; Apple's yearly fee does not fit at all.** Either the budget grows when mobile starts, or iOS waits until the game earns. Everything else in this plan is free (Godot, GUT, GodotSteam, NobodyWho, Qwen3 weights).
 
@@ -310,7 +321,7 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Risk | Likelihood | Impact | Mitigation |
 |---|---|---|---|
 | Scope creep from "create anything" | high | fatal | Hard caps (10 elements, 14 components) until release; every addition must create a new decision |
-| Unwinnable reads as pointless | high | high | Score, persistence, acceptance ending (section 9); test with strangers early |
+| Cure too obscure, unfair, or spoiled online | high | high | Seeded cure, fairness test, acceptance ending, score and persistence (section 9) |
 | Sandbox has a dominant build | high | high | Learning horde, zombie resistances, nuclear fallout cost |
 | LLM hallucinates or says something harmful | high (if used) | high | Scripted first, grounded tools, strict test gate, Windows-only opt-in |
 | AI backlash in reviews | medium | medium | Scripted default; LLM optional and disclosed clearly |
@@ -368,7 +379,7 @@ Real deletion only happens if you confirm a list like this one.
 2. Accept the bounded sandbox (10 elements, 14 components, rules) instead of "anything"? *Default: yes.*
 3. Big weapons can hurt your own base and her? *Default: yes, through fallout and fire.*
 4. Replaying a loop starts from any dawn in it, with limited echoes? *Default: yes.*
-5. A written acceptance ending that closes the story, with endless mode after? *Default: yes.*
+5. Cure values seeded per save so wikis can't spoil it, or one fixed answer for everyone? *Default: seeded.*
 6. Keep the time-loop fiction, or make loops purely a game feature? *Default: keep it light: she remembers.*
 
 ---
