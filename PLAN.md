@@ -56,14 +56,41 @@ Thronefall and They Are Billions are outliers, not targets. Third-party Steam es
 
 **Camera.** An angled three-quarter view like Project Tomorrow or Baldur's Gate 3 (Yash, 2026-10-24), looking down at roughly 45–60 degrees. The whole base fits on screen with limited pan, zoom and 90-degree rotation, so the horde stays readable.
 
-**Decision needed: 3D models or 2D isometric art.** Baldur's Gate 3 and, by its tags, Project Tomorrow are 3D games under an angled camera. Two ways to get that look:
+**Art style: decided, see 3.1 Voxel world.** The options considered were: Baldur's Gate 3 and, by its tags, Project Tomorrow are 3D games under an angled camera. Two ways to get that look:
 
 | Option | Art work for Yash | Code | Fit |
 |---|---|---|---|
 | 3D low-poly models, angled camera (recommended) | Model, texture and rig in Blender (free). One model works from every angle; devices assemble from 3D component parts; materials tint by shader | Godot 3D: lights, shadows, clicking on a ground grid. A little more work than 2D | Closest to the references; rotation and zoom come free. Means learning 3D modelling |
 | 2D isometric sprites | Every character animation drawn in 4–8 directions; buildings from 2 angles; no camera rotation | Simpler 2D code plus isometric depth sorting | Keeps drawing skills, but character art time multiplies by about 4–8 |
 
-Recommendation: 3D low-poly with a painted, stylised look, if Yash is willing to learn Blender; art estimate becomes about 300–500 h instead of 250–450. Otherwise 2D isometric with 4 drawn directions mirrored to 8.
+Superseded: Yash chose a voxel world (3.1), which is 3D without needing Blender.
+
+### 3.1 Voxel world: 3D pixel art (Yash, 2026-10-24; resolves 3D vs 2D)
+
+The whole world is built from voxels, the 3D version of pixel art. What a player draws in voxels is immediately a usable object in the same style as the world.
+
+**Games and tools that already do parts of this** (design references, no figures used):
+
+| Game or tool | What it proves |
+|---|---|
+| [The Sandbox and its VoxEdit tool](https://nonfungible.com/blog/gaming-nft-creation-everyone-the-sandbox) | Probably what Yash saw: a free voxel editor whose models (characters, tools, buildings, weapons) become usable game objects. It sells them as NFTs; we will not |
+| [MagicaVoxel](https://filehorse.com/download-magicavoxel-64) | Free voxel editor most indie voxel games use; check its terms on the developer's site |
+| Teardown | Voxel worlds where everything can break apart |
+| Stormworks, Trailmakers | Players build working machines from blocks and components |
+| Minecraft, Trove, Cube World | Voxel worlds and characters read well from an angled camera |
+
+**No NFTs or blockchain.** Valve's onboarding rules (since 2021, from memory; verify the current wording) do not allow Steam games built on blockchain technology that issue or exchange crypto or NFTs. Player designs are shared as free blueprint codes instead.
+
+**Implications:**
+
+- **One voxel scale for everything,** for example 1 voxel = 10 cm: a player is about 18 voxels tall and a drawn turret matches the world. Inventions are drawn in the printer's 16×16×16 build volume; bigger devices join several parts.
+- **Art pipeline:** Yash draws everything in MagicaVoxel instead of sprites or Blender. Characters are a few separate voxel body parts animated by rotation. Estimate: 200–350 h of art instead of 250–450.
+- **Materials are colours plus a shader:** each element has a voxel palette and a surface effect (shine, glow, rust), so a player's drawing in copper looks copper with no extra art.
+- **Damage shows in the voxels:** walls lose voxels as they take damage. Full Teardown-style physics collapse is out of scope; chipping and breaking into chunks is in.
+- **Tech:** small objects (devices, props, characters) are meshed from voxel data in GDScript, cheap at 16³. The ground is a voxel-styled tile grid, not a voxel terrain engine. Zylann's Voxel Tools (MIT) exist for Godot but need a custom engine build, so only if editable terrain is needed.
+- **Cost:** the voxel editor replaces the block editor at about the same 100–130 h; voxel damage adds about 30 h.
+
+
 
 **Platform.** Windows only, on Steam (Yash, 2026-10-24). No mobile or console versions are planned.
 
@@ -258,7 +285,7 @@ These need more than 14 components, so the release set grows to about 25 (adding
 
 Players can build a gun or a trap from scratch, start from a preset template, or fully modify any item. Preset devices are just saved designs made with the same tools.
 
-- **How you draw in 3D:** a block-based shape editor, as in Stormworks, Trailmakers or Space Engineers (design references). You place small cubes, wedges and cylinders on a grid inside the printer's build volume (for example 16×16×16 cells per part). That is the practical way to let players "draw" in 3D; free-form mesh sculpting is too hard to make usable and to simulate.
+- **How you draw in 3D:** a voxel editor, like VoxEdit or MagicaVoxel inside the game (design references). You place voxels, plus quick shapes such as boxes and cylinders, on a grid inside the printer's build volume (for example 16×16×16 cells per part). That is the practical way to let players "draw" in 3D; free-form mesh sculpting is too hard to make usable and to simulate.
 - **What the shape does:** mass, size, hit points and cost come from its volume and material. Function comes from the components you attach: a barrel, a spring, a coil, a sensor. Each snaps onto your shape at attachment points, and wires join them into circuits. No real aerodynamics or stress physics; a heavier, bigger part is simply sturdier and slower to move.
 - **Templates and modification:** every preset opens in the same editor. Reshape it, swap materials, add components or strip it down, and save it as a new blueprint in the journal.
 - **Readability and performance:** custom shapes are merged into one mesh per part with the material's shader, so they need no hand-drawn art. Zombies stay the highest-contrast thing on screen.
@@ -456,7 +483,7 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Blueprint share codes | Post-launch | 15 | low | |
 | Full reality simulation, per-pixel physics, free-form mesh sculpting, multiplayer, open map | **Rejected** | — | — | Not solo-buildable |
 
-**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~765 h (including compounds, gases, weather, the shape editor and 25 components), data-driven horde ~110 h (demo or Early Access) of code and writing, plus your art at roughly 250–450 h. That is about 1,550–1,800 h in total, or roughly 3 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, about 25 components) until release.
+**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~765 h (including compounds, gases, weather, the shape editor and 25 components), data-driven horde ~110 h (demo or Early Access) of code and writing, plus your voxel art at roughly 200–350 h. That is about 1,550–1,800 h in total, or roughly 3 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, about 25 components) until release.
 
 **Money (approximate, check current prices):** Steam Direct fee US$100 per game (about INR 8,500–9,000). **That uses almost all of the INR 10,000 budget, leaving about INR 1,000–1,500.** Everything else in this plan is free (Godot, GUT, GodotSteam, NobodyWho, Qwen3 weights).
 
