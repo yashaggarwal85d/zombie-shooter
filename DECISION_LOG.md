@@ -29,6 +29,11 @@ Confirmed decisions, with the reason for each and the alternatives rejected. Evi
 - **Art path (Yash, 2026-10-22, decision card in the review thread):** a light-led silhouette style that Yash builds himself, with an artist if needed. Atmosphere comes from shapes, layering, fog, light and shaders rather than detailed painting.
 - **Gate (updated 2026-10-22):** a 10–15 h **look test** in Stage C, *before* the prototype (the chamber, one silhouette enemy, fog and light on one screen, with a mobile quality preset). If it falls short of the target quality, commissioning an artist for the key assets (estimated ₹3–10 lakh in stages) becomes a **precondition for the vertical slice**. A second art check still happens at the slice.
 - **Rejected for now:** commissioning an artist before the slice (no budget); a revenue-share art partner; shipping mixed free packs as final art.
+- **Amendment (Yash, 2026-10-24, project chat: "I think i am gonna design all the characters environment and assets"):** Yash draws the characters, shelters, structures, near trees and props himself, and supplies the sounds. Claude assembles the parts, builds the Skeleton2D rigs and first-pass animations, and wires everything in. The far backdrop (sky, peaks, ridges, mist, distant trees) stays procedural unless the slice shows it falls short. Hand-off rules and the prioritised list are in the art requests doc, with a summary in ART_AND_AUDIO_GUIDE section 7.
+  - **Cost:** about 105–175 h of Yash's time through the slice (12–20% of the D6 budget), estimated for someone new to drawing.
+  - **Gate:** batch 1 (player, shambler, woods hut, one deodar) replaces the look-test gate for characters and hero props. It passes if both characters read at game size in all four times of day, the drawn pieces sit in the procedural world, and the batch takes 30 h or less.
+  - **Fallbacks:** on looks after one revision, keep shape-built silhouette characters, because the ₹3–10 lakh artist estimate is far over budget; on time, cut the scope so Yash draws only the characters and shelters.
+  - **Rejected:** Yash redrawing the far backdrop now. It adds hours without changing what the player watches.
 
 ## D5. Commercial target, budget and platform order
 - **Date:** 2026-10-22 · **Approved by:** Yash

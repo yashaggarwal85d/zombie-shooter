@@ -84,18 +84,26 @@ Fixed accents: **pod light** `#B8E6FF` (hope), **danger** `#FF5A3C` (tells, hits
 - **Built pieces:** fence of leaning deodar poles and lashed slats; dry-stone wall under a timber cap; high wall as a log palisade on a stone footing.
 - **Characters (not done yet):** still the Stage C placeholder silhouettes. Final characters are Skeleton2D cutouts (D4) made after Yash's rigging practice. Rules to keep: a distinct head-and-shoulder shape per enemy type, readable at 70 px tall, no interior detail that rim light can't show.
 
-## 7. How the art gets made (budget under ₹10,000)
+## 7. How the art gets made (D4 amendment, 2026-10-24)
 
-| Asset | Method | Who | Status |
-|---|---|---|---|
-| Backdrops, trees, ridges, mist | Procedural shapes and shaders in Godot (`src/look/`) | Claude builds, Yash tunes palettes | Woods kit v1 in the look test |
-| Shelters and built pieces | Procedural shapes | Claude, Yash tunes | Woods hut v1 |
-| Characters | Skeleton2D cutouts from shapes drawn in Krita | Yash (learning path in D4) | Not started |
-| UI and fonts | OFL fonts, simple shapes | Claude | Toy HUD only |
-| Capsule and key art | Composed from the in-game layers plus hand-drawn figure silhouettes | Yash + Claude | After the slice |
-| Audio | See section 8 | | Synth placeholders |
+Yash draws the characters, shelters, structures, near trees and props, and supplies the sounds. Claude assembles the parts, rigs and animates the first passes, and wires everything in. The far backdrop stays procedural (`src/look/`). The full prioritised list is in the art requests doc in the project.
 
-If the look test or the slice art check falls short, D4's fallback applies: commission an artist for the key assets.
+| Rule | Detail |
+|---|---|
+| Scale | Play-plane art at 4 px per game unit; near trees at 2 px per unit |
+| Format | PNG, RGBA, 8-bit, sRGB, transparent, trimmed with 8 px padding; Krita sources kept in `art_src/` outside the repo |
+| Values | Greyscale only; the game tints black to the play-plane colour and white to the key light. Bodies 0–15%, details 20–35%, nothing above 40% |
+| Rig parts | One whole part per layer, side view facing right; joint pivots as #FF0000 dots on a `pivots` layer; parts named `<asset>_<part>.png` with near/far |
+| Hand-off | `art_inbox/batch<N>/<asset>/` in Yash's work folder, plus `<asset>_assembled.png`; logged in ASSET_REGISTER before it enters `assets/art/` |
+| Sounds | WAV 48 kHz 16-bit, mono effects, stereo ambience, peaks about −3 dBFS, 3–5 takes of frequent sounds, `sfx_<thing>_<n>.wav` in `art_inbox/audio/`; own recordings or CC0 only |
+
+| Batch | Contents | Gate |
+|---|---|---|
+| 1 | Player, shambler, woods hut, one near deodar | Both characters read at game size in all four times of day; drawn pieces sit in the procedural world; 30 h or less |
+| 2 | Runner, fence, wall, high wall, ladder, two barrels | After batch 1 passes |
+| 3 | Terraces and hill-station shelters, her lab, the brute, traps, UI icons, key art | Vertical slice |
+
+If batch 1 misses on looks after one revision, keep shape-built silhouette characters; if it misses on time, Yash draws only the characters and shelters.
 
 ## 8. Audio direction (draft)
 
