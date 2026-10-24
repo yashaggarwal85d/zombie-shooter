@@ -19,7 +19,7 @@ The pivot is buildable, but not as literally described. "The whole reality compl
 Facts (retrieved 2026-10-24):
 - Developer and publisher Advance Nine, a solo developer named Ryan. Early Access planned for **9 Nov 2026**; full release targeted later (Steam page; [TechTimes, 2026-09-07](https://www.techtimes.com/articles/326864/20260907/project-tomorrow-demo-draws-21000-wishlists-solo-dev-ships-two-overhauls-three-weeks.htm)).
 - Pitch: "A base-building survival game with terraforming and crafting." You wake from stasis on a poisoned Earth, build terraforming machines, and alien waves attack those machines; expanding brings bigger attacks ([Steam store page](https://store.steampowered.com/app/4402200/)).
-- Steam tags include Base Building, Tower Defense, Survival, Crafting, Resource Management, **Isometric, Third Person**. So its camera is an angled isometric view, not a flat top-down one. Worth knowing when you borrow "the top view".
+- Steam tags include Base Building, Tower Defense, Survival, Crafting, Resource Management, **Isometric, Third Person**. So its camera is angled; that is the view we adopt (Yash, 2026-10-24).
 - Early Access scope: 3 regions, 20 buildings, 75 items, 18 enemies, 20 modifiers (store page).
 - Demo since 17 Aug 2026: **21,000+ wishlists and about 6,000 demo players in its first two weeks** (TechTimes, 2026-09-07, citing the developer). No user reviews yet on 2026-10-24.
 - Player feedback the developer acted on (TechTimes): passive terraforming was "boring" and encouraged idling, so progress now comes only from building and defending; inventory management pulled players out of play; oxygen and thirst drain felt "more exhausting than tense"; early waves were too punishing.
@@ -54,7 +54,16 @@ Thronefall and They Are Billions are outliers, not targets. Third-party Steam es
 
 **Working premise.** You and your wife are the last people in your home. She is infected and lies in a cold chamber in the middle of the base. She built the two machines you have: a **transmutation device** that changes one element into another, and a **3D printer** that turns materials into parts. Every night the dead come. Every corpse you leave behind is fuel. Everyone, including her, believes there is no cure. There is one, hidden in plain sight.
 
-**Camera.** True top-down, fixed screen: the whole base fits on one screen at 16:9, with a slight follow-pan at most. This keeps the horde readable and avoids the art cost of isometric. (Project Tomorrow uses isometric; we deliberately do not.)
+**Camera.** An angled three-quarter view like Project Tomorrow or Baldur's Gate 3 (Yash, 2026-10-24), looking down at roughly 45–60 degrees. The whole base fits on screen with limited pan, zoom and 90-degree rotation, so the horde stays readable.
+
+**Decision needed: 3D models or 2D isometric art.** Baldur's Gate 3 and, by its tags, Project Tomorrow are 3D games under an angled camera. Two ways to get that look:
+
+| Option | Art work for Yash | Code | Fit |
+|---|---|---|---|
+| 3D low-poly models, angled camera (recommended) | Model, texture and rig in Blender (free). One model works from every angle; devices assemble from 3D component parts; materials tint by shader | Godot 3D: lights, shadows, clicking on a ground grid. A little more work than 2D | Closest to the references; rotation and zoom come free. Means learning 3D modelling |
+| 2D isometric sprites | Every character animation drawn in 4–8 directions; buildings from 2 angles; no camera rotation | Simpler 2D code plus isometric depth sorting | Keeps drawing skills, but character art time multiplies by about 4–8 |
+
+Recommendation: 3D low-poly with a painted, stylised look, if Yash is willing to learn Blender; art estimate becomes about 300–500 h instead of 250–450. Otherwise 2D isometric with 4 drawn directions mirrored to 8.
 
 **Platform.** Windows only, on Steam (Yash, 2026-10-24). No mobile or console versions are planned.
 
@@ -288,7 +297,7 @@ Exactly one combination makes the cure, and finding it should feel like solving 
 | Simulation | Plain GDScript classes with no nodes (sim) and a separate view layer, ticked at a fixed rate | Testable with GUT, snapshot-friendly for loops. Only if profiling shows the field grid or horde too slow, move that one hot path to a GDExtension (needs a demonstrated need, per project rules) |
 | Data | Godot Resources: `ElementDef`, `AlloyDef`, `ComponentDef`, `DeviceBlueprint`, `EnemyDef`, `WaveDef`, `NightEventDef` | Data-driven tuning without code changes |
 | Horde movement | Flow field from the base outward, recomputed when walls change | Cheap for 300+ zombies; one field for the whole horde |
-| Horde drawing | `MultiMeshInstance2D` or batched custom drawing | Hundreds of zombies on screen |
+| Horde drawing | `MultiMeshInstance3D` with baked vertex animation (if 3D) | Hundreds of zombies on screen |
 | Field effects | One shader reading a small texture built from the grid | Cheap tints, keeps zombies readable |
 | Save and loops | Snapshot Resource per dawn, saved to `user://` | Section 7 |
 | Wife | Fine-tuned Qwen3 (or similar) via NobodyWho, scripted fallback | Section 8.4 |
@@ -306,14 +315,14 @@ You draw all art and supply sounds. The design keeps the art list small on purpo
 **Art-saving rules**
 - **Devices are composed from component sprites**, not drawn one by one. You draw about 14 components once; every device the player invents is assembled from them automatically.
 - **Materials are a palette swap** (a shader tint plus a small texture overlay), not separate art. Ten elements times fourteen components would otherwise be 140 drawings.
-- **Top-down characters rotate** instead of having one animation per direction. Walk cycles need one direction plus rotation.
+- **With 3D models, characters turn freely,** so one walk cycle covers every direction. With 2D isometric sprites each animation needs 4–8 drawn directions.
 - **Effects are particles and shaders**, not hand-drawn frame animations.
 
 **Art list for the first playable slice** (your estimate, my counts)
 
 | Asset | Count | Notes |
 |---|---|---|
-| Player | 1 body, walk (6–8 frames), shoot, hit, death | Top-down |
+| Player | 1 body, walk (6–8 frames), shoot, hit, death | Angled view |
 | Wife in chamber | chamber, 4 health states, 3 "need" overlays | The emotional centre; worth extra care |
 | Zombies | 4 types (walker, runner, bloater, drowned) × walk, attack, death | More types later; each must create a new decision |
 | Components | 14 icons that also work as device parts | Neutral grey, tinted by material |
@@ -323,7 +332,7 @@ You draw all art and supply sounds. The design keeps the art list small on purpo
 | UI | printer grid, transmuter panel, journal, "Ask her" panel, HUD | Clean flat UI, one font |
 | Corpses and scrap | 4–6 pile variants | They are the economy, so they must read clearly |
 
-**Placeholders while you draw:** CC0 packs (for example Kenney's top-down sets) for greybox, logged in ASSET_REGISTER.md and fully replaced before release. Fonts under the SIL Open Font License. Sound placeholders from CC0 libraries; verify each licence and log it.
+**Placeholders while you draw:** CC0 packs (for example Kenney's isometric or 3D sets) for greybox, logged in ASSET_REGISTER.md and fully replaced before release. Fonts under the SIL Open Font License. Sound placeholders from CC0 libraries; verify each licence and log it.
 
 **Audio list (you supply):** about 40 SFX for the slice (each component firing, element reactions, zombie types, machines), 2 music beds (day, night), her voice lines (text first; voice acting is a post-launch question).
 
@@ -335,7 +344,7 @@ Hours are my estimates for you at your pace, including testing, not counting art
 
 | Feature | Class | Hours | Testing burden | Notes |
 |---|---|---|---|---|
-| Top-down movement, aim, hand weapon | Prototype | 15 | low | |
+| Movement, aim, hand weapon (angled camera) | Prototype | 15 | low | |
 | Day/night clock, dusk scouting, wave director | Prototype | 30 | mid | |
 | Flow-field horde, 300 zombies at 60 fps | Prototype | 35 | mid | Performance gate |
 | Mass/energy economy, bio-reactor, scrap furnace | Prototype | 15 | low | |
