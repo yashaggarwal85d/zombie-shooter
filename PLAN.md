@@ -8,7 +8,7 @@ Everything below is a hypothesis until a gate in section 14 passes. Facts carry 
 
 ## 1. The verdict in one paragraph
 
-The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 20 real elements that react into about 35 real compounds, about 14 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife should be a scripted, database-grounded advisor first, with a small local LLM as an optional PC-only experiment that must pass a test before it ships. The cure exists but is almost impossible to find: exactly one combination works, and its hints need real detective work. That works only if every run shows measurable progress for the many who never find it, and the answer cannot simply be looked up online (section 9). Realistic scope for a minimum Steam release is about 1,200–1,400 hours including art, roughly 2–2.5 years at 1.5 h/day.
+The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 20 real elements that react into about 35 real compounds, about 14 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife is a fine-tuned small local LLM in her voice (Yash's decision), grounded in game data through tool calls; her mistakes are part of her illness, but the cure clues and safety stay controlled. The cure exists but is almost impossible to find: exactly one combination works, and its hints need real detective work. That works only if every run shows measurable progress for the many who never find it, and the answer cannot simply be looked up online (section 9). Realistic scope for a minimum Steam release is about 1,250–1,450 hours including art, roughly 2–2.5 years at 1.5 h/day.
 
 ---
 
@@ -224,7 +224,7 @@ New devices are recorded in a **journal** automatically the first time they kill
 | B. Small local LLM, grounded | Qwen3-0.6B or 1.7B (Apache-2.0) through NobodyWho in Godot. The model never answers from memory: it calls game functions ("look up element", "evaluate this device", "suggest a counter to zombie X") and only phrases the result in her voice. | Feels alive, answers odd questions, real differentiator | ~0.5–1.5 GB extra download (my estimate for 4-bit models), needs a decent CPU or GPU, Steam live-AI disclosure and reporting duties, some players dislike AI in games (opinion), 40–80 h to build and test |
 | C. Cloud LLM | An API call | Best quality | Rejected: costs money per player forever, needs internet, breaks "offline single-player" |
 
-### 8.3 Recommendation
+### 8.3 Earlier recommendation (superseded by 8.4)
 
 Build **A first, designed so B can sit on top of it**. The question-to-answer engine in A becomes the tool set that B calls, so no work is wasted. Ship B as an optional "Talk freely" mode, and only if it passes this test on the reference PC:
 - 50 scripted questions: at least 95% of answers factually match the game data (no invented recipes).
@@ -234,6 +234,24 @@ Build **A first, designed so B can sit on top of it**. The question-to-answer en
 If it fails, A ships alone and B becomes a post-launch experiment. With Windows as the only platform, B is more viable than before: every player can run it. Her story beats and emotional lines are always hand-written by you, never generated, because the tone matters too much to leave to a 1 B model.
 
 ---
+
+### 8.4 Decision: the fine-tuned LLM is the wife (Yash, 2026-10-24; supersedes 8.3)
+
+Yash chose the smallest capable model, fine-tuned for the game and her personality, with wrong answers accepted as part of her illness. The framing is good and worth leaning into. Four things still need design:
+
+- **Make the errors a mechanic, not noise.** Tie her lucidity to her health. Well cared for, she answers precisely; as she declines she hesitates, mixes up elements and trails off. Players learn to read her, and caring for her has a visible payoff. Technically, her health value sets the sampling temperature and a confusion instruction.
+- **Protect the cure clues.** If she can be wrong about anything, detectives cannot tell a clue from a symptom, and the cure becomes unfair. Clue lines are scripted and come only in lucid moments, with a small tell (her chamber light steadies). The model may discuss clues but cannot change them.
+- **Check recipes that cost materials.** When she gives a recipe, a tool call checks it against the reaction table and the journal marks it "she said" until tested. Wrong recipes still feel like her illness, but nobody loses a night's materials to something the game could have flagged. Opinion: a wrong recipe is charming once and frustrating the fifth time.
+- **Safety gets no illness excuse.** Steam's live-generated AI rules still apply: guardrails in the Content Survey, an in-game report path and a store disclosure. Plan an output filter plus refusal examples in the fine-tune.
+
+**Model and fine-tune plan**
+
+- Candidates: Qwen3 1.7B and 4B (Apache-2.0, permissive). Models under custom licences (Gemma, Llama) only if they test clearly better and their terms fit. Choose by the wife test, not by benchmarks.
+- About 1–2.5 GB on disk at 4-bit (my estimate). Runs on the CPU of most gaming PCs and faster on GPU through NobodyWho's Vulkan support. Minimum specs come from the test.
+- Fine-tune with LoRA on free cloud notebooks to stay in budget. Dataset of about 2,000–5,000 dialogues: her voice from seed lines Yash writes, game knowledge from the data tables, refusals, and lucid and confused pairs. The reaction table stays the source of truth, so the model learns to call tools rather than memorise recipes.
+- Cost about 100–140 h across slice and release (dataset, training, tool wiring, testing). A scripted fallback (about 20 h) stays for weak PCs and players who switch AI off.
+
+**Wife test (revised):** 50 recipe questions with at least 90% correct while she is lucid (errors only when confused); clue lines never altered; 100 red-team prompts with zero unsafe outputs; first words under 1.5 s on a mid-range PC.
 
 ## 9. The hidden cure, and keeping a near-impossible game fun
 
@@ -273,7 +291,7 @@ Exactly one combination makes the cure, and finding it should feel like solving 
 | Horde drawing | `MultiMeshInstance2D` or batched custom drawing | Hundreds of zombies on screen |
 | Field effects | One shader reading a small texture built from the grid | Cheap tints, keeps zombies readable |
 | Save and loops | Snapshot Resource per dawn, saved to `user://` | Section 7 |
-| Wife | Scripted advisor in GDScript; optional NobodyWho + Qwen3 | Section 8 |
+| Wife | Fine-tuned Qwen3 (or similar) via NobodyWho, scripted fallback | Section 8.4 |
 | Steam | GodotSteam (achievements, leaderboards, cloud saves) | Standard Godot route; verify licence and version at setup |
 | Tests | GUT for sim rules (transmutation cost, damage channels, power networks, snapshot round-trip) | Rules are the game; they must be tested |
 
@@ -336,12 +354,12 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Menus, settings, accessibility, controller | Minimum release | 50 | mid | |
 | Steam: page, achievements, leaderboards, cloud, demo | Minimum release | 40 | mid | |
 | Daily seed | Minimum release | 15 | low | |
-| Local LLM wife (Windows, grounded) | Experiment → post-launch unless gate passes | 50–80 | **high** | Section 8 |
+| Fine-tuned local LLM wife (core feature) | Vertical slice, then release | 100–140 | **high** | Section 8.4 |
 | Android + iOS port | Rejected | — | — | Windows only (Yash, 2026-10-24) |
 | Blueprint share codes | Post-launch | 15 | low | |
 | Full reality simulation, per-pixel physics, free-form CAD printer, multiplayer, open map | **Rejected** | — | — | Not solo-buildable |
 
-**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~490 h (including compounds, gases and weather) of code and writing, plus your art at roughly 250–450 h. That is about 1,200–1,400 h in total, or roughly 2–2.5 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, 14 components) until release.
+**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~550 h (including compounds, gases and weather) of code and writing, plus your art at roughly 250–450 h. That is about 1,250–1,450 h in total, or roughly 2–2.5 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, 14 components) until release.
 
 **Money (approximate, check current prices):** Steam Direct fee US$100 per game (about INR 8,500–9,000). **That uses almost all of the INR 10,000 budget, leaving about INR 1,000–1,500.** Everything else in this plan is free (Godot, GUT, GodotSteam, NobodyWho, Qwen3 weights).
 
@@ -354,7 +372,7 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Scope creep from "create anything" | high | fatal | Hard caps (20 elements, ~35 compounds, 14 components) until release; every addition must create a new decision |
 | Cure too obscure, unfair, or spoiled online | high | high | Seeded cure, fairness test, acceptance ending, score and persistence (section 9) |
 | Sandbox has a dominant build | high | high | Learning horde, zombie resistances, nuclear fallout cost |
-| LLM hallucinates or says something harmful | high (if used) | high | Scripted first, grounded tools, strict test gate, opt-in mode |
+| LLM hallucinates or says something harmful | high (if used) | high | Recipe checks by tool call, lucidity tied to her health, scripted clue lines, output filter, test gate |
 | AI backlash in reviews | medium | medium | Scripted default; LLM optional and disclosed clearly |
 | Saturated genre; Project Tomorrow and Thronefall-likes | medium | high | Lead marketing with inventions and her, not "base defence" |
 | Performance (horde + field grid) on low-end PCs | medium | medium | Prototype gate at 300 zombies; GDExtension only if profiling demands |
@@ -380,7 +398,7 @@ Stages follow the project rules; each waits for your approval.
 - No dominant device: none gets more than 50% of kills across all testers' nights.
 No-go means rework the system or stop, not more content.
 
-**Stage 2b. Wife test (parallel, about 30 h).** Scripted advisor plus the LLM experiment against the test in section 8.3. Decides whether the LLM goes into the slice.
+**Stage 2b. Wife test (parallel, about 40 h).** First LoRA fine-tune against the revised test in section 8.4.
 
 **Stage 3. Vertical slice + Steam page (about 200 h code, art starts in earnest).** Your art for the slice list, loops UI, journal, learning horde, "Ask her". Steam page live with a trailer. Go: about 3,000 wishlists within 3 months of the page going live, and a demo with median playtime over 45 minutes. (For calibration: Project Tomorrow reached 21k from a demo, but it is an outlier; 15k wishlists before launch remains the release gate.)
 
@@ -406,7 +424,7 @@ Real deletion only happens if you confirm a list like this one.
 
 ## 16. Open questions for Yash (the plan assumes the defaults)
 
-1. Scripted advisor as default, grounded LLM as an optional mode only if it passes its test? *Default: yes.*
+1. Decided: the fine-tuned LLM is the wife. Base model Qwen3 1.7B or 4B? *Default: choose by the wife test.*
 2. Accept the bounded sandbox (20 elements, ~35 compounds, 14 components, rules) instead of "anything"? *Default: yes.*
 3. Big weapons can hurt your own base and her? *Default: yes, through fallout and fire.*
 4. Replaying a loop starts from any dawn in it, with limited echoes? *Default: yes.*
