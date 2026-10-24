@@ -103,3 +103,11 @@ Source: [research/STAGE_A_REVIEW.md](research/STAGE_A_REVIEW.md). Yash asked for
 - **Decision:** the combat toy spec v0.2 and the GDD v0.2 proposals are approved, with Yash's changes: (1) the player builds by day with limited resources, so the toy gets a short build step before the night; (2) the infected break structures **or pile on top of each other and climb over them**, so height never protects the player for long; (3) the shelter is on their straight path, so a player who hides up high loses her, and the loop resets.
 - **Replaces:** my proposal that the infected never climb.
 - **Rejected:** a fixed, pre-built toy layout (Yash wants building in from the start).
+
+## D13. Hollow Knight-like movement and melee feel, plus the gun (proposed)
+- **Date:** 2026-10-24 · **Status:** proposed, waiting for Yash's OK on the spec change. The direction itself is Yash's: "the movement mechanics are gonna be like hollow knight, how it jumps and melee attacks. The ranged attacks will also be there in our case."
+- **Decision (proposed):** an overriding of the project rule against adopting Hollow Knight's combat, limited to **feel**: a variable-height jump with a snappy arc and instant air control, and a fast three-direction melee (forward, up, down in the air) with hit-stop, recoil and a downward bounce that also knocks bodies off piles. The gun stays. Details: [research/STAGE_D_MOVEMENT_MELEE_PROPOSAL.md](research/STAGE_D_MOVEMENT_MELEE_PROPOSAL.md).
+- **Not taken from Hollow Knight:** its numbers, moves list, nail or sword, soul or healing system, masks UI, sounds and animations. The melee weapon is a tool (a hatchet or crowbar).
+- **Why:** the toy's movement and melee are flat. Responsive movement makes a 2D action game feel good, and a down-strike gives D12's climbing piles a counter.
+- **Risks:** looking derivative, because we would share Hollow Knight's art feel, movement and side view while sitting close to Kingdom Two Crowns in structure; melee overpowering the loud/quiet choice; touch controls for the port; about 15–25 h of build and tuning, and about 12 player animations later.
+- **Rejected alternatives:** keeping the toy's flat movement (cheaper, but the feel would likely fail the "fun for five minutes" gate); adding a dash now (wait to see whether the jump is enough).
