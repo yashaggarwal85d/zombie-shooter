@@ -8,7 +8,7 @@ Everything below is a hypothesis until a gate in section 14 passes. Facts carry 
 
 ## 1. The verdict in one paragraph
 
-The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 20 real elements that react into about 35 real compounds, about 14 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife is a fine-tuned small local LLM in her voice (Yash's decision), grounded in game data through tool calls; her mistakes are part of her illness, but the cure clues and safety stay controlled. The cure exists but is almost impossible to find: exactly one combination works, and its hints need real detective work. That works only if every run shows measurable progress for the many who never find it, and the answer cannot simply be looked up online (section 9). Realistic scope for a minimum Steam release is about 1,300–1,500 hours including art, roughly 2–2.5 years at 1.5 h/day.
+The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 20 real elements that react into about 35 real compounds, about 14 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife is a fine-tuned small local LLM in her voice (Yash's decision), grounded in game data through tool calls; her mistakes are part of her illness, but the cure clues and safety stay controlled. The cure exists but is almost impossible to find: exactly one combination works, and its hints need real detective work. That works only if every run shows measurable progress for the many who never find it, and the answer cannot simply be looked up online (section 9). Realistic scope for a minimum Steam release is about 1,400–1,600 hours including art, roughly 2.5–3 years at 1.5 h/day.
 
 ---
 
@@ -138,6 +138,17 @@ The "smart" part is a director that reads how you played and changes the next ni
 **Fairness:** every change is shown at dusk scouting in the fiction (tracks, scorched bodies, her notes). Two nights in a row never counter the same invention. Individual zombies stay simple: flow fields toward the base, the power network and her, plus a small set of states (walk, attack, climb, burrow, flee from fire).
 
 **Cost:** about 80 h of code for 10 types plus about 45 h for the director, and 10 models with about 3 animations each for the art budget.
+
+### 4.3 Data-driven horde: learning from all players (Yash, 2026-10-24)
+
+The main source of difficulty will be an algorithm, trained on data from the player base, that picks which zombies to send to give a player the best chance of losing. The rule-based director in 4.2 stays as its fallback and guard rails.
+
+- **There is no player base yet.** Data comes from playtests, a demo and launch. Before that, train on simulated nights: bots play thousands of nights with varied base layouts (as the earlier combat toy used soak bots). The data-driven version can realistically go live from the demo or Early Access, not day one.
+- **Collecting data breaks the offline, no-servers rule.** It needs opt-in telemetry to a small endpoint, a privacy policy (EU GDPR, India's DPDP Act) and a little hosting cost. Steam does not supply gameplay analytics. This is a constraint change and needs Yash's approval.
+- **Target a loss chance, don't maximise it.** A true maximiser finds the one unbeatable mix and sends it every night; players feel cheated and stop. Instead it aims for a target chance of losing that rises over the run (for example 15% on night 2, 50% by night 15). Opinion: visible rubber-banding is punished in reviews, so dusk scouting still shows what is coming.
+- **How it works:** a simple model (logistic regression or small gradient-boosted trees, trained offline) predicts the chance of losing from the base's damage mix, wall strength per side, power layout, her exposure and the wave mix. Each dusk the director tries candidate wave mixes within the night's budget and picks the one closest to the target. The model ships in the game and runs locally with no internet; new versions come with patches.
+
+**Cost:** about 30 h for bots and simulation, 30 h for telemetry and privacy work, 40–60 h for the model pipeline and tuning. Rule-based director in the vertical slice; the data model from the demo or Early Access.
 
 ## 5. The transmutation and printing system
 
@@ -404,7 +415,7 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Blueprint share codes | Post-launch | 15 | low | |
 | Full reality simulation, per-pixel physics, free-form CAD printer, multiplayer, open map | **Rejected** | — | — | Not solo-buildable |
 
-**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~595 h (including compounds, gases and weather) of code and writing, plus your art at roughly 250–450 h. That is about 1,300–1,500 h in total, or roughly 2–2.5 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, 14 components) until release.
+**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~595 h, data-driven horde ~110 h (demo or Early Access) (including compounds, gases and weather) of code and writing, plus your art at roughly 250–450 h. That is about 1,400–1,600 h in total, or roughly 2.5–3 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, 14 components) until release.
 
 **Money (approximate, check current prices):** Steam Direct fee US$100 per game (about INR 8,500–9,000). **That uses almost all of the INR 10,000 budget, leaving about INR 1,000–1,500.** Everything else in this plan is free (Godot, GUT, GodotSteam, NobodyWho, Qwen3 weights).
 
