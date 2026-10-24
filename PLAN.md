@@ -8,7 +8,7 @@ Everything below is a hypothesis until a gate in section 14 passes. Facts carry 
 
 ## 1. The verdict in one paragraph
 
-The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 10 elements, about 14 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife should be a scripted, database-grounded advisor first, with a small local LLM as an optional PC-only experiment that must pass a test before it ships. The cure exists but is almost impossible to find: exactly one combination works, and its hints need real detective work. That works only if every run shows measurable progress for the many who never find it, and the answer cannot simply be looked up online (section 9). Realistic scope for a minimum Steam release is about 1,100–1,300 hours including art, roughly 2 years at 1.5 h/day.
+The pivot is buildable, but not as literally described. "The whole reality completely simulated, create anything" cannot be built by one person at 1–2 hours a day, and no shipped game does it. Noita, Oxygen Not Included and Zelda's chemistry engine all *feel* limitless because a small set of rules interact, not because reality is simulated. So the plan is a bounded systemic sandbox: about 20 real elements that react into about 35 real compounds, about 14 printable components, and 5 damage channels (kinetic, fire, electric, radiation, explosive) that follow simple, learnable rules. A device is whatever the player assembles on a grid, and its behaviour comes from those rules. That gives thousands of working combinations and the honest feeling of freedom. The wife should be a scripted, database-grounded advisor first, with a small local LLM as an optional PC-only experiment that must pass a test before it ships. The cure exists but is almost impossible to find: exactly one combination works, and its hints need real detective work. That works only if every run shows measurable progress for the many who never find it, and the answer cannot simply be looked up online (section 9). Realistic scope for a minimum Steam release is about 1,200–1,400 hours including art, roughly 2–2.5 years at 1.5 h/day.
 
 ---
 
@@ -94,7 +94,7 @@ That one rule set ("mass from scrap, energy from corpses, transmuting costs ener
 
 This is the heart of the game, so it gets the most design work and the first prototype.
 
-### 5.1 Elements (v1: 10)
+### 5.1 Elements (prototype set; release grows to about 20)
 
 Each element has six numbers. They are simplified game values, not real chemistry tables, but they point the way real physics does so players' intuition works.
 
@@ -114,6 +114,33 @@ Each element has six numbers. They are simplified game values, not real chemistr
 **Transmutation rule:** cost in energy = mass × (distance in the element list)², with extra cost for going "up" the list. The order is roughly atomic number, so the player can learn it ("heavier elements are expensive"). Uranium is deliberately far up and very expensive, which makes the nuclear tier a late, meaningful goal.
 
 **Alloys:** the printer can blend two elements in one part. Stats are a weighted mix plus a few named bonuses (steel = Fe + a little C gets extra hardness; bronze = Cu + a little of something). About 6 named alloys in v1; others work but give only the plain average.
+
+### 5.1b Real chemistry: elements into compounds (Yash, 2026-10-24: more elements, real compounds)
+
+Players combine real elements into real compounds, and those compounds fight zombies, keep you and her alive, and lead to the cure. The cost of a bigger chemistry set is not the number of elements, it is the number of distinct effects. So the rule is: **every compound is data, and every effect it has goes through one of a fixed set of property channels.** Adding hydrogen or chlorine is then a table row, not new code.
+
+**Release elements (about 20):** hydrogen, carbon, nitrogen, oxygen, sodium, magnesium, aluminium, silicon, phosphorus, sulfur, chlorine, potassium, calcium, iron, copper, zinc, silver, lead, tungsten, uranium. Oxygen and nitrogen come from air, hydrogen and oxygen from water; the rest come from scrap or transmutation. The 10-element table above is the prototype set.
+
+**Reactions** are a table: inputs in a ratio, a condition (heat, spark, electricity, pressure, a catalyst) and outputs. Names and formulas are real, quantities are simplified.
+
+| Need | Reaction (real, simplified) | Result in play |
+|---|---|---|
+| Cold night | carbon + hydrogen with heat → methane (CH₄) | Flammable gas: burn it in a heater, or pipe it into a flamethrower |
+| Light, fast fuel | water + electricity → hydrogen + oxygen | Hydrogen burns hot; oxygen feeds fires and her breathing support |
+| Explosive | potassium nitrate + sulfur + carbon → gunpowder | Charges, mines, shells |
+| Breaching heat | aluminium + iron oxide + spark → thermite | Melts armoured zombies and your own walls |
+| Area denial | sodium chloride + electricity → chlorine gas | Toxic cloud; drifts with wind and can reach her |
+| Sustain | biomass fermented → ethanol | Fuel, disinfectant, an ingredient in her treatments |
+| Sustain | nitrogen + hydrogen with catalyst → ammonia | Fertiliser for a small food crop; also a coolant for her chamber |
+| Water | hydrogen burned in oxygen → water | Drinking water when supply runs out |
+
+**Property channels** (the only things a compound can do): state (solid, liquid, gas), flammability and burn heat, explosiveness, toxicity, corrosiveness, coolant or heat value, nutrition, medicinal effect (on her), conductivity, radiation. Gases spread on the field grid and drift with wind; that one rule makes methane leaks, chlorine clouds and oxygen-fed fires all work.
+
+**Weather and needs:** temperature becomes a real system. Cold nights and cold snaps drop the base temperature; you and she need heat, and her chamber needs the opposite (cold). Food and water are one simple "supplies" need for both of you. Project Tomorrow's players called constant drain "exhausting", so needs only bite on bad-weather days and are announced at dusk with the horde.
+
+**The cure** becomes one specific compound (in a seeded save, one specific recipe of it), which gives the detective work a huge but learnable search space.
+
+**Scope:** prototype 6 elements, 8 compounds and temperature; vertical slice 12 elements and 20 compounds; release 20 and about 35. Compounds need almost no new art: three container sprites (canister, flask, ingot) tinted per compound, plus gas tints on the grid. About 100 h more than the 10-element plan.
 
 ### 5.2 Printable components (v1: about 14)
 
@@ -310,7 +337,7 @@ Hours are my estimates for you at your pace, including testing, not counting art
 | Blueprint share codes | Post-launch | 15 | low | |
 | Full reality simulation, per-pixel physics, free-form CAD printer, multiplayer, open map | **Rejected** | — | — | Not solo-buildable |
 
-**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~390 h of code and writing, plus your art at roughly 250–450 h. That is about 1,100–1,300 h before mobile, or roughly 2 years at 1.5 h/day. The single biggest lever is keeping the component count at 14 and the element count at 10 for release.
+**Totals (estimate):** prototype ~250 h, vertical slice +~200 h, minimum release +~490 h (including compounds, gases and weather) of code and writing, plus your art at roughly 250–450 h. That is about 1,200–1,400 h before mobile, or roughly 2–2.5 years at 1.5 h/day. The single biggest lever is holding the caps (20 elements, about 35 compounds, 14 components) until release.
 
 **Money (approximate, check current prices):** Steam Direct fee US$100 per game (about INR 8,500–9,000), Google Play US$25 one-time, Apple Developer US$99 per year. **Steam alone uses almost all of the INR 10,000 budget; Apple's yearly fee does not fit at all.** Either the budget grows when mobile starts, or iOS waits until the game earns. Everything else in this plan is free (Godot, GUT, GodotSteam, NobodyWho, Qwen3 weights).
 
@@ -320,7 +347,7 @@ Hours are my estimates for you at your pace, including testing, not counting art
 
 | Risk | Likelihood | Impact | Mitigation |
 |---|---|---|---|
-| Scope creep from "create anything" | high | fatal | Hard caps (10 elements, 14 components) until release; every addition must create a new decision |
+| Scope creep from "create anything" | high | fatal | Hard caps (20 elements, ~35 compounds, 14 components) until release; every addition must create a new decision |
 | Cure too obscure, unfair, or spoiled online | high | high | Seeded cure, fairness test, acceptance ending, score and persistence (section 9) |
 | Sandbox has a dominant build | high | high | Learning horde, zombie resistances, nuclear fallout cost |
 | LLM hallucinates or says something harmful | high (if used) | high | Scripted first, grounded tools, strict test gate, Windows-only opt-in |
@@ -376,7 +403,7 @@ Real deletion only happens if you confirm a list like this one.
 ## 16. Open questions for Yash (the plan assumes the defaults)
 
 1. Wife LLM on Windows only at first, scripted elsewhere? *Default: yes.*
-2. Accept the bounded sandbox (10 elements, 14 components, rules) instead of "anything"? *Default: yes.*
+2. Accept the bounded sandbox (20 elements, ~35 compounds, 14 components, rules) instead of "anything"? *Default: yes.*
 3. Big weapons can hurt your own base and her? *Default: yes, through fallout and fire.*
 4. Replaying a loop starts from any dawn in it, with limited echoes? *Default: yes.*
 5. Cure values seeded per save so wikis can't spoil it, or one fixed answer for everyone? *Default: seeded.*
