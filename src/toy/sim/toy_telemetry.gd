@@ -3,13 +3,16 @@ extends RefCounted
 ## What one night logs for the toy gate (spec section 3, Telemetry): one CSV
 ## row per night in user://toy_log.csv. Nothing leaves the device.
 
-const LOG_PATH: String = "user://toy_log.csv"
+## A new file for the D14 build, so its extra columns never mix with rows
+## from the first toy build in toy_log.csv.
+const LOG_PATH: String = "user://toy_log_v2.csv"
 const COLUMNS: PackedStringArray = [
 	"build", "date", "result", "cause_enemy", "cause_target", "duration_s", "layout",
 	"loud_fire_s", "quiet_fire_s", "loud_shots", "quiet_shots", "loud_fire_share",
 	"swaps", "off_ground_s", "fence_s", "wall_s", "high_wall_s", "roof_s", "ladder_s",
 	"structures_lost", "player_hits", "shelter_hits_shambler", "shelter_hits_runner",
-	"kills_shambler", "kills_runner",
+	"kills_shambler", "kills_runner", "kills_gun", "kills_melee", "melee_kill_share",
+	"bounces", "pile_knockoffs",
 ]
 
 var result: StringName = &"none"
@@ -28,6 +31,10 @@ var structures_lost: int = 0
 var player_hits: int = 0
 var shelter_hits: Dictionary[StringName, int] = {}
 var kills: Dictionary[StringName, int] = {}
+## Kills by &"gun" or &"melee" (D14 gate: neither above about 80%).
+var kills_by: Dictionary[StringName, int] = {}
+var bounces: int = 0
+var pile_knockoffs: int = 0
 
 
 func add_shot(loud: bool, fire_interval: float) -> void:
@@ -53,8 +60,16 @@ func add_shelter_hit(enemy_id: StringName) -> void:
 	shelter_hits[enemy_id] = shelter_hits.get(enemy_id, 0) + 1
 
 
-func add_kill(enemy_id: StringName) -> void:
+func add_kill(enemy_id: StringName, by: StringName = &"gun") -> void:
 	kills[enemy_id] = kills.get(enemy_id, 0) + 1
+	kills_by[by] = kills_by.get(by, 0) + 1
+
+
+## Share of kills made with melee, 0–1; -1 if nothing was killed.
+func melee_kill_share() -> float:
+	var melee: int = kills_by.get(&"melee", 0)
+	var total: int = melee + kills_by.get(&"gun", 0)
+	return -1.0 if total == 0 else float(melee) / total
 
 
 func row(build: String, date: String) -> PackedStringArray:
@@ -67,6 +82,8 @@ func row(build: String, date: String) -> PackedStringArray:
 		"%.1f" % height_time.get(&"ladder", 0.0),
 		str(structures_lost), str(player_hits), str(shelter_hits.get(&"shambler", 0)), str(shelter_hits.get(&"runner", 0)),
 		str(kills.get(&"shambler", 0)), str(kills.get(&"runner", 0)),
+		str(kills_by.get(&"gun", 0)), str(kills_by.get(&"melee", 0)), "%.3f" % melee_kill_share(),
+		str(bounces), str(pile_knockoffs),
 	])
 
 

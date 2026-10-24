@@ -6,7 +6,7 @@ extends RefCounted
 
 
 ## `layout` is one option index per build spot (see BuildPlan.options).
-static func run_night(seed_value: int, layout: Array, dt: float, trigger_rate: float = 1.0, passive: bool = false, max_seconds: float = 600.0) -> Dictionary:
+static func run_night(seed_value: int, layout: Array, dt: float, trigger_rate: float = 1.0, passive: bool = false, max_seconds: float = 600.0, brawler: bool = false) -> Dictionary:
 	var night: NightDefinition = ToyContent.night()
 	var plan: BuildPlan = ToyContent.new_plan(99)
 	for i: int in mini(layout.size(), plan.choices.size()):
@@ -15,6 +15,7 @@ static func run_night(seed_value: int, layout: Array, dt: float, trigger_rate: f
 	var bot: ScriptedPlayer = ScriptedPlayer.new(seed_value)
 	bot.trigger_rate = trigger_rate
 	bot.passive = passive
+	bot.brawler = brawler
 	var violations: int = 0
 	var notes: PackedStringArray = []
 	var worst_ms: float = 0.0
@@ -45,6 +46,8 @@ static func run_night(seed_value: int, layout: Array, dt: float, trigger_rate: f
 		"lost": sim.telemetry.structures_lost, "loud_share": sim.telemetry.loud_share(),
 		"p99_ms": p99, "worst_ms": worst_ms, "violations": violations, "notes": notes,
 		"ended": sim.is_over(), "climbs": sim.climbs, "player_hits": sim.telemetry.player_hits,
+		"bounces": sim.bounces, "knockoffs": sim.telemetry.pile_knockoffs,
+		"melee_share": sim.telemetry.melee_kill_share(),
 	}
 
 
@@ -93,8 +96,8 @@ static func check_enemy(sim: FieldSim, e: ToyEnemy, last_side: Dictionary[int, i
 
 
 static func describe(stats: Dictionary) -> String:
-	return "night seed=%d climbs=%d player_hits=%d result=%s t=%.0fs kills=%s shelter=%.0f player=%.0f lost=%d loud=%.2f p99=%.3fms worst=%.2fms violations=%d %s" % [
-		stats["seed"], stats["climbs"], stats["player_hits"], stats["result"], stats["seconds"], stats["kills"], stats["shelter"], stats["player"],
+	return "night seed=%d climbs=%d bounces=%d knockoffs=%d melee=%.2f player_hits=%d result=%s t=%.0fs kills=%s shelter=%.0f player=%.0f lost=%d loud=%.2f p99=%.3fms worst=%.2fms violations=%d %s" % [
+		stats["seed"], stats["climbs"], stats["bounces"], stats["knockoffs"], stats["melee_share"], stats["player_hits"], stats["result"], stats["seconds"], stats["kills"], stats["shelter"], stats["player"],
 		stats["lost"], stats["loud_share"], stats["p99_ms"], stats["worst_ms"], stats["violations"],
 		" | ".join(stats["notes"] as PackedStringArray),
 	]

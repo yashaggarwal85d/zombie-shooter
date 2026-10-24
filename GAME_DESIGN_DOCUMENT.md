@@ -93,7 +93,8 @@ Scrap (the one resource) pays for structures and traps. You earn it from kills a
 ## 7. Player and controls
 
 - Move left and right; **jump** (D11); climb ladders; free aim (mouse or right stick); fire; melee; reload; interact.
-- ⚑ **No dodge in v0.2.** Jumping is the evasive move; one fewer verb to tune and to fit on a touch screen.
+- **Feel (D14):** tight and responsive, in the spirit of Hollow Knight but with our own values, weapon and moves. A variable-height jump (tap for a hop, hold for full height), a fast rise and a heavier fall, and instant air control. The melee tool (a hatchet) swings forward, up (hold up) or down in the air (hold down), with a brief hit-stop, recoil on the player, knockback on the infected, and a bounce off a down-strike that also knocks the top body off a pile. The gun fires on the ground and in the air.
+- ⚑ **No dodge or dash yet.** Jumping is the evasive move; one fewer verb to tune and to fit on a touch screen. Revisit after the D14 playtests.
 - **InputMap actions:** `move_left`, `move_right`, `jump`, `climb_up`, `climb_down`, `aim`, `fire`, `melee`, `reload`, `interact`, `pause`. `stairs_up`/`stairs_down` are renamed `climb_up`/`climb_down`.
 - Mouse and keyboard first, gamepad by the slice, touch for the port. Touch needs move, jump, aim and fire at once: the main input risk (section 17).
 - Health 100 *(tune)*.
@@ -165,7 +166,8 @@ Placed by day on build spots. They share the tag system.
 | Testers say what killed them (or hit the shelter) in 80%+ of cases | Ask after each death |
 | Loud vs quiet is a real choice | Logged fire time between 30% and 70% loud across testers; testers can explain when they switch |
 | Height is a choice, not a safe spot | Testers spend 20–70% of the night off the ground; nobody wins by standing in one place |
-| Jumping and climbing feel good | No tester calls it clunky or floaty unprompted |
+| Jumping and climbing feel good | No tester calls it clunky or floaty unprompted; testers call the jump responsive (D14) |
+| Melee and the gun both matter (D14) | Neither above about 80% of kills across testers (logged) |
 | Input to action under 100 ms | Frame capture |
 
 **Loop prototype (Stage D step 2):** 5 stops on the route with two backdrop kits, the day action budget with building, the brute, the lure trap, one experiment, reset keeping one unlock, a basic notebook. Acceptance criteria are Stage A section 13's table, plus *at least 3 of 5 testers build differently from each other at stop 2*.

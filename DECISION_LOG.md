@@ -104,9 +104,9 @@ Source: [research/STAGE_A_REVIEW.md](research/STAGE_A_REVIEW.md). Yash asked for
 - **Replaces:** my proposal that the infected never climb.
 - **Rejected:** a fixed, pre-built toy layout (Yash wants building in from the start).
 
-## D14. Hollow Knight-like movement and melee feel, plus the gun (proposed)
-- **Date:** 2026-10-24 · **Status:** proposed, waiting for Yash's OK on the spec change. The direction itself is Yash's: "the movement mechanics are gonna be like hollow knight, how it jumps and melee attacks. The ranged attacks will also be there in our case."
-- **Decision (proposed):** an overriding of the project rule against adopting Hollow Knight's combat, limited to **feel**: a variable-height jump with a snappy arc and instant air control, and a fast three-direction melee (forward, up, down in the air) with hit-stop, recoil and a downward bounce that also knocks bodies off piles. The gun stays. Details: [research/STAGE_D_MOVEMENT_MELEE_PROPOSAL.md](research/STAGE_D_MOVEMENT_MELEE_PROPOSAL.md).
+## D14. Hollow Knight-like movement and melee feel, plus the gun
+- **Date:** 2026-10-24 · **Status:** approved by Yash on 2026-10-24 ("Build as proposed"), built into the combat toy the same day. The direction itself is Yash's: "the movement mechanics are gonna be like hollow knight, how it jumps and melee attacks. The ranged attacks will also be there in our case."
+- **Decision:** an overriding of the project rule against adopting Hollow Knight's combat, limited to **feel**: a variable-height jump with a snappy arc and instant air control, and a fast three-direction melee (forward, up, down in the air) with hit-stop, recoil and a downward bounce that also knocks bodies off piles. The gun stays. Details: [research/STAGE_D_MOVEMENT_MELEE_PROPOSAL.md](research/STAGE_D_MOVEMENT_MELEE_PROPOSAL.md).
 - **Not taken from Hollow Knight:** its numbers, moves list, nail or sword, soul or healing system, masks UI, sounds and animations. The melee weapon is a tool (a hatchet or crowbar).
 - **Why:** the toy's movement and melee are flat. Responsive movement makes a 2D action game feel good, and a down-strike gives D12's climbing piles a counter.
 - **Risks:** looking derivative, because we would share Hollow Knight's art feel, movement and side view while sitting close to Kingdom Two Crowns in structure; melee overpowering the loud/quiet choice; touch controls for the port; about 15–25 h of build and tuning, and about 12 player animations later.

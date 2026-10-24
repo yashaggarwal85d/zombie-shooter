@@ -36,6 +36,8 @@ func _setup() -> void:
 	_toy._make_build_preview(FieldSim.SHELTER_X - 160.0)
 	var bot: ScriptedPlayer = ScriptedPlayer.new(5)
 	bot.trigger_rate = 0.35
+	# The hatchet brawler, so shots show slashes and bounces (D14).
+	bot.brawler = true
 	_toy.bot = bot
 
 

@@ -165,6 +165,10 @@ First-pass tuning while building, all in `data/` and easy to change:
 - The free cabin ladder works from both sides, as do built ladders (they're A-frames).
 - Placeholder sounds are generated in code (`tools/art_src/make_toy_sounds.py`), not downloaded.
 
+## 8a. D14: movement and melee feel (24 October 2026)
+
+Approved by Yash and built on this branch: a variable-height jump with a heavier fall, and a three-direction hatchet swing with hit-stop, recoil, knockback and a down-strike bounce that knocks the top body off a pile. Values and the soak note are in [STAGE_D_MOVEMENT_MELEE_PROPOSAL.md](STAGE_D_MOVEMENT_MELEE_PROPOSAL.md) section 6. Two new gate lines are in GDD section 13.
+
 ## 9. Carried checks (D10, updated for D11)
 
 - C1/C3 hardware runs: still need **your PC's CPU, GPU and RAM, and your Android phone model.** The toy builds can stand in for the Stage C builds.

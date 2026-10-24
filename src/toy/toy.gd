@@ -70,6 +70,7 @@ func _start_night() -> void:
 	sim.player.x = player_x
 	sim.shot_fired.connect(_on_shot)
 	sim.melee_swung.connect(_on_melee)
+	sim.player_bounced.connect(_on_bounce)
 	sim.enemy_hit.connect(_on_enemy_hit)
 	sim.enemy_killed.connect(_on_enemy_killed)
 	sim.attack_landed.connect(_on_attack_landed)
@@ -170,6 +171,7 @@ func _read_input() -> ToyInput:
 	i.move = Input.get_axis(&"move_left", &"move_right")
 	i.climb = Input.get_axis(&"climb_down", &"climb_up")
 	i.jump_pressed = Input.is_action_just_pressed(&"jump")
+	i.jump_held = Input.is_action_pressed(&"jump")
 	i.fire_held = Input.is_action_pressed(&"fire")
 	i.melee_pressed = Input.is_action_just_pressed(&"melee")
 	i.reload_pressed = Input.is_action_just_pressed(&"reload")
@@ -203,8 +205,13 @@ func _on_shot(origin: Vector2, end: Vector2, loud: bool, _hit: bool) -> void:
 	_audio.play_at(&"shot_loud" if loud else &"shot_quiet", origin, 0.0 if loud else -6.0)
 
 
-func _on_melee(x: float, y: float, _facing: int) -> void:
+func _on_melee(x: float, y: float, direction: Vector2i) -> void:
+	_fx.add_slash(direction)
 	_audio.play_at(&"melee", Vector2(x, y + 30.0), -4.0)
+
+
+func _on_bounce(x: float, y: float) -> void:
+	_fx.add_burst(Vector2(x, y), Color(0.85, 0.9, 1.0, 0.8), 5)
 
 
 func _on_enemy_hit(e: ToyEnemy) -> void:

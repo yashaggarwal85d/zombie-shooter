@@ -5,9 +5,21 @@ extends RefCounted
 ## bodies, so every rule here is deterministic and unit-tested.
 
 const SPEED: float = 220.0
-const GRAVITY: float = 2400.0
-## About 140 px apex: onto fences and walls, not high walls or the roof.
-const JUMP_VELOCITY: float = 820.0
+# Jump feel (D14): a fast rise, a brief ease at the top, a heavier fall, and a
+# height set by how long jump is held. Our own starting values, to tune.
+## Rising gravity: a full jump peaks at about 140 px in about 0.3 s, onto
+## fences and walls but not high walls or the roof.
+const GRAVITY: float = 3100.0
+const JUMP_VELOCITY: float = 930.0
+## Falling is heavier than rising.
+const FALL_GRAVITY_SCALE: float = 1.6
+const MAX_FALL_SPEED: float = 1100.0
+## Near the top of a held jump, gravity eases off for a moment of hang.
+const APEX_SPEED: float = 120.0
+const APEX_GRAVITY_SCALE: float = 0.5
+## Letting go of jump while rising caps the climb speed: a tap gives a hop of
+## about 60 px.
+const JUMP_CUT_VELOCITY: float = 600.0
 const CLIMB_SPEED: float = 260.0
 const COYOTE_TIME: float = 0.1
 const JUMP_BUFFER: float = 0.1
@@ -31,6 +43,14 @@ var coyote_left: float = 0.0
 var jump_buffer_left: float = 0.0
 var drop_through_left: float = 0.0
 var drop_through: ToyStructure = null
+## False for a bounce or a ladder hop that letting go must not cut short.
+var jump_cuttable: bool = false
+## A short shove from a melee hit (D14), field units per second.
+var recoil_vx: float = 0.0
+var recoil_left: float = 0.0
+## Landings so far and the speed of the last one, for the view's squash.
+var landings: int = 0
+var last_land_speed: float = 0.0
 ## Seconds spent off the ground this night, for the gate.
 var air_and_height_time: float = 0.0
 
@@ -59,6 +79,23 @@ func take_damage(amount: float) -> void:
 	health = maxf(0.0, health - amount)
 
 
+## Pushes the body sideways for `time` seconds; walls still block it.
+func recoil(vx: float, time: float) -> void:
+	recoil_vx = vx
+	recoil_left = time
+
+
+## Launches the body up off a down-strike. Holding or releasing jump doesn't
+## change a bounce's height.
+func bounce(velocity: float) -> void:
+	ladder = null
+	surface = null
+	grounded = false
+	coyote_left = 0.0
+	vy = velocity
+	jump_cuttable = false
+
+
 ## Advances the body one step. `structures` are the standing obstacles and
 ## platforms, including the shelter. The shelter never blocks walking (its
 ## door is open), but its roof can be stood on.
@@ -69,6 +106,9 @@ func step(delta: float, input: ToyInput, structures: Array[ToyStructure]) -> voi
 		jump_buffer_left = JUMP_BUFFER
 	else:
 		jump_buffer_left = maxf(0.0, jump_buffer_left - delta)
+	recoil_left = maxf(0.0, recoil_left - delta)
+	if recoil_left <= 0.0:
+		recoil_vx = 0.0
 	drop_through_left = maxf(0.0, drop_through_left - delta)
 	if drop_through_left <= 0.0:
 		drop_through = null
@@ -125,6 +165,7 @@ func _step_ladder(delta: float, input: ToyInput) -> void:
 		jump_buffer_left = 0.0
 		ladder = null
 		vy = JUMP_VELOCITY * 0.8
+		jump_cuttable = true
 		return
 	if input.move != 0.0 and absf(input.climb) < 0.5 and y > 0.0:
 		# Stepping sideways off a ladder: onto its top if level with it, else fall.
@@ -168,11 +209,13 @@ func _step_free(delta: float, input: ToyInput, structures: Array[ToyStructure]) 
 		jump_buffer_left = 0.0
 		coyote_left = 0.0
 		vy = JUMP_VELOCITY
+		jump_cuttable = true
 		grounded = false
 		surface = null
 
-	# Horizontal: built structures block the body below their top.
-	var nx: float = x + input.move * SPEED * delta
+	# Horizontal: instant, in the air as on the ground (no momentum). Built
+	# structures block the body below their top.
+	var nx: float = x + (input.move * SPEED + recoil_vx) * delta
 	for s: ToyStructure in structures:
 		if s.is_shelter or not s.is_standing() or s == surface:
 			continue
@@ -190,7 +233,11 @@ func _step_free(delta: float, input: ToyInput, structures: Array[ToyStructure]) 
 	# Vertical.
 	if not grounded:
 		var prev_y: float = y
-		vy -= GRAVITY * delta
+		if vy > 0.0 and jump_cuttable and not input.jump_held:
+			vy = minf(vy, JUMP_CUT_VELOCITY)
+			jump_cuttable = false
+		vy -= _gravity(input) * delta
+		vy = maxf(vy, -MAX_FALL_SPEED)
 		y += vy * delta
 		if vy <= 0.0:
 			var landed: ToyStructure = null
@@ -200,6 +247,9 @@ func _step_free(delta: float, input: ToyInput, structures: Array[ToyStructure]) 
 				if prev_y >= s.height() - 0.5 and y <= s.height():
 					if landed == null or s.height() > landed.height():
 						landed = s
+			if landed != null or y <= 0.0:
+				landings += 1
+				last_land_speed = -vy
 			if landed != null:
 				y = landed.height()
 				vy = 0.0
@@ -210,3 +260,11 @@ func _step_free(delta: float, input: ToyInput, structures: Array[ToyStructure]) 
 				vy = 0.0
 				grounded = true
 				surface = null
+
+
+func _gravity(input: ToyInput) -> float:
+	if vy <= 0.0:
+		return GRAVITY * FALL_GRAVITY_SCALE
+	if vy < APEX_SPEED and input.jump_held:
+		return GRAVITY * APEX_GRAVITY_SCALE
+	return GRAVITY

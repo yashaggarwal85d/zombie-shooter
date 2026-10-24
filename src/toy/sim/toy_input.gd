@@ -6,6 +6,8 @@ extends RefCounted
 var move: float = 0.0
 var climb: float = 0.0
 var jump_pressed: bool = false
+## Held down this frame: letting go early cuts a jump short (D14).
+var jump_held: bool = false
 var fire_held: bool = false
 var melee_pressed: bool = false
 var reload_pressed: bool = false

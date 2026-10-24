@@ -108,7 +108,7 @@ func test_killing_the_bottom_drops_the_rest() -> void:
 	ToyTestHelpers.run(sim, 8.0)
 	var pile: Array = hw.piles[-1]
 	var bottom: ToyEnemy = pile[0]
-	sim._damage_enemy(bottom, 100.0)
+	sim._damage_enemy(bottom, 100.0, &"gun")
 	ToyTestHelpers.run(sim, 0.5)
 	assert_eq(pile.size(), 2)
 	for i: int in pile.size():
@@ -273,7 +273,7 @@ func test_cap_queues_spawns_instead_of_dropping_them() -> void:
 func test_definitions_are_not_changed_by_play() -> void:
 	var before: float = shambler.health
 	var e: ToyEnemy = sim.spawn_enemy(shambler, 600.0)
-	sim._damage_enemy(e, 1.0)
+	sim._damage_enemy(e, 1.0, &"gun")
 	assert_eq(shambler.health, before)
 	var wall_def: StructureDefinition = ToyContent.structure(ToyContent.WALL)
 	var wall: ToyStructure = sim.add_structure(wall_def, 600.0)

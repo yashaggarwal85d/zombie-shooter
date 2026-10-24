@@ -20,10 +20,13 @@ func _initialize() -> void:
 	]
 	for n: int in nights:
 		var layout: Array = layouts[n % layouts.size()]
-		# Every third night the bot hides on the roof and never fires; the rest
+		# Every third night the bot hides on the roof and never fires; otherwise
 		# it fires at 1/4 of frames so the infected get through sometimes.
 		var passive: bool = n % 3 == 2
-		var stats: Dictionary = ToySoak.run_night(n + 1, layout, DT, 0.25, passive)
+		# The other nights alternate between a shooter and a hatchet brawler
+		# who jumps on pile tops (D14).
+		var brawler: bool = n % 3 == 1
+		var stats: Dictionary = ToySoak.run_night(n + 1, layout, DT, 0.25, passive, 600.0, brawler)
 		if passive and stats["result"] != &"shelter_fell":
 			print("  FAIL: hiding on the roof should lose the shelter (D12)")
 			failures += 1

@@ -1,8 +1,8 @@
 # Movement and melee with a Hollow Knight feel: proposal
 
-Version 0.1 · 24 October 2026 · Status: **proposed, waiting for Yash's OK** (D14).
+Version 0.2 · 24 October 2026 · Status: **approved by Yash, 24 October 2026** (D14), and built into the toy the same day (section 6 has the built values).
 
-Numbered D14 because D13 is the Himalayan hill road setting (PR #6). Nothing here is built yet.
+Numbered D14 because D13 is the Himalayan hill road setting (PR #6).
 
 Yash (24 Oct 2026): "the movement mechanics are gonna be like hollow knight, how it jumps and melee attacks. The ranged attacks will also be there in our case."
 
@@ -61,3 +61,16 @@ The current build stays playable for your first playtest. These changes go on th
 ## 4. Animations Art will need (for the slice, not the toy)
 
 The toy uses greybox: the current silhouette, plus drawn slash arcs and a squash on landing. For final art, the player rig (Skeleton2D cutout, D4) needs about 12 animations: idle, run, jump rise, jump apex, fall, land, ladder climb, slash forward (two alternating), slash up, slash down, hit recoil, death, and an aim and fire overlay for the arms.
+
+## 6. Built values (24 October 2026)
+
+All in `src/toy/sim/toy_player.gd` and `src/toy/sim/field_sim.gd`, our own first-pass numbers to tune by hand:
+- **Jump:** rise gravity 3100, take-off 930 (full jump about 140 px in about 0.3 s). Letting go while rising caps the climb speed at 600, so a tap is about 58 px. The cut only works in the first tenth of a second or so, which keeps the jump readable. Near the top of a held jump, gravity halves for a moment. Falling gravity is 1.6×, and fall speed is capped at 1100. Air control is instant (no momentum), as before.
+- **Melee:** 0.08 s active, 0.35 s between swings. Forward reaches 70 px; up and down reach 70 px above the head or below the feet and 44 px to each side. Holding up picks up; holding down picks down, but only in the air (on the ground, down + melee swings forward, and down alone still drops through a top). A swing hits each body once.
+- **Hit-stop:** 0.05 s (3 frames at 60 fps) on the first hit of a swing. The whole field holds still; a jump pressed during it still counts.
+- **Recoil and knockback:** a forward hit shoves the player back about 24 px and knocks the body back 40 px, never through a structure. Knocking a body off the edge of a top it stands on drops it.
+- **Down-strike:** any hit bounces the player about 90 px (letting go doesn't cut a bounce). If it hits the top body of a pile, or one climbing, that body is thrown to the ground in front of the face and the pile settles one step lower. One swing takes one body per pile.
+- **Telemetry:** `toy_log_v2.csv` (a new file, so the first build's log stays clean) adds `kills_gun`, `kills_melee`, `melee_kill_share`, `bounces` and `pile_knockoffs`.
+- **Greybox view:** a hatchet arc in the swing's direction, a small burst on a bounce, a squash on landing and a slight stretch in fast air. F3 also draws the swing's hit box.
+
+**Soak note (candid):** the headless soak now has a hatchet brawler bot that only shoots far-off runners. It reached dawn on both of its nights with about 88% of kills by melee and only 1–2 hits taken. The bot isn't skilled, so melee may be too safe: the shamblers mostly ignore you while they chase the hum. If testers find the same, the knobs are knockback, recoil, the shamblers' wind-up, and whether a melee hit pulls a shambler onto you.

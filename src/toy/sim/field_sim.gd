@@ -10,7 +10,10 @@ extends RefCounted
 ## the ground (up is positive).
 
 signal shot_fired(origin: Vector2, end: Vector2, loud: bool, hit: bool)
-signal melee_swung(x: float, y: float, facing: int)
+## `direction` is (facing, 0) forward, (0, 1) up or (0, -1) down.
+signal melee_swung(x: float, y: float, direction: Vector2i)
+## A down-strike bounced the player off an enemy (D14).
+signal player_bounced(x: float, y: float)
 signal enemy_hit(enemy: ToyEnemy)
 signal enemy_killed(enemy: ToyEnemy)
 signal attack_landed(enemy: ToyEnemy, target_kind: StringName)
@@ -50,10 +53,25 @@ const FALL_SPEED: float = 500.0
 
 # Combat.
 const ENEMY_REACH: float = 18.0
+# Hatchet melee with a Hollow Knight-like feel (D14): our own values, to tune.
 const MELEE_RANGE: float = 70.0
+## Up and down swings reach this far out from the body's centre...
+const MELEE_SIDE_REACH: float = 44.0
+## ...and this far above the head or below the feet.
+const MELEE_VERTICAL_REACH: float = 70.0
 const MELEE_DAMAGE: float = 1.0
-const MELEE_COOLDOWN: float = 0.4
+## The swing hits for this long, then rests until the next one.
+const MELEE_ACTIVE: float = 0.08
+const MELEE_COOLDOWN: float = 0.35
 const MELEE_KNOCKBACK: float = 40.0
+## A landed swing freezes the field for a few frames.
+const HIT_STOP: float = 0.05
+const RECOIL_SPEED: float = 300.0
+const RECOIL_TIME: float = 0.08
+## About 90 px of bounce off a down-strike.
+const BOUNCE_VELOCITY: float = 750.0
+## Thrown clear of the pile face when knocked off its top.
+const KNOCK_OFF_PUSH: float = 30.0
 const SHOT_RANGE: float = 2600.0
 ## Gun height above the player's feet.
 const MUZZLE_HEIGHT: float = 44.0
@@ -79,6 +97,14 @@ var climbs: int = 0
 var _shot_source: NoiseSource
 var _melee_source: NoiseSource
 var _melee_cooldown: float = 0.0
+## The swing in progress: its direction, time left hitting, and who it hit.
+var swing_dir: Vector2i = Vector2i.ZERO
+var swing_left: float = 0.0
+var _swing_hits: Array[ToyEnemy] = []
+var _swing_landed: bool = false
+var hit_stop_left: float = 0.0
+## Down-strike bounces this night (soak check).
+var bounces: int = 0
 var _pending: Array[Dictionary] = []
 var _next_id: int = 1
 var _last_hit_by: StringName = &""
@@ -116,6 +142,7 @@ func dispose() -> void:
 		e.wind_up_target = null
 		e.target = null
 	enemies.clear()
+	_swing_hits.clear()
 	structures.clear()
 
 
@@ -188,6 +215,12 @@ func upcoming(side: int, window: float) -> int:
 func step(delta: float, input: ToyInput) -> void:
 	if is_over():
 		return
+	if hit_stop_left > 0.0:
+		# Everything holds still, but a jump pressed now still counts.
+		hit_stop_left = maxf(0.0, hit_stop_left - delta)
+		if input.jump_pressed:
+			player.jump_buffer_left = ToyPlayer.JUMP_BUFFER
+		return
 	elapsed += delta
 	telemetry.duration = elapsed
 	for s: NoiseSource in sources:
@@ -219,7 +252,9 @@ func _step_player(delta: float, input: ToyInput) -> void:
 	if input.fire_held and weapon.try_fire():
 		_fire(input.aim)
 	if input.melee_pressed and _melee_cooldown <= 0.0:
-		_melee()
+		_melee(input)
+	if swing_left > 0.0:
+		_step_swing(delta)
 	telemetry.off_ground_time = player.air_and_height_time
 	if player.surface != null:
 		var key: StringName = &"roof" if player.surface.is_shelter else player.surface.definition.id
@@ -252,7 +287,7 @@ func _fire(aim: Vector2) -> void:
 	telemetry.add_shot(weapon.is_loud(), c.fire_interval)
 	shot_fired.emit(origin, origin + dir * best_t, weapon.is_loud(), best != null)
 	if best != null:
-		_damage_enemy(best, c.damage)
+		_damage_enemy(best, c.damage, &"gun")
 
 
 ## Distance along the ray to the rectangle, or -1 for a miss (slab method).
@@ -281,23 +316,112 @@ static func _ray_rect(origin: Vector2, dir: Vector2, r: Rect2) -> float:
 	return t_min
 
 
-func _melee() -> void:
+## Up or down (down only in the air) picks the swing's direction; otherwise it
+## swings the way the player faces.
+func _melee(input: ToyInput) -> void:
 	_melee_cooldown = MELEE_COOLDOWN
 	_melee_source.x = player.x
 	_melee_source.time_left = SHOT_PULSE
-	melee_swung.emit(player.x, player.y, player.facing)
+	if input.climb > 0.5:
+		swing_dir = Vector2i(0, 1)
+	elif input.climb < -0.5 and not player.supported():
+		swing_dir = Vector2i(0, -1)
+	else:
+		swing_dir = Vector2i(player.facing, 0)
+	swing_left = MELEE_ACTIVE
+	_swing_hits.clear()
+	_swing_landed = false
+	melee_swung.emit(player.x, player.y, swing_dir)
+	_step_swing(0.0)
+
+
+## Where the swing hits, in field units. It follows the player while active.
+func swing_rect() -> Rect2:
+	var px: float = player.x
+	var py: float = player.y
+	if swing_dir.y > 0:
+		return Rect2(px - MELEE_SIDE_REACH, py + ToyPlayer.HEIGHT * 0.5, MELEE_SIDE_REACH * 2.0, ToyPlayer.HEIGHT * 0.5 + MELEE_VERTICAL_REACH)
+	if swing_dir.y < 0:
+		return Rect2(px - MELEE_SIDE_REACH, py - MELEE_VERTICAL_REACH, MELEE_SIDE_REACH * 2.0, MELEE_VERTICAL_REACH + 20.0)
+	var near: float = px - 10.0 * swing_dir.x
+	var far: float = px + MELEE_RANGE * swing_dir.x
+	return Rect2(minf(near, far), py - 10.0, absf(far - near), ToyPlayer.HEIGHT + 20.0)
+
+
+func _step_swing(delta: float) -> void:
+	swing_left = maxf(0.0, swing_left - delta)
+	var box: Rect2 = swing_rect()
+	var bounced: bool = false
+	var hits: Array[ToyEnemy] = []
 	for e: ToyEnemy in enemies:
-		if not e.is_alive():
-			continue
-		var dx: float = (e.x - player.x) * player.facing
-		if dx < -10.0 or dx > MELEE_RANGE + e.definition.width * 0.5:
-			continue
-		if e.top() < player.y - 10.0 or e.y > player.y + ToyPlayer.HEIGHT + 10.0:
-			continue
-		_damage_enemy(e, MELEE_DAMAGE)
-		if e.is_alive() and (e.state == ToyEnemy.State.WALK or e.state == ToyEnemy.State.WAIT):
-			e.x = _knockback_x(e, player.facing * MELEE_KNOCKBACK)
+		if e.is_alive() and not _swing_hits.has(e) and box.intersects(e.rect()):
+			hits.append(e)
+	# Decided before anyone is knocked off, so one swing takes one body per pile.
+	var pile_tops: Array[ToyEnemy] = []
+	for e: ToyEnemy in hits:
+		if _is_pile_top(e):
+			pile_tops.append(e)
+	for e: ToyEnemy in hits:
+		_swing_hits.append(e)
+		if not _swing_landed:
+			_swing_landed = true
+			hit_stop_left = HIT_STOP
+			if swing_dir.y == 0:
+				player.recoil(-swing_dir.x * RECOIL_SPEED, RECOIL_TIME)
+		if swing_dir.y < 0:
+			bounced = true
+			if pile_tops.has(e):
+				_knock_off_pile(e)
+		_damage_enemy(e, MELEE_DAMAGE, &"melee")
+		if e.is_alive() and swing_dir.y == 0:
+			_knock_back(e, swing_dir.x * MELEE_KNOCKBACK)
+	if bounced and not player.supported():
+		player.bounce(BOUNCE_VELOCITY)
+		bounces += 1
+		telemetry.bounces += 1
+		player_bounced.emit(player.x, player.y)
+		swing_left = 0.0
+	if swing_left <= 0.0:
+		_swing_hits.clear()
+
+
+func _knock_back(e: ToyEnemy, push: float) -> void:
+	match e.state:
+		ToyEnemy.State.WALK, ToyEnemy.State.WAIT:
+			e.x = _knockback_x(e, push)
 			e.wind_up_left = -1.0
+		ToyEnemy.State.ON_TOP:
+			# Off the edge of a top means off the structure.
+			e.x = _knockback_x(e, push)
+			e.wind_up_left = -1.0
+			if e.structure == null or not e.structure.spans(e.x):
+				e.structure = null
+				e.state = ToyEnemy.State.FALL
+
+
+## The top body of a pile, or one climbing off it.
+func _is_pile_top(e: ToyEnemy) -> bool:
+	if e.structure == null:
+		return false
+	if e.state == ToyEnemy.State.CLIMB:
+		return true
+	if e.state != ToyEnemy.State.PILE:
+		return false
+	var pile: Array = e.structure.piles[e.pile_side]
+	return pile.find(e) == pile.size() - 1
+
+
+## A down-strike knocks the top body of a pile, or a climber, back to the
+## ground in front of the face (D14). The pile below settles.
+func _knock_off_pile(e: ToyEnemy) -> void:
+	var s: ToyStructure = e.structure
+	var side: int = e.pile_side
+	_leave_structure(e)
+	e.state = ToyEnemy.State.FALL
+	e.wind_up_left = -1.0
+	e.wind_up_target = null
+	e.x = s.face_x(side) + side * (e.definition.width * 0.5 + KNOCK_OFF_PUSH)
+	telemetry.pile_knockoffs += 1
 
 
 ## Where a knockback leaves an enemy: never through a standing structure.
@@ -316,17 +440,18 @@ func _knockback_x(e: ToyEnemy, push: float) -> float:
 	return nx
 
 
-func _damage_enemy(e: ToyEnemy, amount: float) -> void:
+## `by` is &"gun" or &"melee", for the kill split the gate checks.
+func _damage_enemy(e: ToyEnemy, amount: float, by: StringName) -> void:
 	e.health -= amount
 	enemy_hit.emit(e)
 	if e.health <= 0.0:
-		_kill(e)
+		_kill(e, by)
 
 
-func _kill(e: ToyEnemy) -> void:
+func _kill(e: ToyEnemy, by: StringName) -> void:
 	_leave_structure(e)
 	e.state = ToyEnemy.State.DEAD
-	telemetry.add_kill(e.definition.id)
+	telemetry.add_kill(e.definition.id, by)
 	enemy_killed.emit(e)
 
 

@@ -9,11 +9,13 @@ func before_each() -> void:
 	sim.player.x = 500.0
 
 
-func _in(move: float = 0.0, climb: float = 0.0, jump: bool = false) -> ToyInput:
+## Jump is held unless `hold` is false, so these tests get full jumps.
+func _in(move: float = 0.0, climb: float = 0.0, jump: bool = false, hold: bool = true) -> ToyInput:
 	var i: ToyInput = ToyInput.new()
 	i.move = move
 	i.climb = climb
 	i.jump_pressed = jump
+	i.jump_held = hold
 	return i
 
 

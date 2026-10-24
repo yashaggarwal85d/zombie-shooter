@@ -1,6 +1,6 @@
 # Combat toy: how to play it and what to note
 
-Build of 22 October 2026 (PR #5). Allow about 20–30 minutes.
+Build of 24 October 2026 (PR #5), with the new jump and hatchet (D14). Allow about 20–30 minutes.
 
 ## Install
 
@@ -12,10 +12,10 @@ Build of 22 October 2026 (PR #5). Allow about 20–30 minutes.
 | Action | Keyboard and mouse | Gamepad |
 |---|---|---|
 | Move | A / D | Left stick or D-pad |
-| Jump | Space | A |
+| Jump (tap for a hop, hold for full height) | Space | A |
 | Ladders, and drop off a top | W / S | Left stick up/down |
 | Aim and fire | Mouse, left click | Right stick, right trigger |
-| Melee | F | X |
+| Hatchet: forward, or hold W for up, or hold S in the air for down | F (+ W / S) | X (+ stick up / down) |
 | Reload | R | Y |
 | Swap barrel, loud or quiet (1.5 s) | E | B |
 | Build: cycle the marker you're standing at | E | B |
@@ -36,9 +36,10 @@ Write down your honest first impressions, without trying to be fair to the game:
 2. **Deaths:** after each loss, say what got you or the cabin *before* you look at the log.
 3. **Loud vs quiet:** did you switch barrels on purpose? When, and why? Or was one always better?
 4. **Height:** did standing on walls or the roof feel like a choice, or like a safe spot or a trap?
-5. **Feel:** is jumping or climbing clunky or floaty? Do turning crowds read as "I pulled them" or as jitter? (Press F3 to see what each one is chasing.)
+5. **Feel:** is jumping or climbing clunky, floaty or responsive? Do hatchet hits land, and does striking down on a pile top feel good? Do turning crowds read as "I pulled them" or as jitter? (Press F3 to see what each one is chasing, and the hatchet's reach.)
 6. **Difficulty:** too easy, too hard, or about right? A guess at how many tries it took.
+7. **Hatchet vs gun:** did you end up using one almost all the time? Which, and why?
 
-The log is at `%APPDATA%\Godot\app_userdata\Zombie Shooter (working title)\toy_log.csv`. Send it with your notes and I'll compute the loud share and the off-ground time.
+The log is at `%APPDATA%\Godot\app_userdata\Zombie Shooter (working title)\toy_log_v2.csv` (the first build wrote `toy_log.csv`, so send both if you played that one too). Send it with your notes and I'll compute the loud share, the off-ground time and the hatchet's share of kills.
 
 The formal gate needs 4 of 5 testers, so after you play, the same build goes to four other people.
