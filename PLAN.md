@@ -77,7 +77,7 @@ Recommendation: 3D low-poly with a painted, stylised look, if Yash is willing to
 ## 4. Core loop
 
 ```
-DAY (about 4 min, pausable)            NIGHT (about 3–5 min, real time)        DAWN (30 s)
+DAY (unlimited; you start the night)   NIGHT (about 3–5 min, real time)        DAWN (30 s)
 - burn corpses -> energy               - horde arrives from 2-4 edges            - count the dead
 - melt scrap -> mass                   - your devices fire on their own          - corpses and wreckage
 - transmute elements (costs energy)    - you move, shoot, repair, refuel,          become tomorrow's fuel
@@ -95,7 +95,7 @@ That one rule set ("mass from scrap, energy from corpses, transmuting costs ener
 
 **Build, place, salvage.** Whatever you print is placed on the map and stays there night after night. In any later day you can dismantle it and get back part of what went in: about 60% of each element by default, less if the device was damaged (scaled by remaining hp), and compounds that burned or exploded return nothing. Keeping a device that worked versus scrapping it to fund a counter to tomorrow's threat is a real tradeoff. The return rate is a prototype tuning value.
 
-**Why day is not idle time** (Project Tomorrow lesson): the day clock only moves while you act, and the corpse pile rots. Corpses lose energy value each in-game hour, so delaying costs you.
+**The day has no time limit** (Yash, 2026-10-24): the night starts only when the player chooses. Nothing trickles in while you wait (Project Tomorrow lesson: never reward idling), and her decline happens at dawn, not over time, so the day is pure planning and building at your own pace.
 
 **Dusk scouting.** At the end of each day you see the night's composition (for example "heavy bloaters, east side"). The player counter-builds. This is where most decisions come from.
 
@@ -306,7 +306,7 @@ Most players will never find the cure, so the game must be great for them too. A
 4. **Invention moments.** The best moment in the game is "I wonder if this works" and it does. Dusk scouting plus the learning horde produce those deliberately.
 5. **A story with an end for everyone.** Two endings: most players reach the acceptance ending (after enough failed treatments she asks you to stop), then endless mode; the few who solve the case get the cure ending. **I recommend this strongly.** Without it, the large majority who never find the cure get no closure, which is likely to read as "pointless" in reviews.
 6. **Daily seed** (release): the same night sequence for everyone that day, with its own leaderboard. Cheap and repeatable.
-7. **Short sessions.** A day plus night is about 8 minutes. That suits "one more night".
+7. **Short sessions.** Nights last about 3–5 minutes and the day lasts as long as you like, which suits "one more night".
 
 What I would not do: punishing meta-currency grind, or making early nights impossible to "force" difficulty. Difficulty should come from the horde, not from stingy numbers.
 
