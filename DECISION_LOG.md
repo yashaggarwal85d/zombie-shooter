@@ -104,7 +104,7 @@ Source: [research/STAGE_A_REVIEW.md](research/STAGE_A_REVIEW.md). Yash asked for
 - **Replaces:** my proposal that the infected never climb.
 - **Rejected:** a fixed, pre-built toy layout (Yash wants building in from the start).
 
-## D13. Hollow Knight-like movement and melee feel, plus the gun (proposed)
+## D14. Hollow Knight-like movement and melee feel, plus the gun (proposed)
 - **Date:** 2026-10-24 · **Status:** proposed, waiting for Yash's OK on the spec change. The direction itself is Yash's: "the movement mechanics are gonna be like hollow knight, how it jumps and melee attacks. The ranged attacks will also be there in our case."
 - **Decision (proposed):** an overriding of the project rule against adopting Hollow Knight's combat, limited to **feel**: a variable-height jump with a snappy arc and instant air control, and a fast three-direction melee (forward, up, down in the air) with hit-stop, recoil and a downward bounce that also knocks bodies off piles. The gun stays. Details: [research/STAGE_D_MOVEMENT_MELEE_PROPOSAL.md](research/STAGE_D_MOVEMENT_MELEE_PROPOSAL.md).
 - **Not taken from Hollow Knight:** its numbers, moves list, nail or sword, soul or healing system, masks UI, sounds and animations. The melee weapon is a tool (a hatchet or crowbar).

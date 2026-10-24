@@ -1,6 +1,8 @@
 # Movement and melee with a Hollow Knight feel: proposal
 
-Version 0.1 · 24 October 2026 · Status: **proposed, waiting for Yash's OK** (D13). Nothing here is built yet.
+Version 0.1 · 24 October 2026 · Status: **proposed, waiting for Yash's OK** (D14).
+
+Numbered D14 because D13 is the Himalayan hill road setting (PR #6). Nothing here is built yet.
 
 Yash (24 Oct 2026): "the movement mechanics are gonna be like hollow knight, how it jumps and melee attacks. The ranged attacks will also be there in our case."
 
