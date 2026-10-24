@@ -26,7 +26,7 @@ Facts (retrieved 2026-10-24):
 
 What we take: a base that is the thing being attacked, waves that grow as you grow, and a day/night rhythm. What we learn from its feedback:
 1. Never reward waiting. Every resource must come from acting (killing, salvaging, defending).
-2. No inventory juggling. Resources are two numbers (mass and energy, section 4), not item stacks.
+2. No inventory juggling. Many elements and compounds, but each is one number in a stockpile (section 4), never item stacks or slots.
 3. Survival meters must create decisions, not chores. The wife's needs are the one meter, and it is the story.
 
 Competitive note (opinion): it launches into Early Access a long time before we could, in the same genre. Copying its structure is not a differentiator. The transmutation sandbox, the wife and the loops have to be the reason to buy.
@@ -76,11 +76,13 @@ DAY (about 4 min, pausable)            NIGHT (about 3–5 min, real time)       
 - read dusk scouting: what's coming
 ```
 
-**Two resources only.**
-- **Mass (kg)** comes from scrap: wrecked devices, debris, salvage piles on the map edges, and zombie remains. Transmutation does not create mass; it changes which element the mass is. Printing spends mass.
+**Resources: an element stockpile plus energy** (Yash, 2026-10-24).
+- **Mass (kg)** comes from scrap: wrecked devices, debris, salvage piles on the map edges, and zombie remains. The stockpile shows one amount per element and compound (iron 12 kg, methane 3 kg); no slots, stacks or carry weight. Transmutation interchanges elements: it changes which element the mass is, never how much. Reactions turn elements into compounds. Printing spends them.
 - **Energy (J)** comes from burning corpses in the bio-reactor. Transmutation and powered devices spend energy.
 
 That one rule set ("mass from scrap, energy from corpses, transmuting costs energy, printing costs mass") is the whole economy, and it ties success at night to options in the day. It also self-balances: a strong night gives a rich day, and a bad night starts a spiral, which is what a near-impossible game needs.
+
+**Build, place, salvage.** Whatever you print is placed on the map and stays there night after night. In any later day you can dismantle it and get back part of what went in: about 60% of each element by default, less if the device was damaged (scaled by remaining hp), and compounds that burned or exploded return nothing. Keeping a device that worked versus scrapping it to fund a counter to tomorrow's threat is a real tradeoff. The return rate is a prototype tuning value.
 
 **Why day is not idle time** (Project Tomorrow lesson): the day clock only moves while you act, and the corpse pile rots. Corpses lose energy value each in-game hour, so delaying costs you.
 
