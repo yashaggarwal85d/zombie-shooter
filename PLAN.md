@@ -79,7 +79,7 @@ Recommendation: 3D low-poly with a painted, stylised look, if Yash is willing to
 ```
 DAY (unlimited; you start the night)   NIGHT (2–3 min growing to ~20 min cap)  DAWN (30 s)
 - burn corpses -> energy               - horde arrives from 2-4 edges            - count the dead
-- melt scrap -> mass                   - your devices fire on their own          - corpses and wreckage
+- melt scrap -> mass                   - wired devices fire on their own,        - corpses and wreckage
 - transmute elements (costs energy)    - you move, shoot, repair, refuel,          become tomorrow's fuel
 - print parts (costs mass)               reroute power, drag her chamber's       - her health ticks down
 - assemble or upgrade devices            cooling back online                     - loop snapshot saved
@@ -203,7 +203,7 @@ Players combine real elements into real compounds, and those compounds fight zom
 
 ### 5.3 Devices: assembly on a grid
 
-A device is a small grid (3×3 at first, 4×4 later) where the player places components. A valid device needs: one power source, one trigger (or the player as trigger, for hand-held tools), and one effector, connected through structure. Everything else is choice.
+A device is a small grid (3×3 at first, 4×4 later) where the player places components. A valid device needs one power source and one effector, connected through structure. It fires on its own only if the player wires a trigger (sensor, tripwire, timer) into its circuit (Yash, 2026-10-24); otherwise it is manual and fires only when the player operates it, by hand or through a wired switch. Automation is something you build, not a default. Everything else is choice.
 
 Examples that come out of the rules, none of them hand-coded:
 - **Automatic arrow shooter:** wood-equivalent (carbon) frame + spring launcher + proximity sensor + battery, with iron darts.
