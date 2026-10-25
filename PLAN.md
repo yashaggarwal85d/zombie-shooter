@@ -1,6 +1,6 @@
 # The plan: transmutation base-defence (pivot v1)
 
-Status: FROZEN as v1 on 2026-10-24 at Yash's request (further changes go into a new version) · supersedes every earlier design decision (D1–D14). Earlier work is archived, not deleted (section 15).
+Status: FROZEN as v1 on 2026-10-24 at Yash's request (further changes go into a new version) · supersedes every earlier design decision (D1–D14). Earlier work was deleted on 2026-10-25 (section 15).
 
 Everything below is a hypothesis until a gate in section 14 passes. Facts carry a source and date. Estimates and opinions are labelled.
 
@@ -532,19 +532,14 @@ No-go means rework the system or stop, not more content.
 
 ---
 
-## 15. What happens to the old work (nothing is deleted yet)
+## 15. What happened to the old work
 
-You asked to delete everything. I have not deleted anything. I propose archiving instead, because it costs nothing and the setup work is reusable:
+Yash chose on 2026-10-25 to delete the old work and keep only the Godot setup:
 
-- **Repository, merged on main:** `ASSET_REGISTER.md`, `DECISION_LOG.md`, `research/` (Stage A report, research log, Stage A review). Proposal: move them to `archive/v0-cabin/` in a later PR.
-- **Open PRs:** #2 (Stage B design), #4 (Stage C experiments), #5 (combat toy), #6 (art direction and look test). Proposal: tag each branch head as `archive/v0-<name>` and close the PRs without merging.
-- **PR #3 (Godot skeleton, tests, CI, export presets):** proposal: keep and merge it, since it does not depend on the old design.
-- **Project files:** `research/`, `stage_c/`, `stage_d/`, `art_direction/`. Proposal: move into `archive/` in the project files.
-- **Project memory:** the coordinator is updating it so old decisions are marked superseded.
-
-Real deletion only happens if you confirm a list like this one.
-
----
+- **Merged:** PR #3 (Godot 4.7.2 skeleton, GUT tests, CI, export presets). Its docs (TECHNICAL_ARCHITECTURE, TEST_PLAN, ROADMAP, BACKLOG, RISK_REGISTER, ART_AND_AUDIO_GUIDE, RELEASE_CHECKLIST, README) and its 2D settings, input actions and Android/iOS presets still describe the old design; they get rewritten or removed when the prototype starts.
+- **Deleted from the repo:** ASSET_REGISTER.md, DECISION_LOG.md, research/.
+- **Closed without merging:** PRs #2, #4, #5, #6. Their branches stay on GitHub as the only record (hidden tags could not be pushed from this environment).
+- **Deleted from project files:** research/, stage_c/, stage_d/, art_direction/.
 
 ## 16. Open questions for Yash (the plan assumes the defaults)
 
