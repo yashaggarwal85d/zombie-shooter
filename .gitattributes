@@ -1,0 +1,23 @@
+# Normalise text to LF so Godot files diff cleanly between Windows and Mac.
+* text=auto eol=lf
+
+# Binary assets: never diff or merge as text.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.svg text
+*.ttf binary
+*.otf binary
+*.woff2 binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.kra binary
+*.psd binary
+*.blend binary
+*.exe binary
+*.apk binary
+*.aab binary
+*.res binary
+*.scn binary

@@ -1,0 +1,23 @@
+# Godot editor cache and import data (regenerated on open)
+.godot/
+
+# Export output
+/build/
+
+# Android Gradle build template, if ever installed (we use the prebuilt template)
+/android/
+
+# Signing material never goes in the repo
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
+export_credentials.cfg
+
+# OS and editor clutter
+.DS_Store
+Thumbs.db
+*.tmp
+.vscode/
+*.blend1
+*.kra~
