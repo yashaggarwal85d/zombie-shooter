@@ -16,11 +16,12 @@ You keep asking her questions to figure things out: what an element does, why a 
 
 ## Pillars
 
-Every feature must serve at least one.
+Every feature must serve at least one. Pillar 4 applies to all of them.
 
 1. **Invent, don't unlock.** Your defences are things you designed, drew and wired, not things you bought from a list.
 2. **Every night is worse.** The horde grows and adapts to your favourite tactics. You are measured by how far you get.
 3. **Her.** She is the scientist and your main source of knowledge. Protecting and tending her is the goal and the cost; time with her is time not building, and the sicker she gets, the less you can learn from her.
+4. **Think or die (Yash, 2026-10-25).** The player must get smarter to survive. Shooting blindly loses; understanding the science, reading the dusk scouting and planning the base is what wins. Your hand weapon is a last resort, not the answer.
 
 ## What the player does
 
@@ -56,6 +57,7 @@ Opinion: the overlap of these three audiences is narrow. The Steam page test in 
 - **Night 1 of loop 10 feels nothing like loop 1**, because of what the player has learned and saved, not because numbers went up.
 - **Tension, not chores.** Needs only bite on bad-weather days and are announced at dusk. Nothing rewards waiting.
 - **The danger is always readable.** Zombies are the highest-contrast thing on screen; effects never hide them.
+- **The player's knowledge is the real progression.** A player who only shoots should lose within the first few nights; a player who understands why things work goes far. Hard, but never unfair: every death should be explainable afterwards.
 - **Losing is the expected end of a good story,** and every run leaves the player better off.
 - **Tone (proposed, to confirm in N1):** quiet, warm and sad rather than gory. The love between them carries the game; the horror is the clock.
 
@@ -85,7 +87,7 @@ Opinion: the overlap of these three audiences is narrow. The Steam page test in 
 | Stage | Gate (from PLAN.md section 14) |
 |---|---|
 | 1. Paper design | At least 12 of 20 paper devices have a distinct tactical job, and no device beats every zombie type |
-| 2. Prototype | Of 5 strangers, at least 3 build an unscripted device and median fun is 4/5 or better; 3 of 5 want "one more night"; 300 zombies at 60 fps on a mid-range PC; no device takes over 50% of kills |
+| 2. Prototype | A shoot-only player (a bot, plus one tester told to only shoot) loses by night 3 to 5; of 5 strangers, at least 3 build an unscripted device and median fun is 4/5 or better; 3 of 5 want "one more night"; 300 zombies at 60 fps on a mid-range PC; no device takes over 50% of kills |
 | 2b. Wife test | 90% of recipe answers correct while lucid; clue lines never altered; zero unsafe outputs from 100 red-team prompts; first words under 1.5 s |
 | 3. Vertical slice | About 3,000 wishlists within 3 months of the Steam page; demo median playtime over 45 minutes |
 | 4. Release | 15,000 wishlists before launch; no crash in a 3-hour soak |
@@ -93,6 +95,8 @@ Opinion: the overlap of these three audiences is narrow. The Steam page test in 
 The long-term goal is about US$1M net revenue across games (Yash, 2026-10-22). This game is not assumed to reach it alone.
 
 ## Open questions that affect this vision
+
+- **"Think or die" narrows the audience** (opinion). Hard, brainy games sell (Opus Magnum, Factorio, They Are Billions), but only if the game teaches its rules well. Early nights must teach one idea each, her answers must explain why, and deaths must be readable. Onboarding (D17) moves from polish to core.
 
 - **Her as the main source of knowledge raises the stakes on the wife test** (opinion). If most learning goes through her, a wrong answer costs more, and players who turn AI off or have a weak PC must still be able to learn everything. Proposed: the journal records what she said and marks it untested until it is tried, recipes she gives are checked against the reaction table, and the scripted fallback covers every topic she can answer. Detailed in T7 and N2.
 
