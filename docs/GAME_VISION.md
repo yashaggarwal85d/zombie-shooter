@@ -40,7 +40,13 @@ A run (a loop) ends when you die, she dies, or a zombie reaches her chamber. The
   - **Physics:** nuclear transmutation (with fusion and fission as the fiction behind it), energy, heat, electricity, radiation, mass and momentum, and 5 damage channels (kinetic, fire, electric, radiation, explosive).
   - **Biology:** collect zombie samples and examine them to learn each type's weaknesses and the infection itself, which feeds the cure.
 
-  About 25 printable components turn this into thousands of devices; none are hand-scripted.
+- **Everything is built from parts, and parts from smaller parts (Yash, 2026-10-25).** A gun is a barrel, muzzle, chamber, magazine, stock and sight; a bow is limbs, string and riser; a crossbow adds a stock and trigger; a grenade is a casing, a fuse and a filling. Every part has options, every part can be swapped, and every part can be printed from any material that physically makes sense for it. The same rules cover:
+  - **Ranged weapons:** guns, bows, crossbows, launchers, sprayers.
+  - **Melee weapons:** blades, spears, hammers, powered tools.
+  - **Throwables:** grenades, mines and charges the player designs, including the filling, mixed from their own compounds (thermite, gunpowder, chlorine, sodium).
+  - **Base devices:** turrets, traps, generators and life support.
+
+  None of it is hand-scripted: a weapon's behaviour comes from its parts' shapes, materials and compounds. A material check stops impossible builds (for example, a lead barrel cannot hold a high-pressure charge, and a sodium casing reacts with rain).
 - **You draw your inventions in 3D.** The whole world is voxel art, so a part drawn in the in-game voxel editor is immediately a usable object in the same style.
 - **She is alive, and she is the expert.** A small, fine-tuned local language model is the wife, grounded in game data. You learn the science mostly by asking her. Her confusion grows as her health falls, which is the illness, not a bug.
 - **A horde that answers you.** A director counters your dominant damage channel and weak side every night, and shows you at dusk what is coming.
@@ -63,7 +69,7 @@ Opinion: the overlap of these three audiences is narrow. The Steam page test in 
 
 ## What this game is not
 
-- Not a simulation of all of reality. Science is real in its names and its direction, simplified in its numbers. Caps hold until release: 20 elements, about 35 compounds, about 25 components, and a small set of sample tests.
+- Not a simulation of all of reality. Science is real in its names and its direction, simplified in its numbers. Caps hold until release: 20 elements, about 35 compounds, a fixed set of basic part types (proposed: about 40) that nest into assemblies, and a small set of sample tests.
 - Not physics construction: no rigid bodies, no per-pixel sand, no free-form mesh sculpting, no stress or aerodynamics.
 - Not multiplayer, not procedural worlds, not a large open map. One map, one base.
 - Not a grind: no meta-currency, no stingy numbers. Difficulty comes from the horde.
@@ -95,6 +101,8 @@ Opinion: the overlap of these three audiences is narrow. The Steam page test in 
 The long-term goal is about US$1M net revenue across games (Yash, 2026-10-22). This game is not assumed to reach it alone.
 
 ## Open questions that affect this vision
+
+- **Nested parts change the plan's "about 25 components" cap** (Yash, 2026-10-25). My view: this is affordable if the code only knows a fixed set of basic part types (proposed about 40: barrel, muzzle, magazine, limb, string, blade, handle, casing, fuse, filling, spring, coil, sensor and so on), and an assembly of parts is just data that nests. Then the number of weapons is unlimited, but the code and the testing grow with the basic types, not with the weapons. The real costs are the editor UI (choosing and swapping options must stay fast) and balance (more combinations, more dominant builds). Estimate (mine): about 80–120 h more than the plan's components work, mostly in D5, D6 and D19. To be logged in DECISION_LOG.
 
 - **"Think or die" narrows the audience** (opinion). Hard, brainy games sell (Opus Magnum, Factorio, They Are Billions), but only if the game teaches its rules well. Early nights must teach one idea each, her answers must explain why, and deaths must be readable. Onboarding (D17) moves from polish to core.
 
