@@ -6,7 +6,7 @@ This page is the test every feature is checked against. If a proposal does not s
 
 ## The game in one sentence
 
-Keep your infected wife alive one more night by inventing your own defences from real chemistry, against a horde that learns from how you fight.
+Keep your infected wife alive one more night by inventing your own defences from real science (chemistry, physics and biology), against a horde that learns from how you fight.
 
 ## Premise
 
@@ -32,7 +32,12 @@ A run (a loop) ends when you die, she dies, or a zombie reaches her chamber. The
 
 ## What makes it different
 
-- **A bounded but real chemistry sandbox.** About 20 real elements and 35 real compounds, 25 printable components and 5 damage channels (kinetic, fire, electric, radiation, explosive). Thousands of devices come out of a few learnable rules; none are hand-scripted.
+- **It's all science (Yash, 2026-10-25).** Everything the player makes comes from real science working by simplified, learnable rules:
+  - **Chemistry:** about 20 real elements react into about 35 real compounds.
+  - **Physics:** nuclear transmutation (with fusion and fission as the fiction behind it), energy, heat, electricity, radiation, mass and momentum, and 5 damage channels (kinetic, fire, electric, radiation, explosive).
+  - **Biology:** collect zombie samples and examine them to learn each type's weaknesses and the infection itself, which feeds the cure.
+
+  About 25 printable components turn this into thousands of devices; none are hand-scripted.
 - **You draw your inventions in 3D.** The whole world is voxel art, so a part drawn in the in-game voxel editor is immediately a usable object in the same style.
 - **She is alive.** A small, fine-tuned local language model is the wife, grounded in game data. Her confusion grows as her health falls, which is the illness, not a bug.
 - **A horde that answers you.** A director counters your dominant damage channel and weak side every night, and shows you at dusk what is coming.
@@ -54,7 +59,7 @@ Opinion: the overlap of these three audiences is narrow. The Steam page test in 
 
 ## What this game is not
 
-- Not a simulation of all of reality. Caps hold until release: 20 elements, about 35 compounds, about 25 components.
+- Not a simulation of all of reality. Science is real in its names and its direction, simplified in its numbers. Caps hold until release: 20 elements, about 35 compounds, about 25 components, and a small set of sample tests.
 - Not physics construction: no rigid bodies, no per-pixel sand, no free-form mesh sculpting, no stress or aerodynamics.
 - Not multiplayer, not procedural worlds, not a large open map. One map, one base.
 - Not a grind: no meta-currency, no stingy numbers. Difficulty comes from the horde.
@@ -86,6 +91,8 @@ Opinion: the overlap of these three audiences is narrow. The Steam page test in 
 The long-term goal is about US$1M net revenue across games (Yash, 2026-10-22). This game is not assumed to reach it alone.
 
 ## Open questions that affect this vision
+
+- **Biology is new since PLAN.md v1** (Yash, 2026-10-25). The plan's "Biology" is limited to corpses as fuel and one rare zombie type as a clue. Proposed scope: a sample-analysis bench where the player takes samples from kills (blood, tissue, spores), runs a few tests (microscope, culture, reagent), and learns resistances, mutations from the director and cure clues. It slots into the journal and the cure, not a new simulation. Estimate (mine): about 40–60 h of code plus writing, minimum release, with one test in the prototype. To be logged in DECISION_LOG and detailed in a new design doc.
 
 - The cure: one fixed answer for everyone, or values seeded per save so wikis cannot spoil it? The plan's default is seeded.
 - Does the time-loop fiction stay light (she remembers), or are loops purely a game feature? The plan's default is light.
