@@ -10,7 +10,9 @@ Keep your infected wife alive one more night by inventing your own defences from
 
 ## Premise
 
-You and your wife are the last people in your home. She is infected and lies in a cold chamber at the centre of the base. She built the two machines you have: a **transmutation device** that changes one element into another, and a **3D printer** that turns materials into parts. Every night the dead come, and every corpse they leave is fuel. Everyone, including her, believes there is no cure. There is one, hidden in plain sight.
+You and your wife are the last people in your home. She is a scientist; you are an engineer who builds well but knows far less than she does (Yash, 2026-10-25). She is infected and lies in a cold chamber at the centre of the base. She built the two machines you have: a **transmutation device** that changes one element into another, and a **3D printer** that turns materials into parts. Every night the dead come, and every corpse they leave is fuel. Everyone, including her, believes there is no cure. There is one, hidden in plain sight.
+
+You keep asking her questions to figure things out: what an element does, why a device failed, what a new zombie is, what a sample means. She is your teacher and your partner, and the illness is slowly taking the mind you depend on.
 
 ## Pillars
 
@@ -18,7 +20,7 @@ Every feature must serve at least one.
 
 1. **Invent, don't unlock.** Your defences are things you designed, drew and wired, not things you bought from a list.
 2. **Every night is worse.** The horde grows and adapts to your favourite tactics. You are measured by how far you get.
-3. **Her.** Protecting and tending her is the goal and the cost. Time with her is time not building.
+3. **Her.** She is the scientist and your main source of knowledge. Protecting and tending her is the goal and the cost; time with her is time not building, and the sicker she gets, the less you can learn from her.
 
 ## What the player does
 
@@ -39,7 +41,7 @@ A run (a loop) ends when you die, she dies, or a zombie reaches her chamber. The
 
   About 25 printable components turn this into thousands of devices; none are hand-scripted.
 - **You draw your inventions in 3D.** The whole world is voxel art, so a part drawn in the in-game voxel editor is immediately a usable object in the same style.
-- **She is alive.** A small, fine-tuned local language model is the wife, grounded in game data. Her confusion grows as her health falls, which is the illness, not a bug.
+- **She is alive, and she is the expert.** A small, fine-tuned local language model is the wife, grounded in game data. You learn the science mostly by asking her. Her confusion grows as her health falls, which is the illness, not a bug.
 - **A horde that answers you.** A director counters your dominant damage channel and weak side every night, and shows you at dusk what is coming.
 - **A cure for detectives.** The game is winnable: exactly one combination cures her, found only by connecting subtle clues across loops. Most players will reach the acceptance ending instead, then endless mode.
 
@@ -91,6 +93,8 @@ Opinion: the overlap of these three audiences is narrow. The Steam page test in 
 The long-term goal is about US$1M net revenue across games (Yash, 2026-10-22). This game is not assumed to reach it alone.
 
 ## Open questions that affect this vision
+
+- **Her as the main source of knowledge raises the stakes on the wife test** (opinion). If most learning goes through her, a wrong answer costs more, and players who turn AI off or have a weak PC must still be able to learn everything. Proposed: the journal records what she said and marks it untested until it is tried, recipes she gives are checked against the reaction table, and the scripted fallback covers every topic she can answer. Detailed in T7 and N2.
 
 - **Biology is new since PLAN.md v1** (Yash, 2026-10-25). The plan's "Biology" is limited to corpses as fuel and one rare zombie type as a clue. Proposed scope: a sample-analysis bench where the player takes samples from kills (blood, tissue, spores), runs a few tests (microscope, culture, reagent), and learns resistances, mutations from the director and cure clues. It slots into the journal and the cure, not a new simulation. Estimate (mine): about 40–60 h of code plus writing, minimum release, with one test in the prototype. To be logged in DECISION_LOG and detailed in a new design doc.
 
