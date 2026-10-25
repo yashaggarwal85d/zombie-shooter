@@ -47,7 +47,7 @@ A run (a loop) ends when you die, she dies, or a zombie reaches her chamber. The
   - **Base devices:** turrets, traps, generators and life support.
 
   None of it is hand-scripted: a weapon's behaviour comes from its parts' shapes, materials and compounds. A material check stops impossible builds (for example, a lead barrel cannot hold a high-pressure charge, and a sodium casing reacts with rain).
-- **You draw your inventions in 3D.** The whole world is voxel art, so a part drawn in the in-game voxel editor is immediately a usable object in the same style.
+- **You assemble, physics decides (Yash, 2026-10-25).** Players do not draw their own parts. They assemble inventions from a large library of ready-made voxel parts that Yash draws, choose each part's option and material, and the physics behind the result is real. A gun with a very heavy barrel and a small grip is hard to hold: it sways, kicks badly and is dropped often. A long spear made of lead is slow to swing. A grenade too heavy for its size cannot be thrown far. The world is voxel art, so every assembly looks like part of it.
 - **She is alive, and she is the expert.** A small, fine-tuned local language model is the wife, grounded in game data. You learn the science mostly by asking her. Her confusion grows as her health falls, which is the illness, not a bug.
 - **A horde that answers you.** A director counters your dominant damage channel and weak side every night, and shows you at dusk what is coming.
 - **A cure for detectives.** The game is winnable: exactly one combination cures her, found only by connecting subtle clues across loops. Most players will reach the acceptance ending instead, then endless mode.
@@ -70,7 +70,7 @@ Opinion: the overlap of these three audiences is narrow. The Steam page test in 
 ## What this game is not
 
 - Not a simulation of all of reality. Science is real in its names and its direction, simplified in its numbers. Caps hold until release: 20 elements, about 35 compounds, a fixed set of basic part types (proposed: about 40) that nest into assemblies, and a small set of sample tests.
-- Not physics construction: no rigid bodies, no per-pixel sand, no free-form mesh sculpting, no stress or aerodynamics.
+- Not a free-form physics engine. The physics of every creation is real but computed from its parts (mass, centre of mass, balance, grip, recoil, throw range, strength of joints), not simulated as a pile of rigid bodies. No per-pixel sand, no player-drawn parts, no free-form sculpting.
 - Not multiplayer, not procedural worlds, not a large open map. One map, one base.
 - Not a grind: no meta-currency, no stingy numbers. Difficulty comes from the horde.
 - Not a branching narrative or a dialogue tree. Story beats and clue lines are hand-written; the model only phrases and chats.
@@ -101,6 +101,8 @@ Opinion: the overlap of these three audiences is narrow. The Steam page test in 
 The long-term goal is about US$1M net revenue across games (Yash, 2026-10-22). This game is not assumed to reach it alone.
 
 ## Open questions that affect this vision
+
+- **"Real physics behind the creations" (Yash, 2026-10-25), and how I propose to build it.** Each part carries real quantities: mass from its volume and material's density, its centre of mass, length, and the strength of its material. When parts are assembled, the game computes the whole item's mass, centre of mass, moment of inertia and recoil impulse, and compares them to what the holder can manage: grip size and position, the player's strength, two hands or one. That gives sway, aim time, recoil kick, swing speed, throw range and a chance to drop the weapon, all from real formulas. It is cheap, predictable and testable, which a full rigid-body simulation of every weapon would not be. The same numbers apply to devices (a turret too heavy for its mount tips over or breaks it). Detailed in D6 and D7. Dropping the voxel part editor saves most of its 100–130 h; the assembly editor and the physics model cost roughly 60–90 h (my estimate).
 
 - **Nested parts change the plan's "about 25 components" cap** (Yash, 2026-10-25). My view: this is affordable if the code only knows a fixed set of basic part types (proposed about 40: barrel, muzzle, magazine, limb, string, blade, handle, casing, fuse, filling, spring, coil, sensor and so on), and an assembly of parts is just data that nests. Then the number of weapons is unlimited, but the code and the testing grow with the basic types, not with the weapons. The real costs are the editor UI (choosing and swapping options must stay fast) and balance (more combinations, more dominant builds). Estimate (mine): about 80–120 h more than the plan's components work, mostly in D5, D6 and D19. To be logged in DECISION_LOG.
 
